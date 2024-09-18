@@ -2,6 +2,7 @@ import UIKit
 
 // Created by David
 // These Imports are used for Firebase - Authentication
+//changes 2024-09-17
 import FirebaseCore
 import GoogleSignIn
 import FirebaseAuth
