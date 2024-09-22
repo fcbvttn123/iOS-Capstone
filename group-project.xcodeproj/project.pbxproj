@@ -250,6 +250,7 @@
 			packageReferences = (
 				CE1198472BA2339800FD8B96 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CE1198572BA2925000FD8B96 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				CE6A957F2CA0592F00B2A183 /* XCRemoteSwiftPackageReference "stream-chat-swift" */,
 			);
 			productRefGroup = CE11982F2BA232FF00FD8B96 /* Products */;
 			projectDirPath = "";
@@ -539,6 +540,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 7.0.0;
+			};
+		};
+		CE6A957F2CA0592F00B2A183 /* XCRemoteSwiftPackageReference "stream-chat-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GetStream/stream-chat-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.63.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
