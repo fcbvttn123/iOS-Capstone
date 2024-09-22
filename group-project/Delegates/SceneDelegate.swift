@@ -7,6 +7,13 @@
 
 import UIKit
 import StreamChat
+import StreamChatUI
+
+func applyChatCustomizations() {
+    Appearance.default.colorPalette.background6 = .green
+    Appearance.default.images.sendArrow = UIImage(systemName: "arrowshape.turn.up.right")!
+    Components.default.channelVC = DemoChannelVC.self
+}
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -20,19 +27,57 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         // Chat Feature
+        applyChatCustomizations()
         let chatClient = ChatManager.shared.chatClient
-        let userId = "tutorial-droid"
-        let token: Token =
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidHV0b3JpYWwtZHJvaWQifQ.Kjh_ezeDSD9Y0QCLuxeqV435LEqXhGtck6uor-gPIOU"
         
+        let userId = "david"
+        let token: Token =
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZGF2aWQifQ.cy9cqFhPJRyxhLwwEmmk6t8AQmG26CztBh6H3UdySvg"
+        let userId2 = "peter"
+        let token2: Token =
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicGV0ZXIifQ.453u2mILSHhnbcjFhvPhqXtjnT87A5pIDqe6UlWMT2Y"
+        
+        /*
         chatClient.connectUser(
             userInfo: UserInfo(
                 id: userId,
-                name: "Tutorial Droid",
-                imageURL: URL(string: "https://bit.ly/2TIt8NR")
+                name: userId,
+                imageURL: URL(string: "https://images.app.goo.gl/r3w1DyHsraFETzZN6")
             ),
             token: token
         )
+         */
+        chatClient.connectUser(
+            userInfo: UserInfo(
+                id: userId2,
+                name: userId2,
+                imageURL: URL(string: "https://images.app.goo.gl/sZkqZcyAopghZMgo9")
+            ),
+            token: token2
+        )
+          
+        
+
+        do {
+            let channelController = try chatClient.channelController(
+                createDirectMessageChannelWith: [userId, userId2],
+                extraData: [:]
+            )
+            
+            // Synchronize the channel
+            channelController.synchronize { error in
+                if let error = error {
+                    print("Error synchronizing channel: \(error.localizedDescription)")
+                } else {
+                    print("Channel synchronized successfully!")
+                }
+            }
+        } catch {
+            print("Error creating channel: \(error.localizedDescription)")
+        }
+
+
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

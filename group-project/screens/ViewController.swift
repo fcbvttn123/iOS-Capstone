@@ -41,7 +41,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let chatVC = DemoChannelList()
 
         // Create the query for the channel list
-        let userId = "tutorial-droid"
+        let userId = "peter"
         let query = ChannelListQuery(filter: .containMembers(userIds: [userId]))
 
         // Set the controller

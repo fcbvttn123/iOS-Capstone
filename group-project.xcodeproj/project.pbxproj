@@ -22,6 +22,7 @@
 		CE30445A2CA067B1002B217B /* StreamChat in Frameworks */ = {isa = PBXBuildFile; productRef = CE3044592CA067B1002B217B /* StreamChat */; };
 		CE30445C2CA0683B002B217B /* StreamChatUI in Frameworks */ = {isa = PBXBuildFile; productRef = CE30445B2CA0683B002B217B /* StreamChatUI */; };
 		CE30445E2CA06931002B217B /* DemoChannelListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30445D2CA06931002B217B /* DemoChannelListVC.swift */; };
+		CE3044602CA0AC5A002B217B /* DemoChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */; };
 		CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A95812CA05B7600B2A183 /* ChatManager.swift */; };
 		CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */; };
 		D610B68F2BBF82EF007649B3 /* MapScreenCampus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */; };
@@ -60,6 +61,7 @@
 		CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CE155B1E2BB9E0FF00E45A2A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CE30445D2CA06931002B217B /* DemoChannelListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoChannelListVC.swift; sourceTree = "<group>"; };
+		CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoChannelVC.swift; sourceTree = "<group>"; };
 		CE6A95812CA05B7600B2A183 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenCampus.swift; sourceTree = "<group>"; };
 		D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayScreen.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				CE6A95812CA05B7600B2A183 /* ChatManager.swift */,
 				CE30445D2CA06931002B217B /* DemoChannelListVC.swift */,
+				CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */,
 			);
 			path = "chat-features";
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				D6569C882BBD1B20000B688F /* WebScreen.swift in Sources */,
 				D6FF36772BC2083C008A9809 /* EventDispalyScreen.swift in Sources */,
 				D6569C922BBD34C6000B688F /* Sport.swift in Sources */,
+				CE3044602CA0AC5A002B217B /* DemoChannelVC.swift in Sources */,
 				D6569C8E2BBD34A7000B688F /* Booking.swift in Sources */,
 				D6569C7F2BBCF27B000B688F /* ViewController.swift in Sources */,
 				D6569C902BBD34B8000B688F /* Match.swift in Sources */,
