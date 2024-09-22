@@ -14,6 +14,8 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 import CryptoKit
+import StreamChat
+import StreamChatUI
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
@@ -34,6 +36,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // No action needed
     }
     
+    @IBAction func chatButtonClicked(_ sender: Any) {
+        // When the button is clicked, push the chat screen
+        let chatVC = DemoChannelList()
+
+        // Create the query for the channel list
+        let userId = "tutorial-droid"
+        let query = ChannelListQuery(filter: .containMembers(userIds: [userId]))
+
+        // Set the controller
+        chatVC.controller = ChatManager.shared.chatClient.channelListController(query: query)
+
+        // Push the DemoChannelList onto the navigation stack
+        self.navigationController?.pushViewController(chatVC, animated: true)
+    }
     // MARK: - Outlets
     
     @IBOutlet var username: UITextField!

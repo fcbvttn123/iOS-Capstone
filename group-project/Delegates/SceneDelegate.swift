@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StreamChat
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -17,6 +18,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        // Chat Feature
+        let chatClient = ChatManager.shared.chatClient
+        let userId = "tutorial-droid"
+        let token: Token =
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidHV0b3JpYWwtZHJvaWQifQ.Kjh_ezeDSD9Y0QCLuxeqV435LEqXhGtck6uor-gPIOU"
+        
+        chatClient.connectUser(
+            userInfo: UserInfo(
+                id: userId,
+                name: "Tutorial Droid",
+                imageURL: URL(string: "https://bit.ly/2TIt8NR")
+            ),
+            token: token
+        )
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
