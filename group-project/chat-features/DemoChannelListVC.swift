@@ -7,11 +7,15 @@ import FirebaseFirestore
 import UIKit
 
 class DemoChannelList: ChatChannelListVC, UISearchBarDelegate {
+    
     let searchBar = UISearchBar()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
+        setupBackButton()
     }
+    
+    // Search Bar
     private func setupSearchBar() {
         searchBar.delegate = self
         searchBar.placeholder = "Search for a username"
@@ -67,4 +71,14 @@ class DemoChannelList: ChatChannelListVC, UISearchBarDelegate {
         }
         return usernames
     }
+    
+    // Back Button
+    private func setupBackButton() {
+        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonPressed))
+        navigationItem.leftBarButtonItem = backButton
+    }
+    @objc private func backButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+    
 }
