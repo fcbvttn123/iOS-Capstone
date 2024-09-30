@@ -35,23 +35,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             imageUrl: "https://images.app.goo.gl/sZkqZcyAopghZMgo9")
     }
     
-    func connectChatUser(userId: String, userName: String, token: Token, imageUrl: String) {
-        let chatClient = ChatManager.shared.chatClient
-        let userInfo = UserInfo(
-            id: userId,
-            name: userName,
-            imageURL: URL(string: imageUrl)
-        )
-
-        chatClient.connectUser(userInfo: userInfo, token: token) { error in
-            if let error = error {
-                print("Error connecting user \(userName): \(error.localizedDescription)")
-            } else {
-                print("User \(userName) connected successfully.")
-            }
-        }
-    }
-    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -78,6 +61,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+    
+    func connectChatUser(userId: String, userName: String, token: Token, imageUrl: String) {
+        let chatClient = ChatManager.shared.chatClient
+        let userInfo = UserInfo(
+            id: userId,
+            name: userName,
+            imageURL: URL(string: imageUrl)
+        )
+
+        chatClient.connectUser(userInfo: userInfo, token: token) { error in
+            if let error = error {
+                print("Error connecting user \(userName): \(error.localizedDescription)")
+            } else {
+                print("User \(userName) connected successfully.")
+            }
+        }
     }
 
 
