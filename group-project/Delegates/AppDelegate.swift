@@ -4,15 +4,19 @@ import UIKit
 // These Imports are used for Firebase - Authentication
 //changes 2024-09-17
 import FirebaseCore
+import Firebase
 import GoogleSignIn
 import FirebaseAuth
+import UserNotifications
+import FirebaseMessaging
+
 
 //Created by David
 // These Imports are used for Firebase - Firestore Database
 import FirebaseFirestore
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     
     // Created by David
     // Currently Sign-in User Information
@@ -23,11 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var email: String = ""
     var imgUrl: URL?
     var homeCampus = ""
-    var DOB = "" 
+    var DOB = ""
     var AvailableCampuses : [String] = []
     
     static let shared = AppDelegate()
-       
+    
     var currentUserUID: String?
     
     // Created by David
@@ -37,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication,
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-      return GIDSignIn.sharedInstance.handle(url)
+        return GIDSignIn.sharedInstance.handle(url)
     }
     func setupGoogleSignIn() {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
@@ -60,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Created by David
     // This function is used to check entered credentials with all account information retrieved form the fetchAccountInformationFromFirestore()
-    // Check the README file for how to use this function 
+    // Check the README file for how to use this function
     func checkCredentials(userNameEntered: String, passwordEntered: String) async -> Bool {
         do {
             let fetchedData = try await fetchAccountInformationFromFirestore()
@@ -86,17 +90,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
     }
-    
+   
     // System Generated
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        // Created by David
-        // This code is used to configure Google Firebase
         FirebaseApp.configure()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { success, _ in
+            guard success else{
+                return
+            }
+            print(success)
+        }
+        
+        application.registerForRemoteNotifications()
         
         return true
     }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        messaging.token { token, _ in
+            guard let token = token else{
+                return
+            }
+            print("token: \(token)")
+            
+        }
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print("Device Token: \(token)")
+    }
 
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        // Handle the notification and perform necessary actions
+        completionHandler()
+    }
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
