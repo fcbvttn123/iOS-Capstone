@@ -28,58 +28,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Chat Feature
         applyChatCustomizations()
-        let chatClient = ChatManager.shared.chatClient
-        
-        let userId = "david"
-        let token: Token =
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZGF2aWQifQ.cy9cqFhPJRyxhLwwEmmk6t8AQmG26CztBh6H3UdySvg"
-        let userId2 = "peter"
-        let token2: Token =
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicGV0ZXIifQ.453u2mILSHhnbcjFhvPhqXtjnT87A5pIDqe6UlWMT2Y"
-        
-        /*
-        chatClient.connectUser(
-            userInfo: UserInfo(
-                id: userId,
-                name: userId,
-                imageURL: URL(string: "https://images.app.goo.gl/r3w1DyHsraFETzZN6")
-            ),
-            token: token
-        )
-         */
-        chatClient.connectUser(
-            userInfo: UserInfo(
-                id: userId2,
-                name: userId2,
-                imageURL: URL(string: "https://images.app.goo.gl/sZkqZcyAopghZMgo9")
-            ),
-            token: token2
-        )
-          
-        
-
-        do {
-            let channelController = try chatClient.channelController(
-                createDirectMessageChannelWith: [userId, userId2],
-                extraData: [:]
-            )
-            
-            // Synchronize the channel
-            channelController.synchronize { error in
-                if let error = error {
-                    print("Error synchronizing channel: \(error.localizedDescription)")
-                } else {
-                    print("Channel synchronized successfully!")
-                }
-            }
-        } catch {
-            print("Error creating channel: \(error.localizedDescription)")
-        }
-
-
-
+        connectChatUser(
+            userId: "david",
+            userName: "david",
+            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZGF2aWQifQ.cy9cqFhPJRyxhLwwEmmk6t8AQmG26CztBh6H3UdySvg",
+            imageUrl: "https://images.app.goo.gl/sZkqZcyAopghZMgo9")
     }
+    
+    func connectChatUser(userId: String, userName: String, token: Token, imageUrl: String) {
+        let chatClient = ChatManager.shared.chatClient
+        let userInfo = UserInfo(
+            id: userId,
+            name: userName,
+            imageURL: URL(string: imageUrl)
+        )
 
+        chatClient.connectUser(userInfo: userInfo, token: token) { error in
+            if let error = error {
+                print("Error connecting user \(userName): \(error.localizedDescription)")
+            } else {
+                print("User \(userName) connected successfully.")
+            }
+        }
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
