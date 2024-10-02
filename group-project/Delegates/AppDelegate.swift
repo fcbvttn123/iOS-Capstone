@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var givenName: String = ""
     var email: String = ""
     var imgUrl: URL?
-    var homeCampus = ""
+    var homeCampus = "Sheridan College"
     var DOB = "" 
     var AvailableCampuses : [String] = []
     

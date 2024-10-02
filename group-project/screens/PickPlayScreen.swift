@@ -56,8 +56,8 @@ class PickPlayScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         super.viewDidAppear(animated)
 
         // Fetch events for the initially selected campus
-        let selectedCampus = "\(normalizeCampusName(availableCampuses[selectedCampusIndex].name))_\(normalizeCampusName(availableCampuses[selectedCampusIndex].city))"
-        fetchEvents(for: selectedCampus)
+        //let selectedCampus = "\(normalizeCampusName(availableCampuses[selectedCampusIndex].name))_\(normalizeCampusName(availableCampuses[selectedCampusIndex].city))"
+        //fetchEvents(for: selectedCampus)
     }
 
     // This function is used to make the keyboard disappear when we tap the "return" key

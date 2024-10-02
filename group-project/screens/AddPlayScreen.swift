@@ -150,7 +150,8 @@ class AddPlayScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let dateString = dateFormatter.string(from: datePicker.date)
-        let campus = availableCampuses[selectedCampusIndex].name
+        //let campus = availableCampuses[selectedCampusIndex].name
+        let campus = "sheridan college"
         
         // Add the event to Firestore
         addEventToFirestore(eventName: eventName, date: dateString, contactNumber: contactNumber, eventAddress: eventAddress, city: city, sportType: sportType, numberOfPlayers: numberOfPlayers, campus: campus)
@@ -192,8 +193,10 @@ class AddPlayScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         let db = Firestore.firestore()
         let playsCollection = db.collection("Plays")
         
-        let selectedCampus = availableCampuses[selectedCampusIndex]
-        let documentID = "\(normalizeCampusName(selectedCampus.name))_\(normalizeCampusName(selectedCampus.city))"
+        // let selectedCampus = availableCampuses[selectedCampusIndex]
+        //let selectedCampus = "sheridan college"
+        //let documentID = "\(normalizeCampusName(selectedCampus.name))_\(normalizeCampusName(selectedCampus.city))"
+        let documentID = "Sheridan college"
         
         // Retrieve existing data from Firestore
         playsCollection.document(documentID).getDocument { (document, error) in
