@@ -20,6 +20,9 @@
 		CE155B1D2BB9E0F900E45A2A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */; };
 		CE155B1F2BB9E10000E45A2A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE155B1E2BB9E0FF00E45A2A /* MapKit.framework */; };
 		CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */; };
+		D605E6302CAD006000ECBB61 /* EmailVerificationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D605E62F2CAD006000ECBB61 /* EmailVerificationScreen.swift */; };
+		D605E6342CAD014600ECBB61 /* world_universities_and_domains.json in Resources */ = {isa = PBXBuildFile; fileRef = D605E6322CAD014600ECBB61 /* world_universities_and_domains.json */; };
+		D605E6352CAD014600ECBB61 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D605E6332CAD014600ECBB61 /* countries.json */; };
 		D610B68F2BBF82EF007649B3 /* MapScreenCampus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */; };
 		D62B36B92BBDF6D20042D656 /* AddPlayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */; };
 		D62B36BD2BBDF8930042D656 /* PickPlayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */; };
@@ -55,6 +58,9 @@
 		CE155B1A2BB9E0CD00E45A2A /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CE155B1E2BB9E0FF00E45A2A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D605E62F2CAD006000ECBB61 /* EmailVerificationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationScreen.swift; sourceTree = "<group>"; };
+		D605E6322CAD014600ECBB61 /* world_universities_and_domains.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = world_universities_and_domains.json; path = ../../../../../../../../Desktop/world_universities_and_domains.json; sourceTree = "<group>"; };
+		D605E6332CAD014600ECBB61 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = countries.json; path = ../../../../../../../../Desktop/countries.json; sourceTree = "<group>"; };
 		D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenCampus.swift; sourceTree = "<group>"; };
 		D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayScreen.swift; sourceTree = "<group>"; };
 		D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickPlayScreen.swift; sourceTree = "<group>"; };
@@ -107,6 +113,7 @@
 				D6FF36782BC20CC3008A9809 /* BookingConfirmationScreen.swift */,
 				D6FF367A2BC215F2008A9809 /* ViewBookingsScreen.swift */,
 				D6569C872BBD1B20000B688F /* WebScreen.swift */,
+				D605E62F2CAD006000ECBB61 /* EmailVerificationScreen.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -131,6 +138,7 @@
 		CE1198302BA232FF00FD8B96 /* group-project */ = {
 			isa = PBXGroup;
 			children = (
+				D605E6312CAD010E00ECBB61 /* Resources */,
 				D610B6872BBF28EE007649B3 /* Storyboards */,
 				D610B6862BBF28CB007649B3 /* Delegates */,
 				D6569C8A2BBD3482000B688F /* Classes */,
@@ -150,6 +158,15 @@
 				CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D605E6312CAD010E00ECBB61 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D605E6332CAD014600ECBB61 /* countries.json */,
+				D605E6322CAD014600ECBB61 /* world_universities_and_domains.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D610B6862BBF28CB007649B3 /* Delegates */ = {
@@ -263,10 +280,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE11983E2BA2330000FD8B96 /* LaunchScreen.storyboard in Resources */,
+				D605E6342CAD014600ECBB61 /* world_universities_and_domains.json in Resources */,
 				D6569C862BBD1670000B688F /* collegeBg.png in Resources */,
 				D6569C9E2BBD4E3F000B688F /* PalPicBg.png in Resources */,
 				D6FF367F2BC24788008A9809 /* PlayPalLogo.jpeg in Resources */,
 				D6569C9A2BBD4BC1000B688F /* palBg.jpeg in Resources */,
+				D605E6352CAD014600ECBB61 /* countries.json in Resources */,
 				D6569C982BBD41BA000B688F /* playBg.png in Resources */,
 				CE1198562BA290FB00FD8B96 /* GoogleService-Info.plist in Resources */,
 				D6FF36812BC247E2008A9809 /* PlayPal3.png in Resources */,
@@ -288,6 +307,7 @@
 				D6569C922BBD34C6000B688F /* Sport.swift in Sources */,
 				D6569C8E2BBD34A7000B688F /* Booking.swift in Sources */,
 				D6569C7F2BBCF27B000B688F /* ViewController.swift in Sources */,
+				D605E6302CAD006000ECBB61 /* EmailVerificationScreen.swift in Sources */,
 				D6569C902BBD34B8000B688F /* Match.swift in Sources */,
 				D6FF36792BC20CC3008A9809 /* BookingConfirmationScreen.swift in Sources */,
 				D62B36B92BBDF6D20042D656 /* AddPlayScreen.swift in Sources */,
