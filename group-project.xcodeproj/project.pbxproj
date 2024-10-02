@@ -19,6 +19,9 @@
 		CE155B1B2BB9E0CD00E45A2A /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE155B1A2BB9E0CD00E45A2A /* MapScreen.swift */; };
 		CE155B1D2BB9E0F900E45A2A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */; };
 		CE155B1F2BB9E10000E45A2A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE155B1E2BB9E0FF00E45A2A /* MapKit.framework */; };
+		CECDD95A2CA5F5B40056E4BB /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = CECDD9592CA5F5B40056E4BB /* FirebaseInAppMessaging-Beta */; };
+		CECDD95C2CA5F5B40056E4BB /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = CECDD95B2CA5F5B40056E4BB /* FirebaseInAppMessagingSwift-Beta */; };
+		CECDD95E2CA5F5B40056E4BB /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CECDD95D2CA5F5B40056E4BB /* FirebaseMessaging */; };
 		CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */; };
 		D610B68F2BBF82EF007649B3 /* MapScreenCampus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */; };
 		D62B36B92BBDF6D20042D656 /* AddPlayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */; };
@@ -55,6 +58,7 @@
 		CE155B1A2BB9E0CD00E45A2A /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CE155B1E2BB9E0FF00E45A2A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CECDD9562CA49C3A0056E4BB /* group-projectDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "group-projectDebug.entitlements"; sourceTree = "<group>"; };
 		D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenCampus.swift; sourceTree = "<group>"; };
 		D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayScreen.swift; sourceTree = "<group>"; };
 		D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickPlayScreen.swift; sourceTree = "<group>"; };
@@ -82,11 +86,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CECDD95E2CA5F5B40056E4BB /* FirebaseMessaging in Frameworks */,
 				CE155B1D2BB9E0F900E45A2A /* CoreLocation.framework in Frameworks */,
 				CE1198592BA2925000FD8B96 /* GoogleSignIn in Frameworks */,
+				CECDD95C2CA5F5B40056E4BB /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
 				CE155B1F2BB9E10000E45A2A /* MapKit.framework in Frameworks */,
 				CE11985E2BA2983200FD8B96 /* FirebaseAuth in Frameworks */,
 				CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */,
+				CECDD95A2CA5F5B40056E4BB /* FirebaseInAppMessaging-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +138,7 @@
 		CE1198302BA232FF00FD8B96 /* group-project */ = {
 			isa = PBXGroup;
 			children = (
+				CECDD9562CA49C3A0056E4BB /* group-projectDebug.entitlements */,
 				D610B6872BBF28EE007649B3 /* Storyboards */,
 				D610B6862BBF28CB007649B3 /* Delegates */,
 				D6569C8A2BBD3482000B688F /* Classes */,
@@ -215,6 +223,9 @@
 				CE1198582BA2925000FD8B96 /* GoogleSignIn */,
 				CE11985D2BA2983200FD8B96 /* FirebaseAuth */,
 				CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */,
+				CECDD9592CA5F5B40056E4BB /* FirebaseInAppMessaging-Beta */,
+				CECDD95B2CA5F5B40056E4BB /* FirebaseInAppMessagingSwift-Beta */,
+				CECDD95D2CA5F5B40056E4BB /* FirebaseMessaging */,
 			);
 			productName = "group-project";
 			productReference = CE11982E2BA232FF00FD8B96 /* group-project.app */;
@@ -445,6 +456,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "group-project/group-projectDebug.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -549,6 +561,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE1198472BA2339800FD8B96 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		CECDD9592CA5F5B40056E4BB /* FirebaseInAppMessaging-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE1198472BA2339800FD8B96 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseInAppMessaging-Beta";
+		};
+		CECDD95B2CA5F5B40056E4BB /* FirebaseInAppMessagingSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE1198472BA2339800FD8B96 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseInAppMessagingSwift-Beta";
+		};
+		CECDD95D2CA5F5B40056E4BB /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE1198472BA2339800FD8B96 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
