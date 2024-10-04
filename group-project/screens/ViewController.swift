@@ -3,6 +3,8 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 import CryptoKit
+import StreamChat
+import StreamChatUI
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
