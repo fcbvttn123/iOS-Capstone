@@ -11,9 +11,8 @@ Description: This class manages the functionality related to searching for and s
 import UIKit
 import CoreLocation
 import MapKit
-import FirebaseFirestore
 
-class MapScreen: UIViewController, UITextFieldDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class MapScreen: BaseViewController, UITextFieldDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
     let locationManager = CLLocationManager()
     let regionRadius: CLLocationDistance = 1000
@@ -164,87 +163,7 @@ class MapScreen: UIViewController, UITextFieldDelegate, MKMapViewDelegate, UITab
             myMapView.selectAnnotation(dropPin, animated: true)
             
             centerMapOnLocation(location: selectedLocation)
-            
-            // Update the database with the selected location
-            updateDatabase(with: selectedMapItem)
         }
-    }
-    
-    // MARK: - Database Interaction
-    
-    // This function updates the database with the selected location
-    func updateDatabase(with mapItem: MKMapItem) {
-        guard let currentUserUID = AppDelegate.shared.currentUserUID else {
-            return
-        }
-        
-        let profilesCollection = Firestore.firestore().collection("Profiles")
-        
-        // Convert the MKMapItem to a string
-        let mapItemString = mapItemToString(mapItem: mapItem)
-        
-        // Update HomeCampus property for the current user in the Profiles collection
-        profilesCollection.document(currentUserUID).setData(["HomeCampus": mapItemString], merge: true) { error in
-            if let error = error {
-                print("Error updating HomeCampus: \(error)")
-            } else {
-                print("HomeCampus updated successfully")
-                
-                // Add the coordinates of the home campus to AvailableCampuses
-                if let homeLocation = mapItem.placemark.location {
-                    // Extract placemark details
-                    let placemark = mapItem.placemark
-                    
-                    // Add the home campus map item and coordinates to HomeCampus
-                    let homeDictionary: [String: Any] = [
-                        "name": mapItem.name ?? "",
-                        "latitude": homeLocation.coordinate.latitude,
-                        "longitude": homeLocation.coordinate.longitude,
-                        "street": placemark.thoroughfare ?? "",
-                        "city": placemark.locality ?? "",
-                        "state": placemark.administrativeArea ?? "",
-                        "postalCode": placemark.postalCode ?? "",
-                        "number": mapItem.phoneNumber ?? "",
-                        "url": mapItem.url?.absoluteString ?? ""
-                    ]
-                    
-                    profilesCollection.document(currentUserUID).updateData([
-                        "Campuses": FieldValue.arrayUnion([homeDictionary])
-                    ]) { error in
-                        if let error = error {
-                            print("Error updating MapItemCampuses: \(error)")
-                        } else {
-                            print("MapItemCampuses updated successfully")
-                            
-                            // Show pop-up to confirm HomeCampus and AvailableCampuses added
-                            self.showAlert(message: "Home campus and available campuses added successfully")
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    // MARK: - Utility Functions
-    
-    // This function converts MKMapItem to a string
-    func mapItemToString(mapItem: MKMapItem) -> String {
-        return mapItem.name ?? ""
-    }
-    
-    // This function converts CLLocation to a string
-    func locationToString(location: CLLocation) -> String {
-        return "\(location.coordinate.latitude), \(location.coordinate.longitude)"
-    }
-    
-    // This function displays an alert pop-up with the given message
-    func showAlert(message: String) {
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
-            self.performSegue(withIdentifier: "toMapScreen2", sender: nil)
-        })
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
     }
     
     // MARK: - Navigation
@@ -257,4 +176,3 @@ class MapScreen: UIViewController, UITextFieldDelegate, MKMapViewDelegate, UITab
         }
     }
 }
-

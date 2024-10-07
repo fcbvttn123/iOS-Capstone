@@ -19,6 +19,8 @@
 		CE155B1B2BB9E0CD00E45A2A /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE155B1A2BB9E0CD00E45A2A /* MapScreen.swift */; };
 		CE155B1D2BB9E0F900E45A2A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */; };
 		CE155B1F2BB9E10000E45A2A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE155B1E2BB9E0FF00E45A2A /* MapKit.framework */; };
+		CE44F7BC2CB31CC500281280 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F7BB2CB31CC500281280 /* SettingsViewController.swift */; };
+		CE44F7BE2CB3245900281280 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F7BD2CB3245900281280 /* BaseViewController.swift */; };
 		CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */; };
 		D610B68F2BBF82EF007649B3 /* MapScreenCampus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */; };
 		D62B36B92BBDF6D20042D656 /* AddPlayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */; };
@@ -55,6 +57,8 @@
 		CE155B1A2BB9E0CD00E45A2A /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CE155B1E2BB9E0FF00E45A2A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CE44F7BB2CB31CC500281280 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CE44F7BD2CB3245900281280 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenCampus.swift; sourceTree = "<group>"; };
 		D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayScreen.swift; sourceTree = "<group>"; };
 		D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickPlayScreen.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 				D6FF36762BC2083C008A9809 /* EventDispalyScreen.swift */,
 				D6FF36782BC20CC3008A9809 /* BookingConfirmationScreen.swift */,
 				D6FF367A2BC215F2008A9809 /* ViewBookingsScreen.swift */,
+				CE44F7BB2CB31CC500281280 /* SettingsViewController.swift */,
 				D6569C872BBD1B20000B688F /* WebScreen.swift */,
 			);
 			path = screens;
@@ -190,6 +195,7 @@
 				D6569C8D2BBD34A7000B688F /* Booking.swift */,
 				D6569C8F2BBD34B8000B688F /* Match.swift */,
 				D6569C912BBD34C6000B688F /* Sport.swift */,
+				CE44F7BD2CB3245900281280 /* BaseViewController.swift */,
 				D6569C932BBD34D3000B688F /* Team.swift */,
 			);
 			path = Classes;
@@ -287,6 +293,8 @@
 				D6FF36772BC2083C008A9809 /* EventDispalyScreen.swift in Sources */,
 				D6569C922BBD34C6000B688F /* Sport.swift in Sources */,
 				D6569C8E2BBD34A7000B688F /* Booking.swift in Sources */,
+				CE44F7BE2CB3245900281280 /* BaseViewController.swift in Sources */,
+				CE44F7BC2CB31CC500281280 /* SettingsViewController.swift in Sources */,
 				D6569C7F2BBCF27B000B688F /* ViewController.swift in Sources */,
 				D6569C902BBD34B8000B688F /* Match.swift in Sources */,
 				D6FF36792BC20CC3008A9809 /* BookingConfirmationScreen.swift in Sources */,
