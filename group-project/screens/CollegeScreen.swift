@@ -11,7 +11,7 @@ Description: This class manages the functionality related to setting and updatin
 import UIKit
 import FirebaseFirestore
 
-class CollegeScreen: UIViewController {
+class CollegeScreen: BaseViewController {
     
     @IBOutlet weak var addHomeCampusButton: UIButton!
 
@@ -19,8 +19,8 @@ class CollegeScreen: UIViewController {
         super.viewDidLoad()
         
         // Check if HomeCampus is not set
-        checkHomeCampus()
-        updateHomeCampusButtonTitle()
+        //checkHomeCampus()
+        //updateHomeCampusButtonTitle()
     }
     
     // This function is used to make the keyboard disappear when we tap the "return" key

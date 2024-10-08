@@ -2,6 +2,7 @@ import UIKit
 
 // Created by David
 // These Imports are used for Firebase - Authentication
+//changes 2024-09-17
 import FirebaseCore
 import FirebaseAuth
 
@@ -20,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var givenName: String = ""
     var email: String = ""
     var imgUrl: URL?
-    var homeCampus = ""
-    var DOB = ""
+    var homeCampus = "Sheridan College"
+    var DOB = "" 
     var AvailableCampuses : [String] = []
     var currentUserUID: String?
     var isEmailVerified : Bool = false
