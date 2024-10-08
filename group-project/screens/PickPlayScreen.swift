@@ -38,8 +38,8 @@ class PickPlayScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         super.viewDidLoad()
 
         // Set up picker view
-        campusPickerView.delegate = self
-        campusPickerView.dataSource = self
+        //campusPickerView.delegate = self
+        //campusPickerView.dataSource = self
 
         // Set up table view
         tableView.delegate = self
@@ -138,12 +138,12 @@ class PickPlayScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                         self.availableCampuses.append((name: name, city: city, latitude: latitude, longitude: longitude, number: number, postalCode: postalCode, state: state, street: street, url: url))
                     }
                 }
-                DispatchQueue.main.async {
+               /* DispatchQueue.main.async {
                     self.campusPickerView.reloadAllComponents()
                     self.updateLabels(for: self.selectedCampusIndex)
                     // Debugging: Print available campuses
                     print("Available Campuses: \(self.availableCampuses)")
-                }
+                }*/
             } else {
                 print("Campuses data not found in profile document")
             }

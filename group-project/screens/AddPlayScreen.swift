@@ -110,10 +110,10 @@ class AddPlayScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
                         self.availableCampuses.append((name: name, city: city, latitude: latitude, longitude: longitude, number: number, postalCode: postalCode, state: state, street: street, url: url))
                     }
                 }
-                DispatchQueue.main.async {
+                /*DispatchQueue.main.async {
                     self.campusPickerView.reloadAllComponents()
                     print("Available Campuses: \(self.availableCampuses)")
-                }
+                }*/
             } else {
                 print("Campuses data not found in profile document")
             }
@@ -123,11 +123,11 @@ class AddPlayScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     // MARK: - Action Methods
     @IBAction func addPlayButtonTapped(_ sender: UIButton) {
         guard let eventName = eventNameTextField.text, !eventName.isEmpty,
-              let eventAddress = eventAddressTextField.text, !eventAddress.isEmpty,
-              let city = cityTextField.text, !city.isEmpty,
-              let sportType = sportTypeTextField.text, !sportType.isEmpty,
-              let country = countryTextField.text, !country.isEmpty,
-              let province = provinceTextField.text, !province.isEmpty
+              //let eventAddress = eventAddressTextField.text, !eventAddress.isEmpty,
+              //let city = cityTextField.text, !city.isEmpty,
+              let sportType = sportTypeTextField.text, !sportType.isEmpty
+              //let country = countryTextField.text, !country.isEmpty,
+              //let province = provinceTextField.text, !province.isEmpty
         else {
             // At least one mandatory field is missing, show alert
             displayAlertForMissingFields()
@@ -154,7 +154,7 @@ class AddPlayScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         let campus = "sheridan college"
         
         // Add the event to Firestore
-        addEventToFirestore(eventName: eventName, date: dateString, contactNumber: contactNumber, eventAddress: eventAddress, city: city, sportType: sportType, numberOfPlayers: numberOfPlayers, campus: campus)
+        addEventToFirestore(eventName: eventName, date: dateString, contactNumber: contactNumber, sportType: sportType, numberOfPlayers: numberOfPlayers, campus: campus)
     }
     
     // MARK: - Helper Methods
@@ -185,9 +185,9 @@ class AddPlayScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     }
     
     /// Adds the event to Firestore.
-    func addEventToFirestore(eventName: String, date: String, contactNumber: String, eventAddress: String, city: String, sportType: String, numberOfPlayers: String, campus: String) {
+    func addEventToFirestore(eventName: String, date: String, contactNumber: String, sportType: String, numberOfPlayers: String, campus: String) {
         // Combine address, city, province, and country into a single address string
-        let combinedAddress = "\(eventAddress), \(city), \(provinceTextField.text ?? ""), \(countryTextField.text ?? "")"
+       // let combinedAddress = "\(eventAddress), \(city), \(provinceTextField.text ?? ""), \(countryTextField.text ?? "")"
         
         // Add the event to Firestore collection "Plays"
         let db = Firestore.firestore()
@@ -218,8 +218,8 @@ class AddPlayScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
                 "EventName": eventName,
                 "Date": date,
                 "ContactNumber": contactNumber,
-                "EventAddress": combinedAddress, // Use combined address
-                "City": city,
+                //"EventAddress": combinedAddress, // Use combined address
+                //"City": city,
                 "SportType": sportType,
                 "NumberOfPlayers": numberOfPlayers
             ]

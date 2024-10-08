@@ -11,7 +11,7 @@ Description: This class manages the functionality related to setting and updatin
 import UIKit
 import FirebaseFirestore
 
-class CollegeScreen: UIViewController {
+class CollegeScreen: BaseViewController {
     
     @IBOutlet weak var addHomeCampusButton: UIButton!
 
