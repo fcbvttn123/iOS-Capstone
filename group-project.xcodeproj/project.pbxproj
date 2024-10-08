@@ -26,6 +26,8 @@
 		CE30445E2CA06931002B217B /* DemoChannelListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30445D2CA06931002B217B /* DemoChannelListVC.swift */; };
 		CE3044602CA0AC5A002B217B /* DemoChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */; };
 		CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A95812CA05B7600B2A183 /* ChatManager.swift */; };
+		CE44F7BC2CB31CC500281280 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F7BB2CB31CC500281280 /* SettingsViewController.swift */; };
+		CE44F7BE2CB3245900281280 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F7BD2CB3245900281280 /* BaseViewController.swift */; };
 		CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */; };
 		D605E6302CAD006000ECBB61 /* EmailVerificationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D605E62F2CAD006000ECBB61 /* EmailVerificationScreen.swift */; };
 		D605E6342CAD014600ECBB61 /* world_universities_and_domains.json in Resources */ = {isa = PBXBuildFile; fileRef = D605E6322CAD014600ECBB61 /* world_universities_and_domains.json */; };
@@ -65,6 +67,8 @@
 		CE155B1A2BB9E0CD00E45A2A /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CE155B1E2BB9E0FF00E45A2A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CE44F7BB2CB31CC500281280 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CE44F7BD2CB3245900281280 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenCampus.swift; sourceTree = "<group>"; };
 		D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayScreen.swift; sourceTree = "<group>"; };
 		D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickPlayScreen.swift; sourceTree = "<group>"; };
