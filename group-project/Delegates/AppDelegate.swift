@@ -4,7 +4,6 @@ import UIKit
 // These Imports are used for Firebase - Authentication
 //changes 2024-09-17
 import FirebaseCore
-import GoogleSignIn
 import FirebaseAuth
 
 //Created by David
@@ -25,25 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var homeCampus = "Sheridan College"
     var DOB = "" 
     var AvailableCampuses : [String] = []
-    
-    static let shared = AppDelegate()
-       
     var currentUserUID: String?
+    var isEmailVerified : Bool = false
+    static let shared = AppDelegate()
+    
     
     // Created by David
-    // This code is used for Google Sign-in
+    // This code is used for Google Sign-ain
     var segueIdentiferForSignIn: String = "toHome"
-    
-    func application(_ app: UIApplication,
-                     open url: URL,
-                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-      return GIDSignIn.sharedInstance.handle(url)
-    }
-    func setupGoogleSignIn() {
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.configuration = config
-    }
     
     // Created by David
     // This function is used to fetch all account information from firestore
@@ -60,7 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Created by David
     // This function is used to check entered credentials with all account information retrieved form the fetchAccountInformationFromFirestore()
-    // Check the README file for how to use this function 
     func checkCredentials(userNameEntered: String, passwordEntered: String) async -> Bool {
         do {
             let fetchedData = try await fetchAccountInformationFromFirestore()
@@ -86,6 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
     }
+
+
     
     // System Generated
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -106,4 +95,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
 

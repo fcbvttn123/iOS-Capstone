@@ -21,7 +21,15 @@
 		CE155B1F2BB9E10000E45A2A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE155B1E2BB9E0FF00E45A2A /* MapKit.framework */; };
 		CE44F7BC2CB31CC500281280 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F7BB2CB31CC500281280 /* SettingsViewController.swift */; };
 		CE44F7BE2CB3245900281280 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F7BD2CB3245900281280 /* BaseViewController.swift */; };
+		CE30445A2CA067B1002B217B /* StreamChat in Frameworks */ = {isa = PBXBuildFile; productRef = CE3044592CA067B1002B217B /* StreamChat */; };
+		CE30445C2CA0683B002B217B /* StreamChatUI in Frameworks */ = {isa = PBXBuildFile; productRef = CE30445B2CA0683B002B217B /* StreamChatUI */; };
+		CE30445E2CA06931002B217B /* DemoChannelListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30445D2CA06931002B217B /* DemoChannelListVC.swift */; };
+		CE3044602CA0AC5A002B217B /* DemoChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */; };
+		CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A95812CA05B7600B2A183 /* ChatManager.swift */; };
 		CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */; };
+		D605E6302CAD006000ECBB61 /* EmailVerificationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D605E62F2CAD006000ECBB61 /* EmailVerificationScreen.swift */; };
+		D605E6342CAD014600ECBB61 /* world_universities_and_domains.json in Resources */ = {isa = PBXBuildFile; fileRef = D605E6322CAD014600ECBB61 /* world_universities_and_domains.json */; };
+		D605E6352CAD014600ECBB61 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D605E6332CAD014600ECBB61 /* countries.json */; };
 		D610B68F2BBF82EF007649B3 /* MapScreenCampus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */; };
 		D62B36B92BBDF6D20042D656 /* AddPlayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */; };
 		D62B36BD2BBDF8930042D656 /* PickPlayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */; };
@@ -57,8 +65,6 @@
 		CE155B1A2BB9E0CD00E45A2A /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CE155B1E2BB9E0FF00E45A2A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		CE44F7BB2CB31CC500281280 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		CE44F7BD2CB3245900281280 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenCampus.swift; sourceTree = "<group>"; };
 		D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayScreen.swift; sourceTree = "<group>"; };
 		D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickPlayScreen.swift; sourceTree = "<group>"; };
@@ -86,8 +92,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE30445A2CA067B1002B217B /* StreamChat in Frameworks */,
 				CE155B1D2BB9E0F900E45A2A /* CoreLocation.framework in Frameworks */,
 				CE1198592BA2925000FD8B96 /* GoogleSignIn in Frameworks */,
+				CE30445C2CA0683B002B217B /* StreamChatUI in Frameworks */,
 				CE155B1F2BB9E10000E45A2A /* MapKit.framework in Frameworks */,
 				CE11985E2BA2983200FD8B96 /* FirebaseAuth in Frameworks */,
 				CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */,
@@ -112,6 +120,7 @@
 				D6FF367A2BC215F2008A9809 /* ViewBookingsScreen.swift */,
 				CE44F7BB2CB31CC500281280 /* SettingsViewController.swift */,
 				D6569C872BBD1B20000B688F /* WebScreen.swift */,
+				D605E62F2CAD006000ECBB61 /* EmailVerificationScreen.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -136,6 +145,8 @@
 		CE1198302BA232FF00FD8B96 /* group-project */ = {
 			isa = PBXGroup;
 			children = (
+				CE6A95802CA05B5400B2A183 /* chat-features */,
+				D605E6312CAD010E00ECBB61 /* Resources */,
 				D610B6872BBF28EE007649B3 /* Storyboards */,
 				D610B6862BBF28CB007649B3 /* Delegates */,
 				D6569C8A2BBD3482000B688F /* Classes */,
@@ -155,6 +166,25 @@
 				CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE6A95802CA05B5400B2A183 /* chat-features */ = {
+			isa = PBXGroup;
+			children = (
+				CE6A95812CA05B7600B2A183 /* ChatManager.swift */,
+				CE30445D2CA06931002B217B /* DemoChannelListVC.swift */,
+				CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */,
+			);
+			path = "chat-features";
+			sourceTree = "<group>";
+		};
+		D605E6312CAD010E00ECBB61 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D605E6332CAD014600ECBB61 /* countries.json */,
+				D605E6322CAD014600ECBB61 /* world_universities_and_domains.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D610B6862BBF28CB007649B3 /* Delegates */ = {
@@ -221,6 +251,8 @@
 				CE1198582BA2925000FD8B96 /* GoogleSignIn */,
 				CE11985D2BA2983200FD8B96 /* FirebaseAuth */,
 				CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */,
+				CE3044592CA067B1002B217B /* StreamChat */,
+				CE30445B2CA0683B002B217B /* StreamChatUI */,
 			);
 			productName = "group-project";
 			productReference = CE11982E2BA232FF00FD8B96 /* group-project.app */;
@@ -253,6 +285,7 @@
 			packageReferences = (
 				CE1198472BA2339800FD8B96 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CE1198572BA2925000FD8B96 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				CE6A957F2CA0592F00B2A183 /* XCRemoteSwiftPackageReference "stream-chat-swift" */,
 			);
 			productRefGroup = CE11982F2BA232FF00FD8B96 /* Products */;
 			projectDirPath = "";
@@ -269,10 +302,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE11983E2BA2330000FD8B96 /* LaunchScreen.storyboard in Resources */,
+				D605E6342CAD014600ECBB61 /* world_universities_and_domains.json in Resources */,
 				D6569C862BBD1670000B688F /* collegeBg.png in Resources */,
 				D6569C9E2BBD4E3F000B688F /* PalPicBg.png in Resources */,
 				D6FF367F2BC24788008A9809 /* PlayPalLogo.jpeg in Resources */,
 				D6569C9A2BBD4BC1000B688F /* palBg.jpeg in Resources */,
+				D605E6352CAD014600ECBB61 /* countries.json in Resources */,
 				D6569C982BBD41BA000B688F /* playBg.png in Resources */,
 				CE1198562BA290FB00FD8B96 /* GoogleService-Info.plist in Resources */,
 				D6FF36812BC247E2008A9809 /* PlayPal3.png in Resources */,
@@ -292,10 +327,12 @@
 				D6569C882BBD1B20000B688F /* WebScreen.swift in Sources */,
 				D6FF36772BC2083C008A9809 /* EventDispalyScreen.swift in Sources */,
 				D6569C922BBD34C6000B688F /* Sport.swift in Sources */,
+				CE3044602CA0AC5A002B217B /* DemoChannelVC.swift in Sources */,
 				D6569C8E2BBD34A7000B688F /* Booking.swift in Sources */,
 				CE44F7BE2CB3245900281280 /* BaseViewController.swift in Sources */,
 				CE44F7BC2CB31CC500281280 /* SettingsViewController.swift in Sources */,
 				D6569C7F2BBCF27B000B688F /* ViewController.swift in Sources */,
+				D605E6302CAD006000ECBB61 /* EmailVerificationScreen.swift in Sources */,
 				D6569C902BBD34B8000B688F /* Match.swift in Sources */,
 				D6FF36792BC20CC3008A9809 /* BookingConfirmationScreen.swift in Sources */,
 				D62B36B92BBDF6D20042D656 /* AddPlayScreen.swift in Sources */,
@@ -303,7 +340,9 @@
 				D6569C812BBCF301000B688F /* CollegeScreen.swift in Sources */,
 				D62B36BD2BBDF8930042D656 /* PickPlayScreen.swift in Sources */,
 				CE1198322BA232FF00FD8B96 /* AppDelegate.swift in Sources */,
+				CE30445E2CA06931002B217B /* DemoChannelListVC.swift in Sources */,
 				D6569C8C2BBD3498000B688F /* User.swift in Sources */,
+				CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */,
 				CE1198342BA232FF00FD8B96 /* SceneDelegate.swift in Sources */,
 				D610B68F2BBF82EF007649B3 /* MapScreenCampus.swift in Sources */,
 				CE0D42E32BB4EF3D00900E9F /* SignUpScreen.swift in Sources */,
@@ -545,6 +584,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		CE6A957F2CA0592F00B2A183 /* XCRemoteSwiftPackageReference "stream-chat-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GetStream/stream-chat-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.63.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -557,6 +604,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE1198472BA2339800FD8B96 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		CE3044592CA067B1002B217B /* StreamChat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE6A957F2CA0592F00B2A183 /* XCRemoteSwiftPackageReference "stream-chat-swift" */;
+			productName = StreamChat;
+		};
+		CE30445B2CA0683B002B217B /* StreamChatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE6A957F2CA0592F00B2A183 /* XCRemoteSwiftPackageReference "stream-chat-swift" */;
+			productName = StreamChatUI;
 		};
 		CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
