@@ -34,8 +34,8 @@ class ChatService {
     
     // Created by David
     func connectUserToStream(username: String) {
-        var firstTimeLogIn = false
         Task {
+	    var firstTimeLogIn = false
             do {
                 let usernames = try await fetchUsernames()
                 // Check if the username exists
