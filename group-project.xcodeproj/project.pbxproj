@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C43F2F82CB6F7A400D04CA7 /* world_universities_and_domains.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C43F2F72CB6F7A400D04CA7 /* world_universities_and_domains.json */; };
+		4C43F2F92CB6F7A400D04CA7 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C43F2F62CB6F7A400D04CA7 /* countries.json */; };
+		4C43F2FB2CB7381D00D04CA7 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C43F2FA2CB7381D00D04CA7 /* ChatService.swift */; };
 		CE0D42E32BB4EF3D00900E9F /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D42E22BB4EF3D00900E9F /* SignUpScreen.swift */; };
 		CE1198322BA232FF00FD8B96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1198312BA232FF00FD8B96 /* AppDelegate.swift */; };
 		CE1198342BA232FF00FD8B96 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1198332BA232FF00FD8B96 /* SceneDelegate.swift */; };
@@ -26,8 +29,6 @@
 		CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A95812CA05B7600B2A183 /* ChatManager.swift */; };
 		CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */; };
 		D605E6302CAD006000ECBB61 /* EmailVerificationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D605E62F2CAD006000ECBB61 /* EmailVerificationScreen.swift */; };
-		D605E6342CAD014600ECBB61 /* world_universities_and_domains.json in Resources */ = {isa = PBXBuildFile; fileRef = D605E6322CAD014600ECBB61 /* world_universities_and_domains.json */; };
-		D605E6352CAD014600ECBB61 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D605E6332CAD014600ECBB61 /* countries.json */; };
 		D610B68F2BBF82EF007649B3 /* MapScreenCampus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */; };
 		D62B36B92BBDF6D20042D656 /* AddPlayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */; };
 		D62B36BD2BBDF8930042D656 /* PickPlayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */; };
@@ -51,6 +52,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C43F2F62CB6F7A400D04CA7 /* countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		4C43F2F72CB6F7A400D04CA7 /* world_universities_and_domains.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = world_universities_and_domains.json; sourceTree = "<group>"; };
+		4C43F2FA2CB7381D00D04CA7 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		CE0D42E22BB4EF3D00900E9F /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
 		CE11982E2BA232FF00FD8B96 /* group-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "group-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1198312BA232FF00FD8B96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,8 +71,6 @@
 		CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoChannelVC.swift; sourceTree = "<group>"; };
 		CE6A95812CA05B7600B2A183 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		D605E62F2CAD006000ECBB61 /* EmailVerificationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationScreen.swift; sourceTree = "<group>"; };
-		D605E6322CAD014600ECBB61 /* world_universities_and_domains.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = world_universities_and_domains.json; path = ../../../../../../../../Desktop/world_universities_and_domains.json; sourceTree = "<group>"; };
-		D605E6332CAD014600ECBB61 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = countries.json; path = ../../../../../../../../Desktop/countries.json; sourceTree = "<group>"; };
 		D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenCampus.swift; sourceTree = "<group>"; };
 		D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayScreen.swift; sourceTree = "<group>"; };
 		D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickPlayScreen.swift; sourceTree = "<group>"; };
@@ -109,6 +111,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C43F2F52CB6F79300D04CA7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4C43F2F62CB6F7A400D04CA7 /* countries.json */,
+				4C43F2F72CB6F7A400D04CA7 /* world_universities_and_domains.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CE0D42E12BB4EF0800900E9F /* screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,8 +159,8 @@
 		CE1198302BA232FF00FD8B96 /* group-project */ = {
 			isa = PBXGroup;
 			children = (
+				4C43F2F52CB6F79300D04CA7 /* Resources */,
 				CE6A95802CA05B5400B2A183 /* chat-features */,
-				D605E6312CAD010E00ECBB61 /* Resources */,
 				D610B6872BBF28EE007649B3 /* Storyboards */,
 				D610B6862BBF28CB007649B3 /* Delegates */,
 				D6569C8A2BBD3482000B688F /* Classes */,
@@ -177,17 +188,9 @@
 				CE6A95812CA05B7600B2A183 /* ChatManager.swift */,
 				CE30445D2CA06931002B217B /* DemoChannelListVC.swift */,
 				CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */,
+				4C43F2FA2CB7381D00D04CA7 /* ChatService.swift */,
 			);
 			path = "chat-features";
-			sourceTree = "<group>";
-		};
-		D605E6312CAD010E00ECBB61 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				D605E6332CAD014600ECBB61 /* countries.json */,
-				D605E6322CAD014600ECBB61 /* world_universities_and_domains.json */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		D610B6862BBF28CB007649B3 /* Delegates */ = {
@@ -304,16 +307,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE11983E2BA2330000FD8B96 /* LaunchScreen.storyboard in Resources */,
-				D605E6342CAD014600ECBB61 /* world_universities_and_domains.json in Resources */,
 				D6569C862BBD1670000B688F /* collegeBg.png in Resources */,
 				D6569C9E2BBD4E3F000B688F /* PalPicBg.png in Resources */,
 				D6FF367F2BC24788008A9809 /* PlayPalLogo.jpeg in Resources */,
 				D6569C9A2BBD4BC1000B688F /* palBg.jpeg in Resources */,
-				D605E6352CAD014600ECBB61 /* countries.json in Resources */,
 				D6569C982BBD41BA000B688F /* playBg.png in Resources */,
 				CE1198562BA290FB00FD8B96 /* GoogleService-Info.plist in Resources */,
 				D6FF36812BC247E2008A9809 /* PlayPal3.png in Resources */,
 				CE11983B2BA2330000FD8B96 /* Assets.xcassets in Resources */,
+				4C43F2F82CB6F7A400D04CA7 /* world_universities_and_domains.json in Resources */,
+				4C43F2F92CB6F7A400D04CA7 /* countries.json in Resources */,
 				CE1198392BA232FF00FD8B96 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +344,7 @@
 				D62B36BD2BBDF8930042D656 /* PickPlayScreen.swift in Sources */,
 				CE1198322BA232FF00FD8B96 /* AppDelegate.swift in Sources */,
 				CE30445E2CA06931002B217B /* DemoChannelListVC.swift in Sources */,
+				4C43F2FB2CB7381D00D04CA7 /* ChatService.swift in Sources */,
 				D6569C8C2BBD3498000B688F /* User.swift in Sources */,
 				CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */,
 				CE1198342BA232FF00FD8B96 /* SceneDelegate.swift in Sources */,
