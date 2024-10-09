@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nmA-hP-nQk">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -109,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="knh-sE-bbE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6104.5801526717551" y="79.577464788732399"/>
+            <point key="canvasLocation" x="7029.7709923664115" y="79.577464788732399"/>
         </scene>
         <!--Map Screen-->
         <scene sceneID="WXO-rF-dQW">
@@ -956,7 +956,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXN-cP-EFq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6890.8396946564881" y="79.577464788732399"/>
+            <point key="canvasLocation" x="7817.5572519083962" y="79.577464788732399"/>
         </scene>
         <!--Pick Pal Screen-->
         <scene sceneID="Lxp-oR-OOE">
@@ -1348,7 +1348,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="signIn:" destination="637-go-VXj" eventType="touchUpInside" id="ZHw-CJ-phO"/>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="toSignIn" modalPresentationStyle="fullScreen" id="HQj-ih-bM3"/>
+                                    <segue destination="nmA-hP-nQk" kind="presentation" identifier="toSignIn" modalPresentationStyle="fullScreen" id="HQj-ih-bM3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Already have an account?                    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6O-Og-qPe">
@@ -1443,6 +1443,15 @@
                                     <navigationItem title="Sign in" id="Auf-RI-nc7"/>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOi-aZ-Of4">
+                                <rect key="frame" x="166" y="614" width="61" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Chat"/>
+                                <connections>
+                                    <action selector="chatButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cz0-ni-dl5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1458,7 +1467,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1263.3587786259541" y="-26.056338028169016"/>
+            <point key="canvasLocation" x="2190.0763358778627" y="-26.056338028169016"/>
         </scene>
         <!--Map Screen Campus-->
         <scene sceneID="k4R-h6-Z6a">
@@ -1547,6 +1556,24 @@
                 <exit id="hRL-FJ-mY7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1631" y="694"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="h67-QP-8Mb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nmA-hP-nQk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Ha-my-GrU">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="On7-Ll-O7c"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s3Y-eV-qQq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1263.3587786259541" y="-26.056338028169016"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
