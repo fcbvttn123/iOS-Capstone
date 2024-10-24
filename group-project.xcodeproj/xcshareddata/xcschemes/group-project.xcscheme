@@ -49,6 +49,13 @@
             ReferencedContainer = "container:group-project.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "SENDGRID_API_KEY"
+            value = "&quot;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&quot;"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

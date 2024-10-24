@@ -151,9 +151,9 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
                 self.universityLabel.text = self.selectedUniversity
                 self.institute = newUniversity  // Store new university in 'institute'
                 if let selectedUniversity = self.selectedUniversity, !selectedUniversity.isEmpty {
-                    AppDelegate.shared.homeCampus = selectedUniversity
+                    //AppDelegate.shared.homeCampus = selectedUniversity
                 } else if let institute = self.institute {
-                    AppDelegate.shared.homeCampus = institute
+                    //AppDelegate.shared.homeCampus = institute
                 }
             }
         }
@@ -173,9 +173,10 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
         }
     }
 
+    
     @IBOutlet var email: UITextField!
     @IBOutlet var password: UITextField!
-
+    
     @IBAction func signUp(sender: Any) {
         guard let emailText = email.text, !emailText.isEmpty,
               let passwordText = password.text, !passwordText.isEmpty else {

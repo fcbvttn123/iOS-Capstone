@@ -40,8 +40,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
             // User is signed in
             // Navigate to the next screen
-            self.performSegue(withIdentifier: "goToNextScreen", sender: self)
+            self.performSegue(withIdentifier: "toHome", sender: self)
         }
+    }
+    
+    // Action that shows user "what is Institutional Email"
+    @IBAction func InstituteEmailPopup(_ sender: UIButton){
+        let alert = UIAlertController(title: "Institutional Email",
+                                      message: "As a student or faculty member, you're provided an official email by your institution. For example, your email might be formatted like yourname@Universitydomain.com. Please use this email to continue and create a new password.",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     // Action for Sign-Up button
@@ -69,5 +78,3 @@ class ViewController: UIViewController, UITextFieldDelegate {
         present(alert, animated: true, completion: nil)
     }
 }
-
-

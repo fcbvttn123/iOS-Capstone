@@ -131,7 +131,7 @@ class CollegeScreen: UIViewController {
             }
         }
     }
-    
+
     // MARK: - Button Actions
     
     // This function handles the tap on the "Add Home Campus" button
