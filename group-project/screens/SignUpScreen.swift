@@ -3,7 +3,6 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class SignUpScreen: UIViewController, UITextFieldDelegate {
-
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var universityLabel: UILabel!
     @IBOutlet weak var addUniversityButton: UIButton!
@@ -16,15 +15,12 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
     var selectedCountry: String?
     var selectedUniversity: String?
     var institute: String?
+    
+    let db = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load JSON data
-        loadCountries()
-        loadUniversities()
-        styleLabels()
-
         // Add tap gesture recognizers
         let countryTapGesture = UITapGestureRecognizer(target: self, action: #selector(showCountryDropdown))
         countryLabel.isUserInteractionEnabled = true
@@ -38,72 +34,134 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Show the verification alert when the view appears
-        showEmailVerificationAlert()
+        print("Email set in AppDelegate: \(AppDelegate.shared.email ?? "No email set")")
+        
     }
-
-    // Function to show email verification alert
-    func showEmailVerificationAlert() {
-        let alert = UIAlertController(title: "Email Verified", message: "Your email has been successfully verified. Please continue to make an account.", preferredStyle: .alert)
-        let continueAction = UIAlertAction(title: "Continue", style: .default, handler: nil)
-        alert.addAction(continueAction)
-        present(alert, animated: true, completion: nil)
-    }
-
-    // Load Countries and Universities JSON files
-    func loadCountries() {
-        if let path = Bundle.main.path(forResource: "countries", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path))
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                if let array = json as? [[String: String]] {
-                    self.countries = array
-                }
-            } catch {
-                print("Error loading countries: \(error)")
-            }
-        }
-    }
-
-    func loadUniversities() {
-        if let path = Bundle.main.path(forResource: "world_universities_and_domains", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path))
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                if let array = json as? [[String: Any]] {
-                    self.universities = array
-                }
-            } catch {
-                print("Error loading universities: \(error)")
-            }
-        }
-    }
-
+    
     @IBAction func signIn(_ sender: UIButton) {
         self.performSegue(withIdentifier: "toSignIn", sender: self)
     }
+    
     @IBAction func addUniversityTapped(_ sender: UIButton) {
         promptToAddUniversity()
     }
-
-    // Dropdown for selecting country
-    @objc func showCountryDropdown() {
-        let alert = UIAlertController(title: "Select a Country", message: nil, preferredStyle: .actionSheet)
-        
-        for country in countries {
-            let action = UIAlertAction(title: country["name"], style: .default) { _ in
-                self.selectedCountry = country["name"]
-                self.countryLabel.text = self.selectedCountry
-                self.updateUniversities(for: self.selectedCountry!)
-            }
-            alert.addAction(action)
+    
+    @IBOutlet var email: UITextField!
+    @IBOutlet var password: UITextField!
+    
+    @IBAction func signUp(sender: Any) {
+        let emailText = AppDelegate.shared.email
+        guard let emailText = emailText, !emailText.isEmpty,
+              let passwordText = password.text, !passwordText.isEmpty else {
+            let alert = UIAlertController(title: "Error", message: "Please enter both email and password", preferredStyle: .alert)
+            let closeAlertAction = UIAlertAction(title: "Close", style: .cancel)
+            alert.addAction(closeAlertAction)
+            self.present(alert, animated: true)
+            return
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        alert.addAction(cancelAction)
+        // Extract domain from email
+        let emailComponents = emailText.split(separator: "@")
+        guard emailComponents.count == 2, let domain = emailComponents.last else {
+            showAlert(withTitle: "Error", message: "Invalid email format.")
+            return
+        }
         
-        present(alert, animated: true, completion: nil)
+        // Check Firestore for matching university domain
+        checkUniversityDomainInFirestore(domain: String(domain)) { university, country in
+            if let university = university, let country = country {
+                // Update UI with found university and country
+                self.universityLabel.text = university
+                self.countryLabel.text = country
+                self.institute = university
+            } else {
+                // Fallback: Allow user to select manually
+                self.promptToAddUniversity()
+            }
+        }
     }
+    
+    // Check Firestore for matching university domain
+    func checkUniversityDomainInFirestore(domain: String, completion: @escaping (String?, String?) -> Void) {
+        let universitiesRef = db.collection("universities")
+        
+        // Iterate through all documents to find matching domain
+        universitiesRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching universities: \(error)")
+                completion(nil, nil)
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                completion(nil, nil)
+                return
+            }
+            
+            for document in documents {
+                let data = document.data()
+                if let universities = data["universities"] as? [[String: Any]] {
+                    for university in universities {
+                        if let universityDomains = university["domains"] as? [String], universityDomains.contains(domain) {
+                            let universityName = university["name"] as? String
+                            let countryName = university["country"] as? String
+                            completion(universityName, countryName)
+                            return
+                        }
+                    }
+                }
+            }
+            completion(nil, nil)  // No match found
+        }
+    }
+    
+    // Manual prompt to add university if no match is found
+    func promptToAddUniversity() {
+        let alert = UIAlertController(title: "Add University", message: "Enter the name of the university", preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+            textField.placeholder = "University Name"
+        }
+        let addAction = UIAlertAction(title: "Add", style: .default) { _ in
+            if let newUniversity = alert.textFields?.first?.text, !newUniversity.isEmpty {
+                self.selectedUniversity = newUniversity
+                self.universityLabel.text = self.selectedUniversity
+                self.institute = newUniversity  // Store new university in 'institute'
+            }
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(addAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
+    
+    // Function to update universities based on selected country
+    func updateUniversities(for country: String) {
+        filteredUniversities = universities.filter { university in
+            guard let universityCountry = university["country"] as? String else { return false }
+            return universityCountry == country
+        }
+    }
+    
+    // Dropdown for selecting country
+       @objc func showCountryDropdown() {
+           let alert = UIAlertController(title: "Select a Country", message: nil, preferredStyle: .actionSheet)
+           
+           for country in countries {
+               let action = UIAlertAction(title: country["name"], style: .default) { _ in
+                   self.selectedCountry = country["name"]
+                   self.countryLabel.text = self.selectedCountry
+                   self.updateUniversities(for: self.selectedCountry!)
+               }
+               alert.addAction(action)
+           }
+           
+           let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+           alert.addAction(cancelAction)
+           
+           present(alert, animated: true, completion: nil)
+       }
 
     // Dropdown for selecting university
     @objc func showUniversityDropdown() {
@@ -139,120 +197,6 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
         present(alert, animated: true, completion: nil)
     }
 
-    func promptToAddUniversity() {
-        let alert = UIAlertController(title: "Add University", message: "Enter the name of the university", preferredStyle: .alert)
-        
-        alert.addTextField { textField in
-            textField.placeholder = "University Name"
-        }
-        let addAction = UIAlertAction(title: "Add", style: .default) { _ in
-            if let newUniversity = alert.textFields?.first?.text, !newUniversity.isEmpty {
-                self.selectedUniversity = newUniversity
-                self.universityLabel.text = self.selectedUniversity
-                self.institute = newUniversity  // Store new university in 'institute'
-                if let selectedUniversity = self.selectedUniversity, !selectedUniversity.isEmpty {
-                    //AppDelegate.shared.homeCampus = selectedUniversity
-                } else if let institute = self.institute {
-                    //AppDelegate.shared.homeCampus = institute
-                }
-            }
-        }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-
-        alert.addAction(addAction)
-        alert.addAction(cancelAction)
-
-        present(alert, animated: true)
-    }
-
-    func updateUniversities(for country: String) {
-        filteredUniversities = universities.filter { university in
-            guard let universityCountry = university["country"] as? String else { return false }
-            return universityCountry == country
-        }
-    }
-
-    
-    @IBOutlet var email: UITextField!
-    @IBOutlet var password: UITextField!
-    
-    @IBAction func signUp(sender: Any) {
-        guard let emailText = email.text, !emailText.isEmpty,
-              let passwordText = password.text, !passwordText.isEmpty else {
-            let alert = UIAlertController(title: "Error", message: "Please enter both email and password", preferredStyle: .alert)
-            let closeAlertAction = UIAlertAction(title: "Close", style: .cancel)
-            alert.addAction(closeAlertAction)
-            self.present(alert, animated: true)
-            return
-        }
-        
-        // Check email domain
-        let emailComponents = emailText.split(separator: "@")
-        guard emailComponents.count == 2, let domain = emailComponents.last else {
-            showAlert(withTitle: "Error", message: "Invalid email format.")
-            return
-        }
-        
-        // Check if the domain matches any university domain
-        var isValidDomain = false
-        for university in universities {
-            if let universityDomains = university["domains"] as? [String],
-               universityDomains.contains(String(domain)) {
-                isValidDomain = true
-                break
-            }
-        }
-        
-        if !isValidDomain {
-            let alert = UIAlertController(title: "Error", message: "Please use your University Email (\(self.institute ?? "unknown university"))", preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .cancel)
-            alert.addAction(closeAction)
-            present(alert, animated: true)
-            return
-        }
-        
-        // Password validation
-        let passwordValidationResult = validatePassword(passwordText)
-        if !passwordValidationResult.isValid {
-            let alert = UIAlertController(title: "Error", message: passwordValidationResult.message, preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .cancel)
-            alert.addAction(closeAction)
-            present(alert, animated: true)
-            return
-        }
-
-        // Check if the email already exists
-        Auth.auth().fetchSignInMethods(forEmail: emailText) { signInMethods, error in
-            if let error = error {
-                self.showAlert(withTitle: "Error", message: error.localizedDescription)
-                return
-            }
-            
-            if let signInMethods = signInMethods, !signInMethods.isEmpty {
-                // Account already exists
-                let alert = UIAlertController(title: "Account Exists", message: "Account with \(emailText) already exists.", preferredStyle: .alert)
-                let signInAction = UIAlertAction(title: "Sign In", style: .default) { _ in
-                    self.goToSignIn()
-                }
-                alert.addAction(signInAction)
-                let closeAlertAction = UIAlertAction(title: "Close", style: .cancel)
-                alert.addAction(closeAlertAction)
-                self.present(alert, animated: true)
-            } else {
-                // Create a new account
-                Auth.auth().createUser(withEmail: emailText, password: passwordText) { authResult, error in
-                    if let error = error {
-                        self.showAlert(withTitle: "Error", message: error.localizedDescription)
-                    } else {
-                        if(AppDelegate.shared.isEmailVerified == true){
-                            self.showAlert(withTitle: "Success", message: "Account created successfully.")
-                        }
-                    }
-                }
-            }
-        }
-    }
     
     func validatePassword(_ password: String) -> (isValid: Bool, message: String) {
         if password.count < 6 {

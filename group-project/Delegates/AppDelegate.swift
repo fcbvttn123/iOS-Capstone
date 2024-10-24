@@ -17,11 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var isLoggedIn: Bool = false
     var username: String = ""
     var givenName: String = ""
-    var email: String = ""
     var imgUrl: URL?
     var college = ""
     var dob = ""
     var currentUserUID: String?
+    
+    var email: String? = ""
     var isEmailVerified : Bool = false
     
     static let shared = AppDelegate()
