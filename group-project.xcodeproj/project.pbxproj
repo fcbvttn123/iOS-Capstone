@@ -25,7 +25,6 @@
 		CE3044602CA0AC5A002B217B /* DemoChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */; };
 		CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A95812CA05B7600B2A183 /* ChatManager.swift */; };
 		CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */; };
-		D605E6302CAD006000ECBB61 /* EmailVerificationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D605E62F2CAD006000ECBB61 /* EmailVerificationScreen.swift */; };
 		D610B68F2BBF82EF007649B3 /* MapScreenCampus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */; };
 		D62B36B92BBDF6D20042D656 /* AddPlayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */; };
 		D62B36BD2BBDF8930042D656 /* PickPlayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */; };
@@ -63,7 +62,6 @@
 		CE30445D2CA06931002B217B /* DemoChannelListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoChannelListVC.swift; sourceTree = "<group>"; };
 		CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoChannelVC.swift; sourceTree = "<group>"; };
 		CE6A95812CA05B7600B2A183 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
-		D605E62F2CAD006000ECBB61 /* EmailVerificationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationScreen.swift; sourceTree = "<group>"; };
 		D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenCampus.swift; sourceTree = "<group>"; };
 		D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayScreen.swift; sourceTree = "<group>"; };
 		D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickPlayScreen.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				D6FF36782BC20CC3008A9809 /* BookingConfirmationScreen.swift */,
 				D6FF367A2BC215F2008A9809 /* ViewBookingsScreen.swift */,
 				D6569C872BBD1B20000B688F /* WebScreen.swift */,
-				D605E62F2CAD006000ECBB61 /* EmailVerificationScreen.swift */,
 				D6D6B9A42CCB029300DBD9BA /* EmailEntryViewController.swift */,
 				D6D6B9A62CCB02A500DBD9BA /* CodeVerificationViewController.swift */,
 			);
@@ -313,7 +310,6 @@
 				D6FF36772BC2083C008A9809 /* EventDispalyScreen.swift in Sources */,
 				CE3044602CA0AC5A002B217B /* DemoChannelVC.swift in Sources */,
 				D6569C7F2BBCF27B000B688F /* ViewController.swift in Sources */,
-				D605E6302CAD006000ECBB61 /* EmailVerificationScreen.swift in Sources */,
 				D6FF36792BC20CC3008A9809 /* BookingConfirmationScreen.swift in Sources */,
 				D62B36B92BBDF6D20042D656 /* AddPlayScreen.swift in Sources */,
 				D6D6B9A52CCB029300DBD9BA /* EmailEntryViewController.swift in Sources */,
