@@ -76,5 +76,9 @@ class EmailEntryViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
-}
+    @IBAction func unwindToThisScreen(_ segue: UIStoryboardSegue) {
 
+    }
+
+    
+}

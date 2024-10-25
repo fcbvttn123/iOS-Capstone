@@ -10,7 +10,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        username.text = AppDelegate.shared.email
         // Set password field to secure text entry
         password.isSecureTextEntry = true
     }
@@ -21,8 +21,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var password: UITextField!
     @IBOutlet var btn: UIButton!
     @IBOutlet var signUpButton: UIButton!
+
     
     // MARK: - Actions
+
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         guard let email = username.text, !email.isEmpty,
@@ -77,4 +79,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func unwindToLoginScreen(_ segue: UIStoryboardSegue) {
+
+    }
+    
 }

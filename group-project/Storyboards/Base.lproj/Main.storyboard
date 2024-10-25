@@ -1084,15 +1084,6 @@
                                 <color key="textColor" red="0.4196078479" green="0.39215683940000001" blue="0.47058826679999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="upload" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32u-e5-dLm">
-                                <rect key="frame" x="161" y="764" width="76" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="upload"/>
-                                <connections>
-                                    <action selector="uploadButtonTapped:" destination="bCw-GM-oSg" eventType="touchUpInside" id="MaF-Uz-MdA"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Jkc-kj-zD5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1219,6 +1210,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNe-Jw-iXd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="83M-4d-gig" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="253" y="-740"/>
         </scene>
@@ -1261,7 +1253,7 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="10"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="addUniversityTapped:" destination="637-go-VXj" eventType="touchUpInside" id="a0z-sX-GBH"/>
+                                    <action selector="addUniversityButtonTapped:" destination="637-go-VXj" eventType="touchUpInside" id="gW5-kP-hYE"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Don't see your Univeristy in the List?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btQ-HM-BP3">
@@ -1271,22 +1263,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Country" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBV-Yu-ptJ">
-                                <rect key="frame" x="138" y="168" width="224" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <color key="textColor" systemColor="systemBlueColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select University" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Re-gm-BRY">
-                                <rect key="frame" x="138" y="232" width="224" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.064201556150000005" green="0.47261804340000002" blue="0.97643202539999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <color key="textColor" systemColor="tintColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Institue Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pLN-aS-Nds">
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Institue Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pLN-aS-Nds">
                                 <rect key="frame" x="61" y="374" width="281" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1332,7 +1309,7 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="signIn:" destination="637-go-VXj" eventType="touchUpInside" id="ZHw-CJ-phO"/>
+                                    <action selector="signInButtonTapped:" destination="637-go-VXj" eventType="touchUpInside" id="Bet-bV-W35"/>
                                     <segue destination="BYZ-38-t0r" kind="presentation" identifier="toSignIn" modalPresentationStyle="fullScreen" id="HQj-ih-bM3"/>
                                 </connections>
                             </button>
@@ -1343,22 +1320,44 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NME-CC-IJj">
+                                <rect key="frame" x="118" y="161" width="253" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Select Country">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="showCountryDropdown:" destination="637-go-VXj" eventType="touchUpInside" id="R9A-zk-91m"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUQ-BR-9PE">
+                                <rect key="frame" x="118" y="225" width="253" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Select University">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="showUniversityDropdown:" destination="637-go-VXj" eventType="touchUpInside" id="D9V-eR-Gys"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1S3-p1-ib3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="addUniversityButton" destination="dWz-G1-EbH" id="dO7-Q5-hJd"/>
-                        <outlet property="countryLabel" destination="gBV-Yu-ptJ" id="362-Ag-bSi"/>
-                        <outlet property="email" destination="pLN-aS-Nds" id="hVZ-wN-v2D"/>
+                        <outlet property="countryButton" destination="NME-CC-IJj" id="fTD-AY-7MJ"/>
+                        <outlet property="emailfield" destination="pLN-aS-Nds" id="A7g-Xx-pyd"/>
                         <outlet property="password" destination="LgX-5b-iOc" id="Nl9-zY-cMc"/>
-                        <outlet property="signIn" destination="8AJ-gX-4ae" id="I2s-K4-3Zw"/>
-                        <outlet property="universityLabel" destination="1Re-gm-BRY" id="Ttw-la-Rgi"/>
+                        <outlet property="signInButton" destination="8AJ-gX-4ae" id="skm-Ot-JWb"/>
+                        <outlet property="universityButton" destination="RUQ-BR-9PE" id="sgC-LT-0uL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R2P-86-Q7j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-732" y="-4"/>
+            <point key="canvasLocation" x="-732.06106870229007" y="-4.2253521126760569"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -1622,11 +1621,12 @@
                         <outlet property="resendButton" destination="yAZ-6U-V1e" id="xrC-U6-VFp"/>
                         <outlet property="submitButton" destination="1hx-CS-zOl" id="shw-VM-cR8"/>
                         <segue destination="637-go-VXj" kind="presentation" identifier="toSignUp" modalPresentationStyle="fullScreen" id="M7j-Rs-9Pd"/>
+                        <segue destination="83M-4d-gig" kind="unwind" unwindAction="unwindToThisScreen:" id="57z-yF-WTR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ws7-xH-smB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-732" y="-740"/>
+            <point key="canvasLocation" x="-665" y="-732"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -1658,9 +1658,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

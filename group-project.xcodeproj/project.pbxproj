@@ -39,6 +39,7 @@
 		D67C90AB2CC71C7F008A6239 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D67C90A92CC71C7F008A6239 /* countries.json */; };
 		D6D6B9A52CCB029300DBD9BA /* EmailEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6B9A42CCB029300DBD9BA /* EmailEntryViewController.swift */; };
 		D6D6B9A72CCB02A500DBD9BA /* CodeVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6B9A62CCB02A500DBD9BA /* CodeVerificationViewController.swift */; };
+		D6D6B9A92CCB27F400DBD9BA /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6B9A82CCB27F400DBD9BA /* EmailService.swift */; };
 		D6FF36772BC2083C008A9809 /* EventDispalyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF36762BC2083C008A9809 /* EventDispalyScreen.swift */; };
 		D6FF36792BC20CC3008A9809 /* BookingConfirmationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF36782BC20CC3008A9809 /* BookingConfirmationScreen.swift */; };
 		D6FF367B2BC215F2008A9809 /* ViewBookingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF367A2BC215F2008A9809 /* ViewBookingsScreen.swift */; };
@@ -76,6 +77,7 @@
 		D67C90A92CC71C7F008A6239 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		D6D6B9A42CCB029300DBD9BA /* EmailEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEntryViewController.swift; sourceTree = "<group>"; };
 		D6D6B9A62CCB02A500DBD9BA /* CodeVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerificationViewController.swift; sourceTree = "<group>"; };
+		D6D6B9A82CCB27F400DBD9BA /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
 		D6FF36762BC2083C008A9809 /* EventDispalyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDispalyScreen.swift; sourceTree = "<group>"; };
 		D6FF36782BC20CC3008A9809 /* BookingConfirmationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingConfirmationScreen.swift; sourceTree = "<group>"; };
 		D6FF367A2BC215F2008A9809 /* ViewBookingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBookingsScreen.swift; sourceTree = "<group>"; };
@@ -105,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				D6569C7E2BBCF27B000B688F /* ViewController.swift */,
+				D6D6B9A42CCB029300DBD9BA /* EmailEntryViewController.swift */,
+				D6D6B9A62CCB02A500DBD9BA /* CodeVerificationViewController.swift */,
 				CE0D42E22BB4EF3D00900E9F /* SignUpScreen.swift */,
 				D65D4E992CCAEE0F00C4992A /* CollegeScreen.swift */,
 				CE155B1A2BB9E0CD00E45A2A /* MapScreen.swift */,
@@ -115,8 +119,7 @@
 				D6FF36782BC20CC3008A9809 /* BookingConfirmationScreen.swift */,
 				D6FF367A2BC215F2008A9809 /* ViewBookingsScreen.swift */,
 				D6569C872BBD1B20000B688F /* WebScreen.swift */,
-				D6D6B9A42CCB029300DBD9BA /* EmailEntryViewController.swift */,
-				D6D6B9A62CCB02A500DBD9BA /* CodeVerificationViewController.swift */,
+				D6D6B9A82CCB27F400DBD9BA /* EmailService.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				D62B36BD2BBDF8930042D656 /* PickPlayScreen.swift in Sources */,
 				D6D6B9A72CCB02A500DBD9BA /* CodeVerificationViewController.swift in Sources */,
 				CE1198322BA232FF00FD8B96 /* AppDelegate.swift in Sources */,
+				D6D6B9A92CCB27F400DBD9BA /* EmailService.swift in Sources */,
 				CE30445E2CA06931002B217B /* DemoChannelListVC.swift in Sources */,
 				CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */,
 				CE1198342BA232FF00FD8B96 /* SceneDelegate.swift in Sources */,

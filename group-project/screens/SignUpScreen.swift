@@ -3,10 +3,14 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class SignUpScreen: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var countryLabel: UILabel!
-    @IBOutlet weak var universityLabel: UILabel!
+
+    @IBOutlet weak var countryButton: UIButton!
+    @IBOutlet weak var universityButton: UIButton!
     @IBOutlet weak var addUniversityButton: UIButton!
-    @IBOutlet weak var signIn: UIButton!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet var emailfield: UITextField!
+    @IBOutlet var password: UITextField!
+
 
     var countries: [[String: String]] = []
     var universities: [[String: Any]] = []
@@ -16,155 +20,114 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
     var selectedUniversity: String?
     var institute: String?
     
-    let db = Firestore.firestore()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Add tap gesture recognizers
-        let countryTapGesture = UITapGestureRecognizer(target: self, action: #selector(showCountryDropdown))
-        countryLabel.isUserInteractionEnabled = true
-        countryLabel.addGestureRecognizer(countryTapGesture)
-
-        let universityTapGesture = UITapGestureRecognizer(target: self, action: #selector(showUniversityDropdown))
-        universityLabel.isUserInteractionEnabled = true
-        universityLabel.addGestureRecognizer(universityTapGesture)
+        // Get the email from AppDelegate
+        let email = AppDelegate.shared.email
+        let emailComponents = email?.split(separator: "@")
+        emailfield.text = email
+        if emailComponents?.count == 2, let domain = emailComponents?.last {
+            fetchUniversities(for: String(domain))
+            loadCountries()
+        }
+        styleButtons()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        print("Email set in AppDelegate: \(AppDelegate.shared.email ?? "No email set")")
-        
+        showEmailVerificationAlert()
     }
-    
-    @IBAction func signIn(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toSignIn", sender: self)
+
+    func showEmailVerificationAlert() {
+        let alert = UIAlertController(title: "Email Verified", message: "Your email has been successfully verified. Please continue to make an account.", preferredStyle: .alert)
+        let continueAction = UIAlertAction(title: "Continue", style: .default, handler: nil)
+        alert.addAction(continueAction)
+        present(alert, animated: true, completion: nil)
     }
-    
-    @IBAction func addUniversityTapped(_ sender: UIButton) {
-        promptToAddUniversity()
-    }
-    
-    @IBOutlet var email: UITextField!
-    @IBOutlet var password: UITextField!
-    
-    @IBAction func signUp(sender: Any) {
-        let emailText = AppDelegate.shared.email
-        guard let emailText = emailText, !emailText.isEmpty,
-              let passwordText = password.text, !passwordText.isEmpty else {
-            let alert = UIAlertController(title: "Error", message: "Please enter both email and password", preferredStyle: .alert)
-            let closeAlertAction = UIAlertAction(title: "Close", style: .cancel)
-            alert.addAction(closeAlertAction)
-            self.present(alert, animated: true)
-            return
-        }
-        
-        // Extract domain from email
-        let emailComponents = emailText.split(separator: "@")
-        guard emailComponents.count == 2, let domain = emailComponents.last else {
-            showAlert(withTitle: "Error", message: "Invalid email format.")
-            return
-        }
-        
-        // Check Firestore for matching university domain
-        checkUniversityDomainInFirestore(domain: String(domain)) { university, country in
-            if let university = university, let country = country {
-                // Update UI with found university and country
-                self.universityLabel.text = university
-                self.countryLabel.text = country
-                self.institute = university
-            } else {
-                // Fallback: Allow user to select manually
-                self.promptToAddUniversity()
-            }
-        }
-    }
-    
-    // Check Firestore for matching university domain
-    func checkUniversityDomainInFirestore(domain: String, completion: @escaping (String?, String?) -> Void) {
-        let universitiesRef = db.collection("universities")
-        
-        // Iterate through all documents to find matching domain
-        universitiesRef.getDocuments { (snapshot, error) in
+
+    func fetchUniversities(for domain: String) {
+        let db = Firestore.firestore()
+        db.collection("universities").getDocuments { (snapshot, error) in
             if let error = error {
                 print("Error fetching universities: \(error)")
-                completion(nil, nil)
                 return
             }
             
-            guard let documents = snapshot?.documents else {
-                completion(nil, nil)
-                return
-            }
+            print("Fetched Universities Snapshot: \(String(describing: snapshot))") // Print the snapshot
             
-            for document in documents {
-                let data = document.data()
-                if let universities = data["universities"] as? [[String: Any]] {
-                    for university in universities {
-                        if let universityDomains = university["domains"] as? [String], universityDomains.contains(domain) {
+            for document in snapshot!.documents {
+                print("Document ID: \(document.documentID), Data: \(document.data())") // Print each document's data
+                
+                if let universitiesArray = document.data()["universities"] as? [[String: Any]] {
+                    for university in universitiesArray {
+                        if let domains = university["domains"] as? [String],
+                           domains.contains(domain) {
                             let universityName = university["name"] as? String
                             let countryName = university["country"] as? String
-                            completion(universityName, countryName)
+                            
+                            // Update the button titles and institute
+                            self.universityButton.setTitle(universityName, for: .normal)
+                            self.countryButton.setTitle(countryName, for: .normal)
+                            self.institute = universityName // Set institute here
+                            self.selectedCountry = countryName
+                            self.selectedUniversity = universityName
+                            print("University found: \(universityName ?? "") in country: \(countryName ?? "")") // Print found university
                             return
                         }
                     }
+                } else {
+                    print("No universities found in document: \(document.documentID)") // Print if no universities found
                 }
             }
-            completion(nil, nil)  // No match found
+            print("No matching universities found for domain: \(domain)") // Print if no matching university found
         }
     }
-    
-    // Manual prompt to add university if no match is found
-    func promptToAddUniversity() {
-        let alert = UIAlertController(title: "Add University", message: "Enter the name of the university", preferredStyle: .alert)
-        
-        alert.addTextField { textField in
-            textField.placeholder = "University Name"
+
+    func loadCountries() {
+        let db = Firestore.firestore()
+        db.collection("countries").getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching countries: \(error)")
+                return
+            }
+            
+            for document in snapshot!.documents {
+                if let name = document.data()["name"] as? String,
+                   let code = document.data()["code"] as? String {
+                    self.countries.append(["name": name, "code": code])
+                }
+            }
         }
-        let addAction = UIAlertAction(title: "Add", style: .default) { _ in
-            if let newUniversity = alert.textFields?.first?.text, !newUniversity.isEmpty {
-                self.selectedUniversity = newUniversity
-                self.universityLabel.text = self.selectedUniversity
-                self.institute = newUniversity  // Store new university in 'institute'
+    }
+
+    @IBAction func signInButtonTapped(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toSignIn", sender: self)
+    }
+    
+    @IBAction func addUniversityButtonTapped(_ sender: UIButton) {
+        promptToAddUniversity()
+    }
+    
+    @IBAction func showCountryDropdown(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Select Country", message: nil, preferredStyle: .actionSheet)
+
+        for country in countries {
+            if let name = country["name"] {
+                let action = UIAlertAction(title: name, style: .default) { [weak self] _ in
+                    self?.selectedCountry = name
+                    self?.countryButton.setTitle(name, for: .normal)  // Updated to set button title
+                    self?.updateUniversities(for: name)
+                }
+                alertController.addAction(action)
             }
         }
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        alert.addAction(addAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
-    
-    // Function to update universities based on selected country
-    func updateUniversities(for country: String) {
-        filteredUniversities = universities.filter { university in
-            guard let universityCountry = university["country"] as? String else { return false }
-            return universityCountry == country
-        }
-    }
-    
-    // Dropdown for selecting country
-       @objc func showCountryDropdown() {
-           let alert = UIAlertController(title: "Select a Country", message: nil, preferredStyle: .actionSheet)
-           
-           for country in countries {
-               let action = UIAlertAction(title: country["name"], style: .default) { _ in
-                   self.selectedCountry = country["name"]
-                   self.countryLabel.text = self.selectedCountry
-                   self.updateUniversities(for: self.selectedCountry!)
-               }
-               alert.addAction(action)
-           }
-           
-           let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-           alert.addAction(cancelAction)
-           
-           present(alert, animated: true, completion: nil)
-       }
 
-    // Dropdown for selecting university
-    @objc func showUniversityDropdown() {
+    @IBAction func showUniversityDropdown(_ sender: UIButton) {
         guard let selectedCountry = selectedCountry else {
             let alert = UIAlertController(title: "Error", message: "Please select a country first", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default)
@@ -173,13 +136,15 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
             return
         }
         
+        updateUniversities(for: selectedCountry)
+
         let alert = UIAlertController(title: "Select a University", message: nil, preferredStyle: .actionSheet)
-        
+
         for university in filteredUniversities {
             if let universityName = university["name"] as? String {
                 let action = UIAlertAction(title: universityName, style: .default) { _ in
                     self.selectedUniversity = universityName
-                    self.universityLabel.text = self.selectedUniversity
+                    self.universityButton.setTitle(universityName, for: .normal)  // Updated to set button title
                     self.institute = universityName
                 }
                 alert.addAction(action)
@@ -190,11 +155,147 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
             self.promptToAddUniversity()
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        alert.addAction(cancelAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alert.addAction(addUniversityAction)
-        
+
         present(alert, animated: true, completion: nil)
+    }
+
+    func promptToAddUniversity() {
+        let alert = UIAlertController(title: "Add University", message: "Enter the name of the university", preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+            textField.placeholder = "University Name"
+        }
+        let addAction = UIAlertAction(title: "Add", style: .default) { _ in
+            if let newUniversity = alert.textFields?.first?.text, !newUniversity.isEmpty {
+                self.selectedUniversity = newUniversity
+                self.universityButton.setTitle(newUniversity, for: .normal)
+                self.institute = newUniversity
+                self.addUniversityToFirestore(universityName: newUniversity)
+            }
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(addAction)
+        alert.addAction(cancelAction)
+
+        present(alert, animated: true)
+    }
+
+    func addUniversityToFirestore(universityName: String) {
+        let db = Firestore.firestore()
+        
+        // Extract domain from the selected university
+        guard let selectedCountry = selectedCountry else { return }
+        let sanitizedCountryName = selectedCountry.replacingOccurrences(of: " ", with: "_").lowercased()
+        
+        // Check the university document for the selected country
+        let universityRef = db.collection("universities").document(sanitizedCountryName)
+        
+        universityRef.updateData([
+            "universities": FieldValue.arrayUnion([[
+                "name": universityName,
+                "domains": [String(describing: AppDelegate.shared.email?.split(separator: "@").last)],
+                "country": selectedCountry,
+                "state-province": NSNull(),
+                "web_pages": [NSNull()]
+            ]])
+        ]) { error in
+            if let error = error {
+                print("Error adding university: \(error)")
+            } else {
+                print("University added successfully!")
+            }
+        }
+    }
+
+    func updateUniversities(for country: String) {
+        let sanitizedCountryName = country.replacingOccurrences(of: " ", with: "_").lowercased()
+        let db = Firestore.firestore()
+        
+        db.collection("universities").document(sanitizedCountryName).getDocument { (document, error) in
+            if let error = error {
+                print("Error fetching universities: \(error)")
+                return
+            }
+            guard let data = document?.data(), let universitiesArray = data["universities"] as? [[String: Any]] else {
+                print("No universities found for country: \(country)")
+                return
+            }
+            self.filteredUniversities = universitiesArray
+            print("Filtered Universities: \(self.filteredUniversities)")
+        }
+    }
+
+    @IBAction func signUp(sender: Any) {
+        guard let emailText = emailfield.text, !emailText.isEmpty,
+              let passwordText = password.text, !passwordText.isEmpty else {
+            showAlert(withTitle: "Error", message: "Please enter both email and password.")
+            return
+        }
+        
+        // Check email domain
+        let emailComponents = emailText.split(separator: "@")
+        guard emailComponents.count == 2, let domain = emailComponents.last else {
+            showAlert(withTitle: "Error", message: "Invalid email format.")
+            return
+        }
+        
+        // Fetch universities by domain first
+        fetchUniversities(for: String(domain)) { [weak self] universities in
+            guard let self = self else { return }
+            
+            // Ensure that a university is selected
+            guard let selectedUniversity = self.selectedUniversity else {
+                self.showAlert(withTitle: "Error", message: "Please select a university.")
+                return
+            }
+            
+            // Check if the selected university's domain matches the email domain
+            let matchingUniversity = universities.first { university in
+                if let universityName = university["name"] as? String,
+                   let domains = university["domains"] as? [String] {
+                    return universityName == selectedUniversity && domains.contains(String(domain))
+                }
+                return false
+            }
+            
+            if matchingUniversity != nil {
+                // Proceed with account creation if the email domain is valid
+                Auth.auth().createUser(withEmail: emailText, password: passwordText) { authResult, error in
+                    if let error = error {
+                        self.showAlert(withTitle: "Error", message: error.localizedDescription)
+                    } else {
+                        if AppDelegate.shared.isEmailVerified {
+                            self.showAlert(withTitle: "Success", message: "Account created successfully.")
+                        }
+                    }
+                }
+            } else {
+                self.showAlert(withTitle: "Error", message: "Please use your University Email for \(selectedUniversity).")
+            }
+        }
+    }
+
+
+    func fetchUniversities(for domain: String, completion: @escaping ([[String: Any]]) -> Void) {
+        let db = Firestore.firestore()
+        db.collection("universities").getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching universities: \(error)")
+                completion([])
+                return
+            }
+            
+            var universitiesArray: [[String: Any]] = []
+            for document in snapshot!.documents {
+                if let universitiesData = document.data()["universities"] as? [[String: Any]] {
+                    universitiesArray.append(contentsOf: universitiesData)
+                }
+            }
+            completion(universitiesArray)
+        }
     }
 
     
@@ -227,9 +328,14 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
     }
         
     
-    func styleLabels() {
-        // Add styling code for labels if needed
-    }
+    func styleButtons() {
+            // Style your buttons here if needed
+            // For example, setting title color, background color, etc.
+            countryButton.setTitleColor(.systemBlue, for: .normal)
+            universityButton.setTitleColor(.systemBlue, for: .normal)
+            addUniversityButton.setTitleColor(.systemBlue, for: .normal)
+            signInButton.setTitleColor(.systemBlue, for: .normal)
+        }
 }
 
 
