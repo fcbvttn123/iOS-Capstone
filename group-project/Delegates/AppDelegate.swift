@@ -15,15 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Currently Sign-in User Information
     // Will be changed after successful sign-in
     var isLoggedIn: Bool = false
-    var username: String = ""
     var givenName: String = ""
     var imgUrl: URL?
-    var college = ""
     var dob = ""
-    var currentUserUID: String?
     
     var email: String? = ""
     var isEmailVerified : Bool = false
+    var college: String? = ""
+    var country: String? = ""
+    var username: String? = ""
+    var currentUserUID: String?
     
     static let shared = AppDelegate()
     

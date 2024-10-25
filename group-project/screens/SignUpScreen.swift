@@ -8,6 +8,7 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var universityButton: UIButton!
     @IBOutlet weak var addUniversityButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet var usernamefield: UITextField!
     @IBOutlet var emailfield: UITextField!
     @IBOutlet var password: UITextField!
 
@@ -230,8 +231,9 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
 
     @IBAction func signUp(sender: Any) {
         guard let emailText = emailfield.text, !emailText.isEmpty,
-              let passwordText = password.text, !passwordText.isEmpty else {
-            showAlert(withTitle: "Error", message: "Please enter both email and password.")
+              let passwordText = password.text, !passwordText.isEmpty,
+              let usernameText = usernamefield.text, !usernameText.isEmpty else {
+            showAlert(withTitle: "Error", message: "Please enter both username, email and password.")
             return
         }
         
@@ -268,6 +270,9 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
                         self.showAlert(withTitle: "Error", message: error.localizedDescription)
                     } else {
                         if AppDelegate.shared.isEmailVerified {
+                            AppDelegate.shared.college = selectedUniversity
+                            AppDelegate.shared.country = self.selectedCountry
+                            AppDelegate.shared.username = self.usernamefield.text
                             self.showAlert(withTitle: "Success", message: "Account created successfully.")
                         }
                     }

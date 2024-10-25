@@ -1,3 +1,11 @@
+//
+//  SignInScreen.swift
+//  group-project
+//
+//  Created by fizza imran on 2024-10-25.
+//
+
+import Foundation
 import UIKit
 import FirebaseCore
 import FirebaseAuth
@@ -6,8 +14,8 @@ import CryptoKit
 import StreamChat
 import StreamChatUI
 
-class ViewController: UIViewController, UITextFieldDelegate {
-
+class SignInScreen: UIViewController, UITextFieldDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         username.text = AppDelegate.shared.email
@@ -88,3 +96,4 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
 }
+

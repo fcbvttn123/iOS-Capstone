@@ -26,15 +26,15 @@
 		CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A95812CA05B7600B2A183 /* ChatManager.swift */; };
 		CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */; };
 		D610B68F2BBF82EF007649B3 /* MapScreenCampus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */; };
-		D62B36B92BBDF6D20042D656 /* AddPlayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */; };
-		D62B36BD2BBDF8930042D656 /* PickPlayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */; };
-		D6569C7F2BBCF27B000B688F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6569C7E2BBCF27B000B688F /* ViewController.swift */; };
+		D6395DC32CCBDC5100D8C0AC /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6395DC22CCBDC5100D8C0AC /* SignInScreen.swift */; };
+		D6395DC52CCBDD0900D8C0AC /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6395DC42CCBDD0900D8C0AC /* HomeScreen.swift */; };
+		D6395DC72CCBDD6A00D8C0AC /* AddNewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6395DC62CCBDD6A00D8C0AC /* AddNewEvent.swift */; };
+		D6395DC92CCBDDB900D8C0AC /* ViewAllEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6395DC82CCBDDB900D8C0AC /* ViewAllEvents.swift */; };
 		D6569C862BBD1670000B688F /* collegeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = D6569C852BBD1670000B688F /* collegeBg.png */; };
 		D6569C882BBD1B20000B688F /* WebScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6569C872BBD1B20000B688F /* WebScreen.swift */; };
 		D6569C982BBD41BA000B688F /* playBg.png in Resources */ = {isa = PBXBuildFile; fileRef = D6569C972BBD41BA000B688F /* playBg.png */; };
 		D6569C9A2BBD4BC1000B688F /* palBg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D6569C992BBD4BC1000B688F /* palBg.jpeg */; };
 		D6569C9E2BBD4E3F000B688F /* PalPicBg.png in Resources */ = {isa = PBXBuildFile; fileRef = D6569C9D2BBD4E3F000B688F /* PalPicBg.png */; };
-		D65D4E9A2CCAEE0F00C4992A /* CollegeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65D4E992CCAEE0F00C4992A /* CollegeScreen.swift */; };
 		D67C90AA2CC71C7F008A6239 /* world_universities_and_domains.json in Resources */ = {isa = PBXBuildFile; fileRef = D67C90A82CC71C7F008A6239 /* world_universities_and_domains.json */; };
 		D67C90AB2CC71C7F008A6239 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D67C90A92CC71C7F008A6239 /* countries.json */; };
 		D6D6B9A52CCB029300DBD9BA /* EmailEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6B9A42CCB029300DBD9BA /* EmailEntryViewController.swift */; };
@@ -64,15 +64,15 @@
 		CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoChannelVC.swift; sourceTree = "<group>"; };
 		CE6A95812CA05B7600B2A183 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenCampus.swift; sourceTree = "<group>"; };
-		D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayScreen.swift; sourceTree = "<group>"; };
-		D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickPlayScreen.swift; sourceTree = "<group>"; };
-		D6569C7E2BBCF27B000B688F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D6395DC22CCBDC5100D8C0AC /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
+		D6395DC42CCBDD0900D8C0AC /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		D6395DC62CCBDD6A00D8C0AC /* AddNewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewEvent.swift; sourceTree = "<group>"; };
+		D6395DC82CCBDDB900D8C0AC /* ViewAllEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllEvents.swift; sourceTree = "<group>"; };
 		D6569C852BBD1670000B688F /* collegeBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collegeBg.png; sourceTree = "<group>"; };
 		D6569C872BBD1B20000B688F /* WebScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebScreen.swift; sourceTree = "<group>"; };
 		D6569C972BBD41BA000B688F /* playBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playBg.png; sourceTree = "<group>"; };
 		D6569C992BBD4BC1000B688F /* palBg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = palBg.jpeg; sourceTree = "<group>"; };
 		D6569C9D2BBD4E3F000B688F /* PalPicBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PalPicBg.png; sourceTree = "<group>"; };
-		D65D4E992CCAEE0F00C4992A /* CollegeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollegeScreen.swift; sourceTree = "<group>"; };
 		D67C90A82CC71C7F008A6239 /* world_universities_and_domains.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = world_universities_and_domains.json; sourceTree = "<group>"; };
 		D67C90A92CC71C7F008A6239 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		D6D6B9A42CCB029300DBD9BA /* EmailEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEntryViewController.swift; sourceTree = "<group>"; };
@@ -106,20 +106,20 @@
 		CE0D42E12BB4EF0800900E9F /* screens */ = {
 			isa = PBXGroup;
 			children = (
-				D6569C7E2BBCF27B000B688F /* ViewController.swift */,
+				D6395DC22CCBDC5100D8C0AC /* SignInScreen.swift */,
 				D6D6B9A42CCB029300DBD9BA /* EmailEntryViewController.swift */,
 				D6D6B9A62CCB02A500DBD9BA /* CodeVerificationViewController.swift */,
+				D6D6B9A82CCB27F400DBD9BA /* EmailService.swift */,
 				CE0D42E22BB4EF3D00900E9F /* SignUpScreen.swift */,
-				D65D4E992CCAEE0F00C4992A /* CollegeScreen.swift */,
+				D6395DC42CCBDD0900D8C0AC /* HomeScreen.swift */,
+				D6395DC62CCBDD6A00D8C0AC /* AddNewEvent.swift */,
+				D6395DC82CCBDDB900D8C0AC /* ViewAllEvents.swift */,
+				D6FF36762BC2083C008A9809 /* EventDispalyScreen.swift */,
+				D6FF367A2BC215F2008A9809 /* ViewBookingsScreen.swift */,
+				D6FF36782BC20CC3008A9809 /* BookingConfirmationScreen.swift */,
+				D6569C872BBD1B20000B688F /* WebScreen.swift */,
 				CE155B1A2BB9E0CD00E45A2A /* MapScreen.swift */,
 				D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */,
-				D62B36B82BBDF6D20042D656 /* AddPlayScreen.swift */,
-				D62B36BC2BBDF8930042D656 /* PickPlayScreen.swift */,
-				D6FF36762BC2083C008A9809 /* EventDispalyScreen.swift */,
-				D6FF36782BC20CC3008A9809 /* BookingConfirmationScreen.swift */,
-				D6FF367A2BC215F2008A9809 /* ViewBookingsScreen.swift */,
-				D6569C872BBD1B20000B688F /* WebScreen.swift */,
-				D6D6B9A82CCB27F400DBD9BA /* EmailService.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -308,25 +308,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D65D4E9A2CCAEE0F00C4992A /* CollegeScreen.swift in Sources */,
+				D6395DC32CCBDC5100D8C0AC /* SignInScreen.swift in Sources */,
+				D6395DC72CCBDD6A00D8C0AC /* AddNewEvent.swift in Sources */,
 				D6569C882BBD1B20000B688F /* WebScreen.swift in Sources */,
 				D6FF36772BC2083C008A9809 /* EventDispalyScreen.swift in Sources */,
 				CE3044602CA0AC5A002B217B /* DemoChannelVC.swift in Sources */,
-				D6569C7F2BBCF27B000B688F /* ViewController.swift in Sources */,
 				D6FF36792BC20CC3008A9809 /* BookingConfirmationScreen.swift in Sources */,
-				D62B36B92BBDF6D20042D656 /* AddPlayScreen.swift in Sources */,
 				D6D6B9A52CCB029300DBD9BA /* EmailEntryViewController.swift in Sources */,
 				D6FF367B2BC215F2008A9809 /* ViewBookingsScreen.swift in Sources */,
-				D62B36BD2BBDF8930042D656 /* PickPlayScreen.swift in Sources */,
 				D6D6B9A72CCB02A500DBD9BA /* CodeVerificationViewController.swift in Sources */,
 				CE1198322BA232FF00FD8B96 /* AppDelegate.swift in Sources */,
 				D6D6B9A92CCB27F400DBD9BA /* EmailService.swift in Sources */,
 				CE30445E2CA06931002B217B /* DemoChannelListVC.swift in Sources */,
 				CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */,
 				CE1198342BA232FF00FD8B96 /* SceneDelegate.swift in Sources */,
+				D6395DC52CCBDD0900D8C0AC /* HomeScreen.swift in Sources */,
 				D610B68F2BBF82EF007649B3 /* MapScreenCampus.swift in Sources */,
 				CE0D42E32BB4EF3D00900E9F /* SignUpScreen.swift in Sources */,
 				CE155B1B2BB9E0CD00E45A2A /* MapScreen.swift in Sources */,
+				D6395DC92CCBDDB900D8C0AC /* ViewAllEvents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

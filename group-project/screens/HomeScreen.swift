@@ -1,17 +1,15 @@
-/*
-Group Name: Byte_Buddies
-Group Members:
-- Tran Thanh Ngan Vu 991663076
-- Chahat Jain 991668960
-- Fizza Imran 991670304
-- Chakshita Gupta 991653663
-Description: This class manages the functionality related to setting and updating the user's home campus.
-*/
-import UIKit
+//
+//  HomeScreen.swift
+//  group-project
+//
+//  Created by fizza imran on 2024-10-25.
+//
+
+import Foundation
 import FirebaseFirestore
 
-class CollegeScreen: UIViewController {
-
+class HomeScreen: UIViewController {
+    
     // Firestore reference
     let db = Firestore.firestore()
     
@@ -98,3 +96,4 @@ class CollegeScreen: UIViewController {
         // For now we dont need anything since we are handling the conditional segue
     }
 }
+
