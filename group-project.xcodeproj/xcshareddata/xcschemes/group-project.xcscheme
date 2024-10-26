@@ -50,11 +50,6 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "SENDGRID_API_KEY"
-            value = "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"
-            isEnabled = "YES">
-         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
