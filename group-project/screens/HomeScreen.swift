@@ -10,12 +10,9 @@ import FirebaseFirestore
 
 class HomeScreen: UIViewController {
     
-    // Firestore reference
-    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createUserDocumentIfNeeded()
     }
     
     // This function is used to make the keyboard disappear when we tap the "return" key
@@ -26,46 +23,6 @@ class HomeScreen: UIViewController {
     // This function is used to navigate back to this view controller
     @IBAction func toHomeScreen(sender: UIStoryboardSegue) {
         // No action needed
-    }
-    
-    // MARK: - Home Campus Management
-    
-    // Function to create a user document if it does not already exist
-    private func createUserDocumentIfNeeded() {
-        guard let email = AppDelegate.shared.email else { return }
-        
-        // Reference to the Users collection
-        let usersRef = db.collection("users")
-        
-        // Check if the user document exists
-        usersRef.whereField("email", isEqualTo: email).getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error checking for user document: \(error)")
-                return
-            }
-            
-            // If no documents found, create a new user document
-            if querySnapshot?.isEmpty == true {
-                // Prepare user data
-                let userData: [String: Any] = [
-                    "username": AppDelegate.shared.username ?? "",
-                    "email": email,
-                    "country": AppDelegate.shared.country ?? "",
-                    "college": AppDelegate.shared.college ?? ""
-                ]
-                
-                // Add new document with a unique ID
-                usersRef.addDocument(data: userData) { error in
-                    if let error = error {
-                        print("Error creating user document: \(error)")
-                    } else {
-                        print("User document created successfully.")
-                    }
-                }
-            } else {
-                print("User document already exists.")
-            }
-        }
     }
 
     // MARK: - Navigation

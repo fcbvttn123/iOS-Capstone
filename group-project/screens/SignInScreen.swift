@@ -14,7 +14,11 @@ import CryptoKit
 import StreamChat
 import StreamChatUI
 
+
 class SignInScreen: UIViewController, UITextFieldDelegate {
+    
+    // Reference to Firestore
+      private var db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,13 +53,49 @@ class SignInScreen: UIViewController, UITextFieldDelegate {
             }
             
             // User is signed in
-            
             AppDelegate.shared.email = self.username.text
             AppDelegate.shared.currentUserUID = self.username.text
             // Navigate to the next screen
+            
+            // Check for empty properties and update if necessary
+            self.checkAndUpdateUserInfo()
+            
             self.performSegue(withIdentifier: "toHome", sender: self)
         }
     }
+    
+    // Function to check and update user info from Firestore
+        private func checkAndUpdateUserInfo() {
+            // Check if properties are empty
+            if AppDelegate.shared.college?.isEmpty ?? true ||
+               AppDelegate.shared.country?.isEmpty ?? true ||
+               AppDelegate.shared.username?.isEmpty ?? true {
+                
+                guard let email = AppDelegate.shared.email else { return }
+                
+                // Reference to the Users collection
+                let usersRef = db.collection("users")
+                
+                // Retrieve user data from Firestore
+                usersRef.whereField("email", isEqualTo: email).getDocuments { (querySnapshot, error) in
+                    if let error = error {
+                        print("Error fetching user document: \(error)")
+                        return
+                    }
+                    
+                    // Check if the user document exists and update properties
+                    if let document = querySnapshot?.documents.first {
+                        AppDelegate.shared.username = document.get("username") as? String ?? ""
+                        AppDelegate.shared.country = document.get("country") as? String ?? ""
+                        AppDelegate.shared.college = document.get("college") as? String ?? ""
+                        
+                        print("User info updated from Firestore.")
+                    } else {
+                        print("User document not found.")
+                    }
+                }
+            }
+        }
     
     // Action that shows user "what is Institutional Email"
     @IBAction func InstituteEmailPopup(_ sender: UIButton){

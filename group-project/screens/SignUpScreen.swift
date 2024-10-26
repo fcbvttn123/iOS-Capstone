@@ -16,10 +16,13 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
     var countries: [[String: String]] = []
     var universities: [[String: Any]] = []
     var filteredUniversities: [[String: Any]] = []
-
+    var collegeWebsite: String?
     var selectedCountry: String?
     var selectedUniversity: String?
     var institute: String?
+    var userDomain  : String?
+    // Firestore reference
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +69,7 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
                            domains.contains(domain) {
                             let universityName = university["name"] as? String
                             let countryName = university["country"] as? String
+                            let webPages = university["web_pages"] as? [String]
                             
                             // Update the button titles and institute
                             self.universityButton.setTitle(universityName, for: .normal)
@@ -73,6 +77,9 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
                             self.institute = universityName // Set institute here
                             self.selectedCountry = countryName
                             self.selectedUniversity = universityName
+                            self.collegeWebsite = webPages?.first
+                            
+                            
                             print("University found: \(universityName ?? "") in country: \(countryName ?? "")") // Print found university
                             return
                         }
@@ -258,6 +265,7 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
             let matchingUniversity = universities.first { university in
                 if let universityName = university["name"] as? String,
                    let domains = university["domains"] as? [String] {
+                    self.userDomain = String(domain)
                     return universityName == selectedUniversity && domains.contains(String(domain))
                 }
                 return false
@@ -273,6 +281,8 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
                             AppDelegate.shared.college = selectedUniversity
                             AppDelegate.shared.country = self.selectedCountry
                             AppDelegate.shared.username = self.usernamefield.text
+                            
+                            self.createUserDocumentIfNeeded()
                             self.showAlert(withTitle: "Success", message: "Account created successfully.")
                         }
                     }
@@ -284,6 +294,47 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
     }
 
 
+    private func createUserDocumentIfNeeded() {
+        guard let email = AppDelegate.shared.email else { return }
+        
+        // Reference to the Users collection with the email as the document ID
+        let userRef = db.collection("users").document(email)
+        
+        // Check if the user document exists
+        userRef.getDocument { (document, error) in
+            if let error = error {
+                print("Error checking for user document: \(error)")
+                return
+            }
+            
+            // If the document does not exist, create a new user document
+            if document == nil || document?.exists == false {
+                // Prepare user data
+                let userData: [String: Any] = [
+                    "username": AppDelegate.shared.username ?? "",
+                    "email": email,
+                    "country": AppDelegate.shared.country ?? "",
+                    "college": AppDelegate.shared.college ?? "",
+                    "imgUrl" : AppDelegate.shared.imgUrl,
+                    "userDomain" : self.userDomain ?? "",
+                    "collegeWebsite": self.collegeWebsite ?? ""
+                ]
+                
+                // Set data with email as the document ID
+                userRef.setData(userData) { error in
+                    if let error = error {
+                        print("Error creating user document: \(error)")
+                    } else {
+                        print("User document created successfully with email as document ID.")
+                    }
+                }
+            } else {
+                print("User document already exists.")
+            }
+        }
+    }
+
+    
     func fetchUniversities(for domain: String, completion: @escaping ([[String: Any]]) -> Void) {
         let db = Firestore.firestore()
         db.collection("universities").getDocuments { (snapshot, error) in

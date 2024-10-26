@@ -1,52 +1,37 @@
 import UIKit
-
-// Created by David
-// These Imports are used for Firebase - Authentication
 import FirebaseCore
 import FirebaseAuth
-
-//Created by David
-// These Imports are used for Firebase - Firestore Database
 import FirebaseFirestore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    // Currently Sign-in User Information
-    // Will be changed after successful sign-in
+    // Currently Signed-in User Information
     var isLoggedIn: Bool = false
     var givenName: String = ""
-    var imgUrl: URL?
+    var imgUrl: String? = ""
     var dob = ""
     
     var email: String? = ""
-    var isEmailVerified : Bool = false
+    var isEmailVerified: Bool = false
     var college: String? = ""
     var country: String? = ""
     var username: String? = ""
     var currentUserUID: String?
+    var userDomain: String? = ""
+    var collegeWebsite: String? = ""
     
     static let shared = AppDelegate()
     
-    // Created by David
-    // This function is used to fetch all account information from firestore
-    // This function is mostly used for checkCredentials() function
-    func fetchAccountInformationFromFirestore() async throws -> [String: Any] {
-        let collection = Firestore.firestore().collection("accounts")
-        let querySnapshot = try await collection.getDocuments()
-        var data = [String: Any]()
-        for document in querySnapshot.documents {
-            data[document.documentID] = document.data()
-        }
-        return data
-    }
-    
+    // Firestore reference
+    private var db: Firestore?
+
     // System Generated
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        // Created by David
-        // This code is used to configure Google Firebase
         FirebaseApp.configure()
+        
+        // Initialize Firestore after configuring Firebase
+        db = Firestore.firestore()
         
         return true
     }
@@ -57,8 +42,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
     }
-
-
+    
+    // Fetches user data from Firestore based on the email as document ID
+    func fetchUserData(completion: @escaping (Bool) -> Void) {
+        guard let email = self.email else {
+            completion(false)
+            return
+        }
+        
+        // Ensure Firestore is initialized
+        guard let db = db else {
+            print("Firestore is not initialized.")
+            completion(false)
+            return
+        }
+        
+        // Access Firestore collection 'users' and check if a document exists with ID 'email'
+        db.collection("users").document(email).getDocument { (document, error) in
+            if let error = error {
+                print("Error fetching user document: \(error.localizedDescription)")
+                completion(false)
+                return
+            }
+            
+            // Check if the document exists
+            if let document = document, document.exists {
+                // Update properties with the fetched data
+                self.username = document.get("username") as? String ?? ""
+                self.college = document.get("college") as? String ?? ""
+                self.country = document.get("country") as? String ?? ""
+                self.dob = document.get("dob") as? String ?? ""
+                self.imgUrl = document.get("imgUrl") as? String ?? ""
+                self.userDomain = document.get("userDomain") as? String ?? ""
+                self.collegeWebsite = document.get("collegeWebsite") as? String ?? ""
+                print("User data successfully fetched and updated.")
+                completion(true)
+            } else {
+                print("No user document found with this email.")
+                completion(false)
+            }
+        }
+    }
 }
-
 
