@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseFirestore
 
-class AddNewEvent: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddNewEvent: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     // MARK: - Outlets
     @IBOutlet var eventNameTextField: UITextField!
     @IBOutlet var datePicker: UIDatePicker!

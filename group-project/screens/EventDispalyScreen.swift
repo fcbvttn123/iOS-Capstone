@@ -11,7 +11,7 @@ Description: Class for displaying event details and handling event registration.
 import UIKit
 import FirebaseFirestore
 
-class EventDispalyScreen: UIViewController {
+class EventDispalyScreen: BaseViewController {
 
     // MARK: - Outlets
     

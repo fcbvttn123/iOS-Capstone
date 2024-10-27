@@ -12,7 +12,7 @@ import UIKit
 import MessageUI
 import FirebaseFirestore
 
-class BookingConfirmationScreen: UIViewController, MFMailComposeViewControllerDelegate {
+class BookingConfirmationScreen: BaseViewController, MFMailComposeViewControllerDelegate {
     
     // MARK: - Outlets
     @IBOutlet var emailTextField: UITextField!
