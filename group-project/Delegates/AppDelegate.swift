@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var college: String? = ""
     var country: String? = ""
     var username: String? = ""
-    var currentUserUID: String?
+    var currentUserUID: String!
     var userDomain: String? = ""
     var collegeWebsite: String? = ""
     
@@ -43,45 +43,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
     }
     
-    // Fetches user data from Firestore based on the email as document ID
-    func fetchUserData(completion: @escaping (Bool) -> Void) {
-        guard let email = self.email else {
-            completion(false)
-            return
-        }
-        
-        // Ensure Firestore is initialized
-        guard let db = db else {
-            print("Firestore is not initialized.")
-            completion(false)
-            return
-        }
-        
-        // Access Firestore collection 'users' and check if a document exists with ID 'email'
-        db.collection("users").document(email).getDocument { (document, error) in
-            if let error = error {
-                print("Error fetching user document: \(error.localizedDescription)")
-                completion(false)
-                return
-            }
-            
-            // Check if the document exists
-            if let document = document, document.exists {
-                // Update properties with the fetched data
-                self.username = document.get("username") as? String ?? ""
-                self.college = document.get("college") as? String ?? ""
-                self.country = document.get("country") as? String ?? ""
-                self.dob = document.get("dob") as? String ?? ""
-                self.imgUrl = document.get("imgUrl") as? String ?? ""
-                self.userDomain = document.get("userDomain") as? String ?? ""
-                self.collegeWebsite = document.get("collegeWebsite") as? String ?? ""
-                print("User data successfully fetched and updated.")
-                completion(true)
-            } else {
-                print("No user document found with this email.")
-                completion(false)
-            }
-        }
-    }
 }
 

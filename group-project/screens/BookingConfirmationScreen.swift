@@ -175,13 +175,5 @@ class BookingConfirmationScreen: BaseViewController, MFMailComposeViewController
             }
         }
     }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toBookings", let destinationVC = segue.destination as? ViewBookingsScreen {
-            destinationVC.bookingId = bookingId
-        }
-    }
 }
 

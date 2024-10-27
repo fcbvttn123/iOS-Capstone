@@ -70,6 +70,9 @@
 		D6D6B9A52CCB029300DBD9BA /* EmailEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6B9A42CCB029300DBD9BA /* EmailEntryViewController.swift */; };
 		D6D6B9A72CCB02A500DBD9BA /* CodeVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6B9A62CCB02A500DBD9BA /* CodeVerificationViewController.swift */; };
 		D6D6B9A92CCB27F400DBD9BA /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6B9A82CCB27F400DBD9BA /* EmailService.swift */; };
+		D6E1F3532CCEBCA6006D5EEB /* AttendingUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E1F3522CCEBCA6006D5EEB /* AttendingUserCell.swift */; };
+		D6E1F3552CCEBD56006D5EEB /* UserDetailsModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E1F3542CCEBD56006D5EEB /* UserDetailsModal.swift */; };
+		D6E1F3572CCEBFB0006D5EEB /* UserProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E1F3562CCEBFB0006D5EEB /* UserProfileDetailViewController.swift */; };
 		D6FF36772BC2083C008A9809 /* EventDispalyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF36762BC2083C008A9809 /* EventDispalyScreen.swift */; };
 		D6FF36792BC20CC3008A9809 /* BookingConfirmationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF36782BC20CC3008A9809 /* BookingConfirmationScreen.swift */; };
 		D6FF367B2BC215F2008A9809 /* ViewBookingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FF367A2BC215F2008A9809 /* ViewBookingsScreen.swift */; };
@@ -110,6 +113,9 @@
 		D6D6B9A42CCB029300DBD9BA /* EmailEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEntryViewController.swift; sourceTree = "<group>"; };
 		D6D6B9A62CCB02A500DBD9BA /* CodeVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerificationViewController.swift; sourceTree = "<group>"; };
 		D6D6B9A82CCB27F400DBD9BA /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
+		D6E1F3522CCEBCA6006D5EEB /* AttendingUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendingUserCell.swift; sourceTree = "<group>"; };
+		D6E1F3542CCEBD56006D5EEB /* UserDetailsModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsModal.swift; sourceTree = "<group>"; };
+		D6E1F3562CCEBFB0006D5EEB /* UserProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileDetailViewController.swift; sourceTree = "<group>"; };
 		D6FF36762BC2083C008A9809 /* EventDispalyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDispalyScreen.swift; sourceTree = "<group>"; };
 		D6FF36782BC20CC3008A9809 /* BookingConfirmationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingConfirmationScreen.swift; sourceTree = "<group>"; };
 		D6FF367A2BC215F2008A9809 /* ViewBookingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBookingsScreen.swift; sourceTree = "<group>"; };
@@ -176,6 +182,9 @@
 				D6395DC82CCBDDB900D8C0AC /* ViewAllEvents.swift */,
 				D6FF36762BC2083C008A9809 /* EventDispalyScreen.swift */,
 				D6FF367A2BC215F2008A9809 /* ViewBookingsScreen.swift */,
+				D6E1F3522CCEBCA6006D5EEB /* AttendingUserCell.swift */,
+				D6E1F3542CCEBD56006D5EEB /* UserDetailsModal.swift */,
+				D6E1F3562CCEBFB0006D5EEB /* UserProfileDetailViewController.swift */,
 				D6FF36782BC20CC3008A9809 /* BookingConfirmationScreen.swift */,
 				D6569C872BBD1B20000B688F /* WebScreen.swift */,
 				CE155B1A2BB9E0CD00E45A2A /* MapScreen.swift */,
@@ -408,7 +417,10 @@
 				D6FF36792BC20CC3008A9809 /* BookingConfirmationScreen.swift in Sources */,
 				D6D6B9A52CCB029300DBD9BA /* EmailEntryViewController.swift in Sources */,
 				D6FF367B2BC215F2008A9809 /* ViewBookingsScreen.swift in Sources */,
+				D6E1F3572CCEBFB0006D5EEB /* UserProfileDetailViewController.swift in Sources */,
 				D6D6B9A72CCB02A500DBD9BA /* CodeVerificationViewController.swift in Sources */,
+				D6E1F3552CCEBD56006D5EEB /* UserDetailsModal.swift in Sources */,
+				D6E1F3532CCEBCA6006D5EEB /* AttendingUserCell.swift in Sources */,
 				CE1198322BA232FF00FD8B96 /* AppDelegate.swift in Sources */,
 				D6395DCB2CCC34A400D8C0AC /* AccountManagment.swift in Sources */,
 				D6D6B9A92CCB27F400DBD9BA /* EmailService.swift in Sources */,

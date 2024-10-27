@@ -18,7 +18,10 @@ class AddNewEvent: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSou
     @IBOutlet var numberOfPlayersStepper: UIStepper!
     @IBOutlet var numberOfPlayersLabel: UILabel!
     @IBOutlet var notesTextView: UITextView!
-
+    
+    // Genrating new Id for events
+    let eventID = UUID().uuidString
+    
     // MARK: - Properties
     var sportTypes: [String] = []
     
@@ -150,76 +153,89 @@ class AddNewEvent: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSou
             }
         }
     }
-    
+
     // MARK: - Action Methods
-    @IBAction func addPlayButtonTapped(_ sender: UIButton) {
-        guard let eventName = eventNameTextField.text, !eventName.isEmpty,
-              let eventAddress = eventAddressTextField.text, !eventAddress.isEmpty,
-              let sportTypeIndex = sportTypePickerView.selectedRow(inComponent: 0) >= 0 ? sportTypePickerView.selectedRow(inComponent: 0) : nil,
-              sportTypeIndex < sportTypes.count || sportTypeIndex == sportTypes.count // Check if user selected "Add New Sport"
-        else {
-            // At least one mandatory field is missing, show alert
-            displayAlertForMissingFields()
-            return
-        }
-        
-        let sportType = sportTypes[sportTypeIndex]
-        
-        // Check if contactNumber is numeric
-        guard let contactNumber = contactNumberTextField.text, !contactNumber.isEmpty, let _ = Double(contactNumber) else {
-            displayAlert(message: "Contact number must be numeric.")
-            return
-        }
-        
-        let numberOfPlayers = Int(numberOfPlayersStepper.value)
+        @IBAction func addPlayButtonTapped(_ sender: UIButton) {
+            guard let eventName = eventNameTextField.text, !eventName.isEmpty,
+                  let eventAddress = eventAddressTextField.text, !eventAddress.isEmpty,
+                  let sportTypeIndex = sportTypePickerView.selectedRow(inComponent: 0) >= 0 ? sportTypePickerView.selectedRow(inComponent: 0) : nil,
+                  sportTypeIndex < sportTypes.count || sportTypeIndex == sportTypes.count // Check if user selected "Add New Sport"
+            else {
+                // At least one mandatory field is missing, show alert
+                displayAlertForMissingFields()
+                return
+            }
+            
+            let sportType = sportTypes[sportTypeIndex]
+            
+            // Check if contactNumber is numeric
+            guard let contactNumber = contactNumberTextField.text, !contactNumber.isEmpty, let _ = Double(contactNumber) else {
+                displayAlert(message: "Contact number must be numeric.")
+                return
+            }
+            
+            let numberOfPlayers = Int(numberOfPlayersStepper.value)
 
-        // Normalize college name to be used as document ID
-        guard let collegeID = AppDelegate.shared.college?.replacingOccurrences(of: " ", with: "_"), !collegeID.isEmpty else {
-            displayAlert(message: "College ID is empty. Please provide a valid college name.")
-            return
-        }
+            // Normalize college name to be used as document ID
+            guard let collegeID = AppDelegate.shared.college?.replacingOccurrences(of: " ", with: "_"), !collegeID.isEmpty else {
+                displayAlert(message: "College ID is empty. Please provide a valid college name.")
+                return
+            }
 
-        // All mandatory fields are filled out and numeric, proceed to add the event to Firestore
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let dateString = dateFormatter.string(from: datePicker.date)
+            // All mandatory fields are filled out and numeric, proceed to add the event to Firestore
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let dateString = dateFormatter.string(from: datePicker.date)
 
-        // Prepare data for Firestore
-        let eventData: [String: Any] = [
-            "eventName": eventName,
-            "date": dateString,
-            "contactNumber": contactNumber,
-            "eventAddress": eventAddress,
-            "sportType": sportType,
-            "numberOfPlayers": numberOfPlayers,
-            "notes": notesTextView.text ?? "",
-            "createdBy": AppDelegate.shared.email ?? ""
-        ]
+            // Prepare data for Firestore
+            let eventData: [String: Any] = [
+                "eventID": eventID,
+                "eventName": eventName,
+                "date": dateString,
+                "contactNumber": contactNumber,
+                "eventAddress": eventAddress,
+                "sportType": sportType,
+                "numberOfPlayers": numberOfPlayers,
+                "notes": notesTextView.text ?? "",
+                "createdBy": AppDelegate.shared.currentUserUID ?? ""
+            ]
 
-        let db = Firestore.firestore()
-        let eventsRef = db.collection("events").document(collegeID)
-        
-        eventsRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                // Document exists, just add the event to the array
-                eventsRef.updateData(["events": FieldValue.arrayUnion([eventData])]) { error in
-                    if let error = error {
-                        self.displayAlert(message: "Error adding event: \(error.localizedDescription)")
-                    } else {
-                        print("Event added successfully.")
+            let db = Firestore.firestore()
+            let eventsRef = db.collection("events").document(collegeID)
+            
+            eventsRef.getDocument { (document, error) in
+                // Inside eventsRef.getDocument
+                if let document = document, document.exists {
+                    // Document exists, just add the event to the array
+                    eventsRef.updateData(["events": FieldValue.arrayUnion([eventData])]) { error in
+                        if let error = error {
+                            self.displayAlert(message: "Error adding event: \(error.localizedDescription)")
+                        } else {
+                            print("Event added successfully.")
+                            self.showSuccessAlert() // Show success alert here
+                        }
                     }
-                }
-            } else {
-                // Document does not exist, create it with the event data
-                eventsRef.setData(["events": [eventData]]) { error in
-                    if let error = error {
-                        self.displayAlert(message: "Error creating events document: \(error.localizedDescription)")
-                    } else {
-                        print("Events document created successfully.")
+                } else {
+                    // Document does not exist, create it with the event data
+                    eventsRef.setData(["events": [eventData]]) { error in
+                        if let error = error {
+                            self.displayAlert(message: "Error creating events document: \(error.localizedDescription)")
+                        } else {
+                            print("Events document created successfully.")
+                            self.showSuccessAlert()
+                        }
                     }
                 }
             }
         }
+    
+    // Show success alert and perform segue
+    private func showSuccessAlert() {
+        let alert = UIAlertController(title: "Success", message: "Event added successfully!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            self.performSegue(withIdentifier: "backHomefromAdd", sender: self)
+        })
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Helper Methods

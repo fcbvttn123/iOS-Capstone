@@ -240,7 +240,7 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
         guard let emailText = emailfield.text, !emailText.isEmpty,
               let passwordText = password.text, !passwordText.isEmpty,
               let usernameText = usernamefield.text, !usernameText.isEmpty else {
-            showAlert(withTitle: "Error", message: "Please enter both username, email and password.")
+            showAlert(withTitle: "Error", message: "Please enter both username, email, and password.")
             return
         }
         
@@ -276,15 +276,14 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
                 Auth.auth().createUser(withEmail: emailText, password: passwordText) { authResult, error in
                     if let error = error {
                         self.showAlert(withTitle: "Error", message: error.localizedDescription)
-                    } else {
-                        if AppDelegate.shared.isEmailVerified {
-                            AppDelegate.shared.college = selectedUniversity
-                            AppDelegate.shared.country = self.selectedCountry
-                            AppDelegate.shared.username = self.usernamefield.text
-                            
-                            self.createUserDocumentIfNeeded()
-                            self.showAlert(withTitle: "Success", message: "Account created successfully.")
-                        }
+                    } else if let user = authResult?.user {
+                        // Use the unique user ID to create the user document
+                        AppDelegate.shared.college = selectedUniversity
+                        AppDelegate.shared.country = self.selectedCountry
+                        AppDelegate.shared.username = self.usernamefield.text
+
+                        self.createUserDocument(withUserID: user.uid) // Pass the unique user ID
+                        self.showAlert(withTitle: "Success", message: "Account created successfully.")
                     }
                 }
             } else {
@@ -293,46 +292,31 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
         }
     }
 
-
-    private func createUserDocumentIfNeeded() {
-        guard let email = AppDelegate.shared.email else { return }
+    private func createUserDocument(withUserID userID: String) {
+        // Reference to the Users collection with the user ID as the document ID
+        let userRef = db.collection("users").document(userID)
         
-        // Reference to the Users collection with the email as the document ID
-        let userRef = db.collection("users").document(email)
+        // Prepare user data
+        let userData: [String: Any] = [
+            "username": AppDelegate.shared.username ?? "",
+            "email": AppDelegate.shared.email ?? "",
+            "country": AppDelegate.shared.country ?? "",
+            "college": AppDelegate.shared.college ?? "",
+            "imgUrl": AppDelegate.shared.imgUrl,
+            "userDomain": self.userDomain ?? "",
+            "collegeWebsite": self.collegeWebsite ?? ""
+        ]
         
-        // Check if the user document exists
-        userRef.getDocument { (document, error) in
+        // Set data with user ID as the document ID
+        userRef.setData(userData) { error in
             if let error = error {
-                print("Error checking for user document: \(error)")
-                return
-            }
-            
-            // If the document does not exist, create a new user document
-            if document == nil || document?.exists == false {
-                // Prepare user data
-                let userData: [String: Any] = [
-                    "username": AppDelegate.shared.username ?? "",
-                    "email": email,
-                    "country": AppDelegate.shared.country ?? "",
-                    "college": AppDelegate.shared.college ?? "",
-                    "imgUrl" : AppDelegate.shared.imgUrl,
-                    "userDomain" : self.userDomain ?? "",
-                    "collegeWebsite": self.collegeWebsite ?? ""
-                ]
-                
-                // Set data with email as the document ID
-                userRef.setData(userData) { error in
-                    if let error = error {
-                        print("Error creating user document: \(error)")
-                    } else {
-                        print("User document created successfully with email as document ID.")
-                    }
-                }
+                print("Error creating user document: \(error)")
             } else {
-                print("User document already exists.")
+                print("User document created successfully with user ID as document ID.")
             }
         }
     }
+
 
     
     func fetchUniversities(for domain: String, completion: @escaping ([[String: Any]]) -> Void) {

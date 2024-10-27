@@ -24,16 +24,6 @@ class HomeScreen: BaseViewController {
     @IBAction func toHomeScreen(sender: UIStoryboardSegue) {
         // No action needed
     }
-
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toBookings" {
-            if let destinationVC = segue.destination as? ViewBookingsScreen,
-               let bookingId = sender as? String {
-                destinationVC.bookingId = bookingId
-            }
-        }
-    }
     
     // MARK: - Other Button Actions
 
@@ -46,7 +36,7 @@ class HomeScreen: BaseViewController {
             return
         }
         // Perform segue to ViewBookingsScreen with identifier toBookings
-        performSegue(withIdentifier: "toBookings", sender: currentUserUID)
+        performSegue(withIdentifier: "toBookings", sender: self)
     }
     
     @IBAction func addPlayButtonTapped(_ sender: UIButton) {

@@ -46,56 +46,58 @@ class SignInScreen: UIViewController, UITextFieldDelegate {
         }
         
         // Sign in with Firebase
-        Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
-            if let error = error {
-                self.showAlert(message: error.localizedDescription)
-                return
-            }
-            
-            // User is signed in
-            AppDelegate.shared.email = self.username.text
-            AppDelegate.shared.currentUserUID = self.username.text
-            // Navigate to the next screen
-            
-            // Check for empty properties and update if necessary
-            self.checkAndUpdateUserInfo()
-            
-            self.performSegue(withIdentifier: "toHome", sender: self)
-        }
+               Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+                   if let error = error {
+                       self.showAlert(message: error.localizedDescription)
+                       return
+                   }
+                   
+                   // User is signed in
+                   guard let user = authResult?.user else { return }
+                   AppDelegate.shared.email = self.username.text
+                   AppDelegate.shared.currentUserUID = user.uid
+                   
+                   // Check for empty properties and update if necessary
+                   self.checkAndUpdateUserInfo()
+                   
+                   // Navigate to the next screen
+                   self.performSegue(withIdentifier: "toHome", sender: self)
+               }
     }
     
     // Function to check and update user info from Firestore
-        private func checkAndUpdateUserInfo() {
-            // Check if properties are empty
-            if AppDelegate.shared.college?.isEmpty ?? true ||
-               AppDelegate.shared.country?.isEmpty ?? true ||
-               AppDelegate.shared.username?.isEmpty ?? true {
-                
-                guard let email = AppDelegate.shared.email else { return }
-                
-                // Reference to the Users collection
-                let usersRef = db.collection("users")
-                
-                // Retrieve user data from Firestore
-                usersRef.whereField("email", isEqualTo: email).getDocuments { (querySnapshot, error) in
-                    if let error = error {
-                        print("Error fetching user document: \(error)")
-                        return
-                    }
-                    
-                    // Check if the user document exists and update properties
-                    if let document = querySnapshot?.documents.first {
-                        AppDelegate.shared.username = document.get("username") as? String ?? ""
-                        AppDelegate.shared.country = document.get("country") as? String ?? ""
-                        AppDelegate.shared.college = document.get("college") as? String ?? ""
-                        
-                        print("User info updated from Firestore.")
-                    } else {
-                        print("User document not found.")
-                    }
-                }
-            }
-        }
+       private func checkAndUpdateUserInfo() {
+           // Check if properties are empty
+           if AppDelegate.shared.college?.isEmpty ?? true ||
+              AppDelegate.shared.country?.isEmpty ?? true ||
+              AppDelegate.shared.username?.isEmpty ?? true {
+               
+               guard let uid = AppDelegate.shared.currentUserUID else { return }
+               
+               // Reference to the Users collection
+               let usersRef = db.collection("users")
+               
+               // Retrieve user data from Firestore using UID
+               usersRef.document(uid).getDocument { (document, error) in
+                   if let error = error {
+                       print("Error fetching user document: \(error)")
+                       return
+                   }
+                   
+                   // Check if the user document exists and update properties
+                   if let document = document, document.exists {
+                       AppDelegate.shared.username = document.get("username") as? String ?? ""
+                       AppDelegate.shared.country = document.get("country") as? String ?? ""
+                       AppDelegate.shared.college = document.get("college") as? String ?? ""
+                       AppDelegate.shared.collegeWebsite = document.get("collegeWebsite") as? String ?? ""
+                       print("Sign in Screen: User info updated from Firestore into AppDelegate.")
+                   } else {
+                       print("Sign in Screen: User document not found for UID.")
+                   }
+               }
+           }
+       }
+       
     
     // Action that shows user "what is Institutional Email"
     @IBAction func InstituteEmailPopup(_ sender: UIButton){
