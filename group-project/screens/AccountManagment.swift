@@ -145,47 +145,49 @@ class AccountManagement: BaseViewController, UIImagePickerControllerDelegate, UI
         }
 
     // MARK: - Upload User Info
-    @IBAction func submitButtonTapped(_ sender: UIButton) {
-        guard let username = usernameTextField.text, !username.isEmpty else {
-            displayAlert(message: "Please enter a username.")
-            return
-        }
+        @IBAction func submitButtonTapped(_ sender: UIButton) {
+            // Make username optional
+            let username = usernameTextField.text?.isEmpty == true ? nil : usernameTextField.text
 
-        let dateOfBirth = dateOfBirthPicker.date
-        let formattedDate = DateFormatter.localizedString(from: dateOfBirth, dateStyle: .short, timeStyle: .none)
+            let dateOfBirth = dateOfBirthPicker.date
+            let formattedDate = DateFormatter.localizedString(from: dateOfBirth, dateStyle: .short, timeStyle: .none)
 
-        // Assuming userID is the document ID of the user in Firestore
-        guard let userID = AppDelegate.shared.email else {
-            print("No user email in app delegate")
-            displayAlert(message: "User not logged in.")
-            return
-        }
+            // Use user ID instead of email
+            guard let userID = AppDelegate.shared.currentUserUID else {
+                print("No user ID in app delegate")
+                displayAlert(message: "User not logged in.")
+                return
+            }
 
-        let userDocumentRef = db.collection("users").document(userID)
+            let userDocumentRef = db.collection("users").document(userID)
 
-        // Prepare user data to update
-        let userData: [String: Any] = [
-            "username": username,
-            "dateOfBirth": formattedDate,
-            "preferredSport": selectedSport ?? ""
-        ]
+            // Prepare user data to update
+            var userData: [String: Any] = [
+                "dateOfBirth": formattedDate,
+                "preferredSport": selectedSport ?? ""
+            ]
+            
+            // Include username only if it is not nil
+            if let username = username {
+                userData["username"] = username
+            }
 
-        // Update user info in Firestore
-        userDocumentRef.setData(userData, merge: true) { error in
-            if let error = error {
-                self.displayAlert(message: "Error updating user info: \(error.localizedDescription)")
-            } else {
-                print("User info updated successfully.")
-                // Show success message and navigate back
-                let successAlert = UIAlertController(title: "Success", message: "\(username)'s information updated.", preferredStyle: .alert)
-                successAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-                    // Perform segue back to home screen
-                    self.performSegue(withIdentifier: "backToHome", sender: self)
-                }))
-                self.present(successAlert, animated: true, completion: nil)
+            // Update user info in Firestore
+            userDocumentRef.setData(userData, merge: true) { error in
+                if let error = error {
+                    self.displayAlert(message: "Error updating user info: \(error.localizedDescription)")
+                } else {
+                    print("User info updated successfully.")
+                    // Show success message and navigate back
+                    let successAlert = UIAlertController(title: "Success", message: "\(username ?? "User")'s information updated.", preferredStyle: .alert)
+                    successAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                        // Perform segue back to home screen
+                        self.performSegue(withIdentifier: "backToHome", sender: self)
+                    }))
+                    self.present(successAlert, animated: true, completion: nil)
+                }
             }
         }
-    }
 
        // MARK: - Helper Methods
     func displayAlert(message: String) {
@@ -267,7 +269,7 @@ class AccountManagement: BaseViewController, UIImagePickerControllerDelegate, UI
                 }
                 
                 // Update the user document with the image URL
-                self.updateUserImageUrl(email: email, imageUrl: url.absoluteString) { result in
+                self.updateUserImageUrl(imageUrl: url.absoluteString) { result in
                     completion(result)
                 }
             }
@@ -275,9 +277,16 @@ class AccountManagement: BaseViewController, UIImagePickerControllerDelegate, UI
     }
     
     // Function to update Firestore document with image URL
-    private func updateUserImageUrl(email: String, imageUrl: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    private func updateUserImageUrl(imageUrl: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        // Use user ID instead of email
+        guard let userID = AppDelegate.shared.currentUserUID else {
+            print("No user ID in app delegate")
+            completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "User not logged in."])))
+            return
+        }
+
         // Reference to the user's Firestore document
-        let userRef = db.collection("users").document(email)
+        let userRef = db.collection("users").document(userID)
         
         // Check if user document exists
         userRef.getDocument { (document, error) in
@@ -288,10 +297,10 @@ class AccountManagement: BaseViewController, UIImagePickerControllerDelegate, UI
             }
             
             // If the document does not exist, create a new one with user data
-            if document == nil || document?.exists == false {
+            if document == nil || !document!.exists {
                 let userData: [String: Any] = [
                     "username": AppDelegate.shared.username ?? "",
-                    "email": email,
+                    "email": AppDelegate.shared.email ?? "",
                     "country": AppDelegate.shared.country ?? "",
                     "college": AppDelegate.shared.college ?? "",
                     "imgUrl": imageUrl
@@ -320,5 +329,6 @@ class AccountManagement: BaseViewController, UIImagePickerControllerDelegate, UI
             }
         }
     }
+
 }
 
