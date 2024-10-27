@@ -10,7 +10,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseStorage
 
-class AccountManagement: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class AccountManagement: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     let db = Firestore.firestore()
     let storage = Storage.storage()

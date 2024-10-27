@@ -13,7 +13,7 @@ import CoreLocation
 import MapKit
 import FirebaseFirestore
 
-class MapScreen: UIViewController, UITextFieldDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class MapScreen: BaseViewController, UITextFieldDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
     let locationManager = CLLocationManager()
     let regionRadius: CLLocationDistance = 1000
@@ -166,11 +166,11 @@ class MapScreen: UIViewController, UITextFieldDelegate, MKMapViewDelegate, UITab
             centerMapOnLocation(location: selectedLocation)
             
             // Update the database with the selected location
-            updateDatabase(with: selectedMapItem)
+            //updateDatabase(with: selectedMapItem)
         }
     }
     
-    // MARK: - Database Interaction
+   /*/ // MARK: - Database Interaction
     
     // This function updates the database with the selected location
     func updateDatabase(with mapItem: MKMapItem) {
@@ -245,16 +245,18 @@ class MapScreen: UIViewController, UITextFieldDelegate, MKMapViewDelegate, UITab
         })
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
-    }
+    }*/
     
     // MARK: - Navigation
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toMapScreen2" {
             if let destinationVC = segue.destination as? MapScreenCampus {
                 // Prepare for navigation to the next screen if needed
             }
-        }
     }
+     }
+     */
+    
 }
 

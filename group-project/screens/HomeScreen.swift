@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 
-class HomeScreen: UIViewController {
+class HomeScreen: BaseViewController {
     
     
     override func viewDidLoad() {

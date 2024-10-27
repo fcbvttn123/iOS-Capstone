@@ -24,8 +24,9 @@
 		CE30445E2CA06931002B217B /* DemoChannelListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30445D2CA06931002B217B /* DemoChannelListVC.swift */; };
 		CE3044602CA0AC5A002B217B /* DemoChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */; };
 		CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A95812CA05B7600B2A183 /* ChatManager.swift */; };
+		CE8134892CCD9EFD00B28E14 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8134882CCD9EFD00B28E14 /* SettingsViewController.swift */; };
+		CE81348B2CCD9F6000B28E14 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81348A2CCD9F6000B28E14 /* BaseViewController.swift */; };
 		CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */; };
-		D610B68F2BBF82EF007649B3 /* MapScreenCampus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */; };
 		D6395DC32CCBDC5100D8C0AC /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6395DC22CCBDC5100D8C0AC /* SignInScreen.swift */; };
 		D6395DC52CCBDD0900D8C0AC /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6395DC42CCBDD0900D8C0AC /* HomeScreen.swift */; };
 		D6395DC72CCBDD6A00D8C0AC /* AddNewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6395DC62CCBDD6A00D8C0AC /* AddNewEvent.swift */; };
@@ -92,7 +93,8 @@
 		CE30445D2CA06931002B217B /* DemoChannelListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoChannelListVC.swift; sourceTree = "<group>"; };
 		CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoChannelVC.swift; sourceTree = "<group>"; };
 		CE6A95812CA05B7600B2A183 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
-		D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenCampus.swift; sourceTree = "<group>"; };
+		CE8134882CCD9EFD00B28E14 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CE81348A2CCD9F6000B28E14 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D6395DC22CCBDC5100D8C0AC /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
 		D6395DC42CCBDD0900D8C0AC /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		D6395DC62CCBDD6A00D8C0AC /* AddNewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewEvent.swift; sourceTree = "<group>"; };
@@ -177,8 +179,8 @@
 				D6FF36782BC20CC3008A9809 /* BookingConfirmationScreen.swift */,
 				D6569C872BBD1B20000B688F /* WebScreen.swift */,
 				CE155B1A2BB9E0CD00E45A2A /* MapScreen.swift */,
-				D610B68E2BBF82EF007649B3 /* MapScreenCampus.swift */,
 				D6395DCA2CCC34A400D8C0AC /* AccountManagment.swift */,
+				CE8134882CCD9EFD00B28E14 /* SettingsViewController.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -249,6 +251,7 @@
 			children = (
 				CE1198312BA232FF00FD8B96 /* AppDelegate.swift */,
 				CE1198332BA232FF00FD8B96 /* SceneDelegate.swift */,
+				CE81348A2CCD9F6000B28E14 /* BaseViewController.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -398,7 +401,9 @@
 				D6395DC32CCBDC5100D8C0AC /* SignInScreen.swift in Sources */,
 				D6395DC72CCBDD6A00D8C0AC /* AddNewEvent.swift in Sources */,
 				D6569C882BBD1B20000B688F /* WebScreen.swift in Sources */,
+				CE8134892CCD9EFD00B28E14 /* SettingsViewController.swift in Sources */,
 				D6FF36772BC2083C008A9809 /* EventDispalyScreen.swift in Sources */,
+				CE81348B2CCD9F6000B28E14 /* BaseViewController.swift in Sources */,
 				CE3044602CA0AC5A002B217B /* DemoChannelVC.swift in Sources */,
 				D6FF36792BC20CC3008A9809 /* BookingConfirmationScreen.swift in Sources */,
 				D6D6B9A52CCB029300DBD9BA /* EmailEntryViewController.swift in Sources */,
@@ -411,7 +416,6 @@
 				CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */,
 				CE1198342BA232FF00FD8B96 /* SceneDelegate.swift in Sources */,
 				D6395DC52CCBDD0900D8C0AC /* HomeScreen.swift in Sources */,
-				D610B68F2BBF82EF007649B3 /* MapScreenCampus.swift in Sources */,
 				CE0D42E32BB4EF3D00900E9F /* SignUpScreen.swift in Sources */,
 				CE155B1B2BB9E0CD00E45A2A /* MapScreen.swift in Sources */,
 				D6395DC92CCBDDB900D8C0AC /* ViewAllEvents.swift in Sources */,

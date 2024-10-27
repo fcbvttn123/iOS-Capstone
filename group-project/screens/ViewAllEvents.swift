@@ -7,7 +7,7 @@
 import UIKit
 import FirebaseFirestore
 
-class ViewAllEvents: UIViewController, UIPickerViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class ViewAllEvents: BaseViewController, UIPickerViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Variables
     var events: [Event] = []
