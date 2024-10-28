@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         // Chat Feature - Created by David
-        ChatService.shared.applyChatCustomizations()
-        ChatService.shared.connectUserToStream(username: "test5")
+        //ChatService.shared.applyChatCustomizations()
+        //ChatService.shared.connectUserToStream(username: "test6")
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

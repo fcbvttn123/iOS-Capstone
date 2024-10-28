@@ -41,7 +41,7 @@ class DemoChannelList: ChatChannelListVC, UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
     private func createDirectMessageChannel(with username: String) {
-        let currentUserId = "david" // Replace with your actual user ID
+        let currentUserId = "test6" // Replace with your actual user ID
         let userIds: Set<UserId> = [currentUserId, username]
         do {
             let channelController = try ChatManager.shared.chatClient.channelController(

@@ -24,21 +24,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Actions
     
-    @IBAction func chatButtonTapped(_ sender: Any) {
-        // When the button is clicked, push the chat screen
-        let chatVC = DemoChannelList()
-
-        // Create the query for the channel list
-        let userId = "test5"
-        let query = ChannelListQuery(filter: .containMembers(userIds: [userId]))
-
-        // Set the controller
-        chatVC.controller = ChatManager.shared.chatClient.channelListController(query: query)
-
-        // Push the DemoChannelList onto the navigation stack
-        self.navigationController?.pushViewController(chatVC, animated: true)
-    }
-    
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         guard let email = username.text, !email.isEmpty,
               let password = password.text, !password.isEmpty else {
