@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C43F2F82CB6F7A400D04CA7 /* world_universities_and_domains.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C43F2F72CB6F7A400D04CA7 /* world_universities_and_domains.json */; };
+		4C43F2F92CB6F7A400D04CA7 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C43F2F62CB6F7A400D04CA7 /* countries.json */; };
+		4C43F2FB2CB7381D00D04CA7 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C43F2FA2CB7381D00D04CA7 /* ChatService.swift */; };
 		CE0D42E32BB4EF3D00900E9F /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D42E22BB4EF3D00900E9F /* SignUpScreen.swift */; };
 		CE1198322BA232FF00FD8B96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1198312BA232FF00FD8B96 /* AppDelegate.swift */; };
 		CE1198342BA232FF00FD8B96 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1198332BA232FF00FD8B96 /* SceneDelegate.swift */; };
@@ -81,6 +84,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C43F2F62CB6F7A400D04CA7 /* countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		4C43F2F72CB6F7A400D04CA7 /* world_universities_and_domains.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = world_universities_and_domains.json; sourceTree = "<group>"; };
+		4C43F2FA2CB7381D00D04CA7 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		CE0D42E22BB4EF3D00900E9F /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
 		CE11982E2BA232FF00FD8B96 /* group-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "group-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1198312BA232FF00FD8B96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +175,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C43F2F52CB6F79300D04CA7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4C43F2F62CB6F7A400D04CA7 /* countries.json */,
+				4C43F2F72CB6F7A400D04CA7 /* world_universities_and_domains.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CE0D42E12BB4EF0800900E9F /* screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,8 +229,8 @@
 		CE1198302BA232FF00FD8B96 /* group-project */ = {
 			isa = PBXGroup;
 			children = (
+				4C43F2F52CB6F79300D04CA7 /* Resources */,
 				CE6A95802CA05B5400B2A183 /* chat-features */,
-				D605E6312CAD010E00ECBB61 /* Resources */,
 				D610B6872BBF28EE007649B3 /* Storyboards */,
 				D610B6862BBF28CB007649B3 /* Delegates */,
 				D6569C822BBD1557000B688F /* images */,
@@ -242,6 +257,7 @@
 				CE6A95812CA05B7600B2A183 /* ChatManager.swift */,
 				CE30445D2CA06931002B217B /* DemoChannelListVC.swift */,
 				CE30445F2CA0AC5A002B217B /* DemoChannelVC.swift */,
+				4C43F2FA2CB7381D00D04CA7 /* ChatService.swift */,
 			);
 			path = "chat-features";
 			sourceTree = "<group>";
@@ -396,6 +412,8 @@
 				CE1198562BA290FB00FD8B96 /* GoogleService-Info.plist in Resources */,
 				D6FF36812BC247E2008A9809 /* PlayPal3.png in Resources */,
 				CE11983B2BA2330000FD8B96 /* Assets.xcassets in Resources */,
+				4C43F2F82CB6F7A400D04CA7 /* world_universities_and_domains.json in Resources */,
+				4C43F2F92CB6F7A400D04CA7 /* countries.json in Resources */,
 				CE1198392BA232FF00FD8B96 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +443,8 @@
 				D6395DCB2CCC34A400D8C0AC /* AccountManagment.swift in Sources */,
 				D6D6B9A92CCB27F400DBD9BA /* EmailService.swift in Sources */,
 				CE30445E2CA06931002B217B /* DemoChannelListVC.swift in Sources */,
+				4C43F2FB2CB7381D00D04CA7 /* ChatService.swift in Sources */,
+				D6569C8C2BBD3498000B688F /* User.swift in Sources */,
 				CE6A95822CA05B7600B2A183 /* ChatManager.swift in Sources */,
 				CE1198342BA232FF00FD8B96 /* SceneDelegate.swift in Sources */,
 				D6395DC52CCBDD0900D8C0AC /* HomeScreen.swift in Sources */,
