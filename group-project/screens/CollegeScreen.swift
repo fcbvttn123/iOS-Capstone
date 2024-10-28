@@ -7,20 +7,17 @@ Group Members:
 - Chakshita Gupta 991653663
 Description: This class manages the functionality related to setting and updating the user's home campus.
 */
-
 import UIKit
 import FirebaseFirestore
 
 class CollegeScreen: UIViewController {
-    
-    @IBOutlet weak var addHomeCampusButton: UIButton!
 
+    // Firestore reference
+    let db = Firestore.firestore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Check if HomeCampus is not set
-        checkHomeCampus()
-        updateHomeCampusButtonTitle()
+        createUserDocumentIfNeeded()
     }
     
     // This function is used to make the keyboard disappear when we tap the "return" key
@@ -35,140 +32,44 @@ class CollegeScreen: UIViewController {
     
     // MARK: - Home Campus Management
     
-    // This function checks if the home campus is set for the current user
-    func checkHomeCampus() {
-        guard let currentUserUID = AppDelegate.shared.currentUserUID else {
-            return
-        }
+    // Function to create a user document if it does not already exist
+    private func createUserDocumentIfNeeded() {
+        guard let email = AppDelegate.shared.email else { return }
         
-        let profilesCollection = Firestore.firestore().collection("Profiles")
-        profilesCollection.document(currentUserUID).getDocument { [weak self] document, error in
-            guard let self = self else { return }
-            
+        // Reference to the Users collection
+        let usersRef = db.collection("users")
+        
+        // Check if the user document exists
+        usersRef.whereField("email", isEqualTo: email).getDocuments { (querySnapshot, error) in
             if let error = error {
-                print("Error getting document: \(error)")
+                print("Error checking for user document: \(error)")
                 return
             }
             
-            if let document = document, document.exists {
-                // Document exists, check if HomeCampus is set
-                let data = document.data()
-                if let homeCampus = data?["HomeCampus"] as? String, !homeCampus.isEmpty {
-                    // HomeCampus is set, proceed with functionality
-                    self.handleProceed()
-                } else {
-                    // HomeCampus is not set, show pop-up to add HomeCampus
-                    self.showHomeCampusPopUp()
+            // If no documents found, create a new user document
+            if querySnapshot?.isEmpty == true {
+                // Prepare user data
+                let userData: [String: Any] = [
+                    "username": AppDelegate.shared.username ?? "",
+                    "email": email,
+                    "country": AppDelegate.shared.country ?? "",
+                    "college": AppDelegate.shared.college ?? ""
+                ]
+                
+                // Add new document with a unique ID
+                usersRef.addDocument(data: userData) { error in
+                    if let error = error {
+                        print("Error creating user document: \(error)")
+                    } else {
+                        print("User document created successfully.")
+                    }
                 }
             } else {
-                // Document doesn't exist, show pop-up to add HomeCampus
-                self.showHomeCampusPopUp()
+                print("User document already exists.")
             }
         }
     }
-    
-    // This function presents a pop-up to add the home campus
-    func showHomeCampusPopUp() {
-        let alertController = UIAlertController(title: "Enter HomeCampus", message: "Please enter your HomeCampus to continue.", preferredStyle: .alert)
-        
-        // Add action to add HomeCampus
-        let addAction = UIAlertAction(title: "Add HomeCampus", style: .default, handler: { [weak self] action in
-            // Go to AddHomeCampusScreen
-            self?.performSegue(withIdentifier: "toMaps", sender: nil)
-        })
-        alertController.addAction(addAction)
-        
-        // Add action to cancel
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
-            self?.showPopUpAgain()
-        }
-        alertController.addAction(cancelAction)
-        
-        // Present the alert controller
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    // This function shows a warning pop-up if the user chooses to continue without setting the home campus
-    func showPopUpAgain() {
-        let alertController = UIAlertController(title: "Warning!", message: "Not setting a Home Campus might impact your experience.", preferredStyle: .alert)
-        
-        // Add action to continue without setting
-        let cancelAction = UIAlertAction(title: "Continue Without Setting", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        // Add action to add HomeCampus
-        let addAction = UIAlertAction(title: "Add Home Campus", style: .default, handler: { [weak self] action in
-            // Go to AddHomeCampusScreen
-            self?.performSegue(withIdentifier: "toMaps", sender: nil)
-        })
-        alertController.addAction(addAction)
-        
-        // Present the warning alert controller
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    // This function updates the title of the home campus button
-    func updateHomeCampusButtonTitle() {
-        guard let currentUserUID = AppDelegate.shared.currentUserUID else {
-            return
-        }
-        
-        let profilesCollection = Firestore.firestore().collection("Profiles")
-        profilesCollection.document(currentUserUID).getDocument { [weak self] document, error in
-            guard let self = self else { return }
-            
-            if let error = error {
-                print("Error getting document: \(error)")
-                return
-            }
-            
-            if let document = document, document.exists {
-                let data = document.data()
-                if let homeCampus = data?["HomeCampus"] as? String {
-                    // HomeCampus is set, update the button's title
-                    self.addHomeCampusButton.setTitle(homeCampus, for: .normal)
-                }
-            }
-        }
-    }
-    
-    // MARK: - Button Actions
-    
-    // This function handles the tap on the "Add Home Campus" button
-    @IBAction func addHomeCampusButtonTapped(_ sender: UIButton) {
-        guard let currentUserUID = AppDelegate.shared.currentUserUID else {
-            return
-        }
-        
-        let profilesCollection = Firestore.firestore().collection("Profiles")
-        profilesCollection.document(currentUserUID).getDocument { [weak self] document, error in
-            guard let self = self else { return }
-            
-            if let error = error {
-                print("Error getting document: \(error)")
-                return
-            }
-            
-            if let document = document, document.exists {
-                let data = document.data()
-                
-                // Check if HomeCampus is set
-                if let _ = data?["HomeCampus"] as? String {
-                    // HomeCampus is set, proceed with functionality (in this case, navigate to Maps screen)
-                    self.performSegue(withIdentifier: "toMaps", sender: nil)
-                }
-            }
-        }
-    }
-    
-    // MARK: - Helper Methods
-    
-    // This function handles functionality after checking HomeCampus
-    func handleProceed() {
-        // Handle the functionality after checking HomeCampus
-        // For now we dont need anything since we are handling the conditional seague
-    }
-    
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toBookings" {
@@ -178,26 +79,22 @@ class CollegeScreen: UIViewController {
             }
         }
     }
-
+    
     // MARK: - Other Button Actions
 
     @IBAction func pickPlayButtonTapped(_ sender: UIButton) {
-        // For now we dont need anything since we are handling the conditional seague
+        // For now we dont need anything since we are handling the conditional segue
     }
     
     @IBAction func viewBookingsButtonTapped(_ sender: UIButton) {
         guard let currentUserUID = AppDelegate.shared.currentUserUID else {
             return
         }
-
         // Perform segue to ViewBookingsScreen with identifier toBookings
         performSegue(withIdentifier: "toBookings", sender: currentUserUID)
     }
-
     
     @IBAction func addPlayButtonTapped(_ sender: UIButton) {
-        // For now we dont need anything since we are handling the conditional seague
+        // For now we dont need anything since we are handling the conditional segue
     }
 }
-
-

@@ -12,7 +12,7 @@ import UIKit
 import MessageUI
 import FirebaseFirestore
 
-class BookingConfirmationScreen: UIViewController, MFMailComposeViewControllerDelegate {
+class BookingConfirmationScreen: BaseViewController, MFMailComposeViewControllerDelegate {
     
     // MARK: - Outlets
     @IBOutlet var emailTextField: UITextField!
@@ -173,14 +173,6 @@ class BookingConfirmationScreen: UIViewController, MFMailComposeViewControllerDe
                     self?.displayConfirmationPopup(to: email)
                 }
             }
-        }
-    }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toBookings", let destinationVC = segue.destination as? ViewBookingsScreen {
-            destinationVC.bookingId = bookingId
         }
     }
 }

@@ -11,7 +11,7 @@ Description: A screen to dispaly selected URL
 import UIKit
 import WebKit
 
-class WebScreen: UIViewController, WKNavigationDelegate {
+class WebScreen: BaseViewController, WKNavigationDelegate {
     
     @IBOutlet var webView  : WKWebView!
     @IBOutlet var activity: UIActivityIndicatorView!

@@ -1,5 +1,4 @@
 {
-  "originHash" : "a5e7c084d63d2eed1d64794a544e90727b7a10e5dfd7c10d04658b2755cca333",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -141,8 +140,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/GetStream/stream-chat-swift.git",
       "state" : {
-        "revision" : "f9c63f40dc5ca9b3c7df44ffec151f0f9bdbd364",
-        "version" : "4.64.0"
+        "revision" : "60579e349d46a2a012a38caccbd1382e8886ff34",
+        "version" : "4.65.0"
       }
     },
     {
@@ -155,5 +154,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

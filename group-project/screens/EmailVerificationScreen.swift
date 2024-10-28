@@ -37,6 +37,8 @@ class EmailVerificationScreen: UIViewController {
             return
         }
         
+        AppDelegate.shared.email = emailTextField.text ?? ""
+        
         // Generate a 6-digit random code
         verificationCode = String(format: "%06d", Int.random(in: 0...999999))
         
@@ -94,14 +96,13 @@ class EmailVerificationScreen: UIViewController {
             showAlert("Incorrect code. Please try again.")
             return
         }
-        
-        // Verify email
+        // Update the AppDelegate with the verified email and set isEmailVerified to true
         AppDelegate.shared.isEmailVerified = true
         
-        // Perform segue
+        // Perform segue to proceed after email verification
         performSegue(withIdentifier: "toSignUp", sender: self)
-        AppDelegate.shared.email = emailTextField.text ?? ""
     }
+
     
     @IBAction func resendCodeButtonTapped(_ sender: UIButton) {
         sendCodeButton.isEnabled = false
