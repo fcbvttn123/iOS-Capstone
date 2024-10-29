@@ -5,258 +5,133 @@ Group Members:
 - Chahat Jain 991668960
 - Fizza Imran 991670304
 - Chakshita Gupta 991653663
-Description: This class manages the functionality related to searching for and selecting the home campus location on the map.
+Description: This class manages the functionality related to searching for and selecting the location on the map.
 */
 
 import UIKit
-import CoreLocation
 import MapKit
-import FirebaseFirestore
+import CoreLocation
 
 class MapScreen: BaseViewController, UITextFieldDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
     let locationManager = CLLocationManager()
-    let regionRadius: CLLocationDistance = 1000
-    var locations: [CLLocation] = [] // Array to store locations
-    var homeCampusLocation: CLLocation? // Variable to store the home campus location
-    var selectedLocation: CLLocation? // Variable to store the selected location
-    var selectedMapItem: MKMapItem? // Variable to store the selected map item
-    
-    var searchResults: [MKMapItem] = []
+    let initialLocation = CLLocation(latitude: 43.655787, longitude: -79.739534)
     
     @IBOutlet var myMapView: MKMapView!
     @IBOutlet var tbLocEntered: UITextField!
     @IBOutlet var myTableView: UITableView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        myMapView.delegate = self
-        tbLocEntered.delegate = self
-        myTableView.dataSource = self
-        myTableView.delegate = self
-        
-        tbLocEntered.placeholder = "Search for your campus"
-        // Initialize locations array with some sample locations (you can replace these with your desired locations)
-        let homeCampusLatitude = 43.7315
-        let homeCampusLongitude = -79.7624
-        homeCampusLocation = CLLocation(latitude: homeCampusLatitude, longitude: homeCampusLongitude)
-        locations.append(homeCampusLocation!) // Add home campus to locations array
-        locations.append(CLLocation(latitude: 43.7315, longitude: -79.7624)) // Brampton coordinates
-        locations.append(CLLocation(latitude: 43.5890, longitude: -79.6441)) // Mississauga coordinates
-        
-        centerMapOnLocation(location: locations[0]) // Center map on the first location
-        addAnnotationsForLocations(locations: locations) // Add annotations for all locations
-    }
+    var routeStep = ["Enter Destination To See Steps"] as NSMutableArray
     
-    // This function is used to make the keyboard disappear when we tap the "return" key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
     
-    // MARK: - Helper Methods
+    let regionRadius: CLLocationDistance = 1000
     
-    // This function centers the map on a given location
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius * 2.0, longitudinalMeters: regionRadius * 2.0)
         myMapView.setRegion(coordinateRegion, animated: true)
     }
     
-    // MARK: - Search Functionality
-    
-    // This function searches for a new location based on the text entered in the text field
-    @IBAction func findNewLocation(sender: Any) {
-        myMapView.removeAnnotations(myMapView.annotations) // Clear existing annotations
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        guard let locEnteredText = tbLocEntered.text else { return }
-        let localSearchRequest = MKLocalSearch.Request()
-        localSearchRequest.naturalLanguageQuery = locEnteredText
-        let localSearch = MKLocalSearch(request: localSearchRequest)
+        // Do any additional setup after loading the view.
+        centerMapOnLocation(location: initialLocation)
         
-        localSearch.start { [weak self] (response, error) in
-            guard let self = self else { return }
-            guard error == nil else {
-                print("Error searching for your College: \(error!)")
-                return
-            }
-            
-            if let mapItems = response?.mapItems {
-                self.searchResults = mapItems
-                self.myTableView.reloadData()
-                
-                for item in mapItems {
-                    let dropPin = MKPointAnnotation()
-                    dropPin.coordinate = item.placemark.coordinate
-                    dropPin.title = item.name
-                    self.myMapView.addAnnotation(dropPin)
-                    self.myMapView.selectAnnotation(dropPin, animated: true)
-                }
-                
-                if let firstItem = mapItems.first {
-                    self.centerMapOnLocation(location: firstItem.placemark.location!)
-                }
-            }
-        }
+        let dropPin = MKPointAnnotation()
+        dropPin.coordinate = initialLocation.coordinate
+        dropPin.title = "Starting at Sheridan College"
+        myMapView.addAnnotation(dropPin)
+        myMapView.selectAnnotation(dropPin, animated: true)
+        
+        myMapView.delegate = self  // Set the map view delegate
     }
     
-    // This function adds annotations for the provided locations on the map
-    func addAnnotationsForLocations(locations: [CLLocation]) {
-        for location in locations {
-            let dropPin = MKPointAnnotation()
-            dropPin.coordinate = location.coordinate
-            myMapView.addAnnotation(dropPin)
-        }
-    }
-    
-    // MARK: - UITableViewDataSource
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath)
-        let mapItem = searchResults[indexPath.row]
-        
-        var addressDetails = ""
-        
-        if let street = mapItem.placemark.thoroughfare {
-            addressDetails += "\nStreet: \(street)"
-        }
-        if let city = mapItem.placemark.locality {
-            addressDetails += "\nCity: \(city)"
-        }
-        if let state = mapItem.placemark.administrativeArea {
-            addressDetails += "\nState: \(state)"
-        }
-        if let postalCode = mapItem.placemark.postalCode {
-            addressDetails += "\nPostal Code: \(postalCode)"
-        }
-        
-        // Create attributed string for the cell's text label
-        let attributedString = NSMutableAttributedString()
-        let name = NSAttributedString(string: mapItem.name ?? "", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)])
-        let details = NSAttributedString(string: addressDetails, attributes: nil)
-        attributedString.append(name)
-        attributedString.append(details)
-        
-        // Display attributed string in cell
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.attributedText = attributedString
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedMapItem = searchResults[indexPath.row]
-        if let selectedLocation = selectedMapItem.placemark.location {
-            self.selectedLocation = selectedLocation
-            myMapView.removeAnnotations(myMapView.annotations) // Clear existing annotations
-            
-            let dropPin = MKPointAnnotation()
-            dropPin.coordinate = selectedLocation.coordinate
-            dropPin.title = selectedMapItem.name
-            myMapView.addAnnotation(dropPin)
-            myMapView.selectAnnotation(dropPin, animated: true)
-            
-            centerMapOnLocation(location: selectedLocation)
-            
-            // Update the database with the selected location
-            //updateDatabase(with: selectedMapItem)
-        }
-    }
-    
-   /*/ // MARK: - Database Interaction
-    
-    // This function updates the database with the selected location
-    func updateDatabase(with mapItem: MKMapItem) {
-        guard let currentUserUID = AppDelegate.shared.currentUserUID else {
+    @IBAction func findNewLocation(sender: UIButton) {
+        guard let locEnteredText = tbLocEntered.text, !locEnteredText.isEmpty else {
+            print("Please enter a location.")
             return
         }
         
-        let profilesCollection = Firestore.firestore().collection("Profiles")
+        let geocoder = CLGeocoder()
         
-        // Convert the MKMapItem to a string
-        let mapItemString = mapItemToString(mapItem: mapItem)
-        
-        // Update HomeCampus property for the current user in the Profiles collection
-        profilesCollection.document(currentUserUID).setData(["HomeCampus": mapItemString], merge: true) { error in
+        geocoder.geocodeAddressString(locEnteredText) { placemarks, error in
             if let error = error {
-                print("Error updating HomeCampus: \(error)")
-            } else {
-                print("HomeCampus updated successfully")
+                print("Geocoding error: \(error.localizedDescription)")
+                return
+            }
+            
+            if let placemark = placemarks?.first, let location = placemark.location {
+                let coordinates: CLLocationCoordinate2D = location.coordinate
+                let newLocation = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
+                self.centerMapOnLocation(location: newLocation)
                 
-                // Add the coordinates of the home campus to AvailableCampuses
-                if let homeLocation = mapItem.placemark.location {
-                    // Extract placemark details
-                    let placemark = mapItem.placemark
-                    
-                    // Add the home campus map item and coordinates to HomeCampus
-                    let homeDictionary: [String: Any] = [
-                        "name": mapItem.name ?? "",
-                        "latitude": homeLocation.coordinate.latitude,
-                        "longitude": homeLocation.coordinate.longitude,
-                        "street": placemark.thoroughfare ?? "",
-                        "city": placemark.locality ?? "",
-                        "state": placemark.administrativeArea ?? "",
-                        "postalCode": placemark.postalCode ?? "",
-                        "number": mapItem.phoneNumber ?? "",
-                        "url": mapItem.url?.absoluteString ?? ""
-                    ]
-                    
-                    profilesCollection.document(currentUserUID).updateData([
-                        "Campuses": FieldValue.arrayUnion([homeDictionary])
-                    ]) { error in
-                        if let error = error {
-                            print("Error updating MapItemCampuses: \(error)")
-                        } else {
-                            print("MapItemCampuses updated successfully")
-                            
-                            // Show pop-up to confirm HomeCampus and AvailableCampuses added
-                            self.showAlert(message: "Home campus and available campuses added successfully")
-                        }
-                    }
-                }
+                let dropPin = MKPointAnnotation()
+                dropPin.coordinate = coordinates
+                dropPin.title = placemark.name
+                self.myMapView.addAnnotation(dropPin)
+                self.myMapView.selectAnnotation(dropPin, animated: true)
+                
+                self.calculateRoute(to: coordinates)
             }
         }
     }
     
-    // MARK: - Utility Functions
-    
-    // This function converts MKMapItem to a string
-    func mapItemToString(mapItem: MKMapItem) -> String {
-        return mapItem.name ?? ""
-    }
-    
-    // This function converts CLLocation to a string
-    func locationToString(location: CLLocation) -> String {
-        return "\(location.coordinate.latitude), \(location.coordinate.longitude)"
-    }
-    
-    // This function displays an alert pop-up with the given message
-    func showAlert(message: String) {
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
-            self.performSegue(withIdentifier: "toMapScreen2", sender: nil)
-        })
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
-    }*/
-    
-    // MARK: - Navigation
-    
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toMapScreen2" {
-            if let destinationVC = segue.destination as? MapScreenCampus {
-                // Prepare for navigation to the next screen if needed
+    func calculateRoute(to destination: CLLocationCoordinate2D) {
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: initialLocation.coordinate))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))
+        request.requestsAlternateRoutes = false
+        request.transportType = .automobile
+        
+        let directions = MKDirections(request: request)
+        
+        directions.calculate { [unowned self] response, error in
+            if let error = error {
+                print("Directions error: \(error.localizedDescription)")
+                return
             }
+            
+            guard let routes = response?.routes else { return }
+            self.myMapView.removeOverlays(self.myMapView.overlays) // Remove old overlays
+            self.routeStep.removeAllObjects() // Clear old route steps
+            
+            for route in routes {
+                self.myMapView.addOverlay(route.polyline, level: .aboveRoads)
+                self.myMapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                
+                for step in route.steps {
+                    self.routeStep.add(step.instructions)
+                }
+            }
+            self.myTableView.reloadData() // Reload the table view with new route steps
+        }
     }
-     }
-     */
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1 // Only one section for route steps
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return routeStep.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let tableCell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell()
+        tableCell.textLabel?.text = routeStep[indexPath.row] as? String
+        return tableCell
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
+        renderer.strokeColor = .blue
+        renderer.lineWidth = 5.0 // Optional: adjust line width for visibility
+        return renderer
+    }
 }
-
