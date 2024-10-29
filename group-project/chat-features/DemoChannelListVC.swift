@@ -41,13 +41,21 @@ class DemoChannelList: ChatChannelListVC, UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
     private func createDirectMessageChannel(with username: String) {
-        let currentUserId = "david" // Replace with your actual user ID
+        // Safely unwrap the current user ID
+        guard let currentUserId = AppDelegate.shared.email?.components(separatedBy: "@").first else {
+            print("Error: Current user ID is nil.")
+            return
+        }
+        
+        // Create a set of user IDs, ensuring username is not nil or empty
         let userIds: Set<UserId> = [currentUserId, username]
+
         do {
             let channelController = try ChatManager.shared.chatClient.channelController(
                 createDirectMessageChannelWith: userIds,
                 extraData: [:]
             )
+            
             channelController.synchronize { error in
                 if let error = error {
                     print("Error synchronizing channel: \(error.localizedDescription)")

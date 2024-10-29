@@ -110,7 +110,7 @@
                         <outlet property="sportTypePickerView" destination="gZx-Bh-mMF" id="WwM-jv-1HU"/>
                         <outlet property="usernameTextField" destination="7lh-Ub-XCe" id="XVk-uq-jtS"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" id="bc6-9f-LGY"/>
-                        <segue destination="bCw-GM-oSg" kind="presentation" identifier="backToHome" modalPresentationStyle="fullScreen" id="Aez-6D-v3T"/>
+                        <segue destination="lrf-iB-rK7" kind="presentation" identifier="backToHome" modalPresentationStyle="fullScreen" id="Aez-6D-v3T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="knh-sE-bbE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -364,7 +364,7 @@
                         <outlet property="numberOfPlayersLabel" destination="FdC-dl-j7h" id="2hN-PB-DS0"/>
                         <outlet property="numberOfPlayersStepper" destination="IvU-cd-M8R" id="eYd-8g-m8Z"/>
                         <outlet property="sportTypePickerView" destination="Hnh-U9-bhw" id="E3O-eN-XbH"/>
-                        <segue destination="bCw-GM-oSg" kind="presentation" identifier="backHomefromAdd" modalPresentationStyle="fullScreen" id="Wl5-nO-J7m"/>
+                        <segue destination="lrf-iB-rK7" kind="presentation" identifier="backHomefromAdd" modalPresentationStyle="fullScreen" id="Wl5-nO-J7m"/>
                         <segue destination="WtZ-pL-PQh" kind="presentation" identifier="toUserDetailsModal" modalPresentationStyle="fullScreen" id="I3M-lz-fe1"/>
                     </connections>
                 </viewController>
@@ -997,7 +997,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXN-cP-EFq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6890.8396946564881" y="79.577464788732399"/>
+            <point key="canvasLocation" x="7817.5572519083962" y="79.577464788732399"/>
         </scene>
         <!--Pick Pal Screen-->
         <scene sceneID="Lxp-oR-OOE">
@@ -1026,7 +1026,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Odh-x8-OAn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6001" y="715"/>
+            <point key="canvasLocation" x="6927.480916030534" y="714.78873239436621"/>
         </scene>
         <!--Home Screen-->
         <scene sceneID="oE8-8e-zLn">
@@ -1119,6 +1119,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Button">
                                     <backgroundConfiguration key="background" image="message.fill" catalog="system"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="chatButtonTapped:" destination="bCw-GM-oSg" eventType="touchUpInside" id="Ph0-u6-ImC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Izh-2E-yA8">
                                 <rect key="frame" x="171" y="775" width="50" height="50"/>
@@ -1154,7 +1157,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3jG-Qt-ebo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="ZBk-xJ-sEs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="336.64122137404581" y="693.66197183098598"/>
+            <point key="canvasLocation" x="1263.3587786259541" y="693.66197183098598"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="tbZ-lW-yq6">
@@ -1263,7 +1266,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Dz-E2-ZHe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="EWr-iV-UJ3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1352" y="694"/>
+            <point key="canvasLocation" x="2278.6259541984732" y="693.66197183098598"/>
         </scene>
         <!--Web Screen-->
         <scene sceneID="gZw-Ex-nap">
@@ -1628,7 +1631,7 @@
                         <outlet property="password" destination="P9E-Nl-gW9" id="moK-Fc-Myh"/>
                         <outlet property="signUpButton" destination="MRX-Bm-8lK" id="FmP-lC-Z2L"/>
                         <outlet property="username" destination="x5r-F3-voL" id="jAe-ej-cgT"/>
-                        <segue destination="bCw-GM-oSg" kind="presentation" identifier="toHome" modalPresentationStyle="fullScreen" id="Aph-Xo-pSV"/>
+                        <segue destination="lrf-iB-rK7" kind="presentation" identifier="toHome" modalPresentationStyle="fullScreen" id="Aph-Xo-pSV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1817,11 +1820,29 @@
             </objects>
             <point key="canvasLocation" x="-2483.2061068702287" y="1479.5774647887324"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bog-ch-erR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lrf-iB-rK7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1BT-Qj-rAZ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bCw-GM-oSg" kind="relationship" relationship="rootViewController" id="AGp-bS-bZP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0sb-U4-bFv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="336.64122137404581" y="693.66197183098598"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Aph-Xo-pSV"/>
         <segue reference="bc6-9f-LGY"/>
         <segue reference="lXC-aX-lti"/>
-        <segue reference="Wl5-nO-J7m"/>
         <segue reference="4y2-CS-mHL"/>
     </inferredMetricsTieBreakers>
     <resources>
