@@ -11,7 +11,7 @@
 import UIKit
 import FirebaseFirestore
 
-class EventDisplayScreen: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
+class EventDisplayScreen: BaseViewController {
     
     // MARK: - Outlets
     @IBOutlet var eventNameLabel: UILabel!
@@ -35,43 +35,10 @@ class EventDisplayScreen: BaseViewController, UICollectionViewDataSource, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        attendingUsersCollectionView.delegate = self
-        attendingUsersCollectionView.dataSource = self
-        
         if let eventID = eventID {
             fetchEventDetails(eventID: eventID)
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return attendingUsers.count
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AttendingUserCell", for: indexPath) as? AttendingUserCell else {
-            return UICollectionViewCell()
-        }
-        
-        let userID = attendingUsers[indexPath.item]
-        
-        if let userImage = userImages[userID] {
-            cell.imageView.image = userImage
-        } else {
-            cell.imageView.image = UIImage(systemName: "person.crop.circle") // Placeholder
-        }
-        
-        return cell
-    }
-
-
-       func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-           let userID = attendingUsers[indexPath.item]
-           presentUserDetailsModal(for: userID)
-       }
-
-       // Set size for profile images
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           return CGSize(width: 40, height: 40)
-       }
     
     func fetchEventDetails(eventID: String) {
         let db = Firestore.firestore()
@@ -153,6 +120,8 @@ class EventDisplayScreen: BaseViewController, UICollectionViewDataSource, UIColl
                     // Check if the user is already registered for this event
                     var attendingUsers = eventData["attendingUsers"] as? [String] ?? []
                     
+                    print("Attending users:", attendingUsers)
+
                     if attendingUsers.contains(userID) {
                         // User is already registered for this event
                         self.showAlert(withTitle: "Info", message: "You are already registered for this event.")
@@ -191,45 +160,17 @@ class EventDisplayScreen: BaseViewController, UICollectionViewDataSource, UIColl
             }
         }
     }
-    
-    func presentUserDetailsModal(for userID: String) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let userDetailsVC = storyboard.instantiateViewController(identifier: "UserDetailsModal") as? UserDetailsModal {
-            userDetailsVC.userID = userID
-            userDetailsVC.modalPresentationStyle = .popover
-            present(userDetailsVC, animated: true, completion: nil)
-        }
+    @IBAction func viewAttendingUsersTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "toAttendingUsers", sender: self)
     }
-
-    // Fetch profile images of attending users from Firestore
-    func fetchUserProfiles() {
-        let db = Firestore.firestore()
-        let usersRef = db.collection("users")
-        
-        for userID in attendingUsers {
-            usersRef.document(userID).getDocument { document, error in
-                if let error = error {
-                    print("Error fetching user profile: \(error)")
-                    return
-                }
-                
-                if let document = document, let data = document.data(),
-                   let imgUrlString = data["imgUrl"] as? String,
-                   let imgUrl = URL(string: imgUrlString) {
-                    // Fetch and cache the image
-                    URLSession.shared.dataTask(with: imgUrl) { data, _, error in
-                        if let data = data, let image = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                self.userImages[userID] = image
-                                self.attendingUsersCollectionView.reloadData()
-                            }
-                        }
-                    }.resume()
-                }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toAttendingUsers" {
+            if let attendingUsersVC = segue.destination as? AttendingUsersViewController {
+                attendingUsersVC.eventID = self.eventID // Pass the eventID
+                print("Passing eventID: \(self.eventID ?? "nil")")
             }
         }
     }
-
 
     func showAlert(withTitle title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

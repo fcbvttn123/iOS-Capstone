@@ -176,7 +176,7 @@ class ViewBookingsScreen: BaseViewController, UITableViewDataSource, UITableView
                     }
                     
                     // Find the specific event to update
-                    for (index, eventData) in eventsArray.enumerated() {
+                    for (eventIndex, eventData) in eventsArray.enumerated() {
                         if let fetchedEventID = eventData["eventID"] as? String, fetchedEventID == eventID {
                             var attendingUsers = eventData["attendingUsers"] as? [String] ?? []
                             
@@ -187,7 +187,7 @@ class ViewBookingsScreen: BaseViewController, UITableViewDataSource, UITableView
                                 // Update the event data with modified attending users
                                 var updatedEventData = eventData
                                 updatedEventData["attendingUsers"] = attendingUsers
-                                eventsArray[index] = updatedEventData
+                                eventsArray[eventIndex] = updatedEventData
                                 
                                 // Save the updated events array back to Firestore
                                 eventRef.updateData([
@@ -197,9 +197,13 @@ class ViewBookingsScreen: BaseViewController, UITableViewDataSource, UITableView
                                         print("Error updating event attendees: \(error)")
                                     } else {
                                         print("User removed from event attendees successfully.")
+                                        
+                                        // Update the data source and the table view
                                         self.bookingData.remove(at: index)
                                         DispatchQueue.main.async {
-                                            self.tableView.reloadData()
+                                            self.tableView.performBatchUpdates({
+                                                self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                                            }, completion: nil)
                                         }
                                     }
                                 }
