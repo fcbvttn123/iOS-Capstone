@@ -23,7 +23,7 @@ class EmailService {
         }()
         
         let request: URLRequest = {
-            let apiKey = ProcessInfo.processInfo.environment["SENDGRID_API_KEY"] ?? ""
+            let apiKey = ProcessInfo.processInfo.environment["SENDGRID_API_KEY"] ?? "SG.59Buz7OsQa-o4RRkNhCrbA.ovcj9lM_KSTSJgCM1-U-ypfq-fPZwyUQRhesTK_b5fISG.59Buz7OsQa-o4RRkNhCrbA.ovcj9lM_KSTSJgCM1-U-ypfq-fPZwyUQRhesTK_b5fI"
             let url = URL(string: "https://api.sendgrid.com/v3/mail/send")!
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
