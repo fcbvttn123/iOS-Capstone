@@ -17,9 +17,9 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         darkModeSwitch.isOn = UserDefaults.standard.bool(forKey: "darkModeEnabled")
-        textSizeSlider.value = UserDefaults.standard.float(forKey: "textSize")
+        //textSizeSlider.value = UserDefaults.standard.float(forKey: "textSize")
         updateTextSize()
-        updateAppearance()
+        //updateAppearance()
         // Do any additional setup after loading the view.
     }
     
@@ -43,11 +43,11 @@ class SettingsViewController: UIViewController {
         overrideUserInterfaceStyle = isDarkMode ? .dark : .light
     }
     
-    @IBAction func textSizeChanged(_ sender: UISlider) {
+   /* @IBAction func textSizeChanged(_ sender: UISlider) {
         let textSize = sender.value
         UserDefaults.standard.set(textSize, forKey: "textSize")
         updateTextSize()
-    }
+    }*/
 
     private func updateTextSize() {
         let textSize = UserDefaults.standard.float(forKey: "textSize")
