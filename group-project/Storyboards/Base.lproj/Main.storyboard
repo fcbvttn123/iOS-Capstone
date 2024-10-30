@@ -120,7 +120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="knh-sE-bbE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117" y="-740"/>
+            <point key="canvasLocation" x="1116.793893129771" y="-740.14084507042253"/>
         </scene>
         <!--Map Screen-->
         <scene sceneID="WXO-rF-dQW">
@@ -354,6 +354,56 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wkt-BC-oDt">
+                                <rect key="frame" x="0.0" y="794" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="lnK-x2-iqP">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="irr-cL-Fgq">
+                                            <rect key="frame" x="16" y="0.0" width="86" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="person.fill" catalog="system"/>
+                                            <connections>
+                                                <segue destination="YFa-Jx-Xlf" kind="presentation" id="y2n-Xf-Jor"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="Vx7-Fw-w65">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Oao-bO-Upm">
+                                            <rect key="frame" x="102" y="5" width="101" height="34.333333333333336"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="location.circle.fill" catalog="system"/>
+                                            <connections>
+                                                <segue destination="s3e-eH-f1F" kind="presentation" id="mGv-6h-8X5"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="WcM-e1-Lk6">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="A91-re-A4z">
+                                            <rect key="frame" x="203" y="0.0" width="101" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="gearshape.fill" catalog="system"/>
+                                            <connections>
+                                                <segue destination="Uvv-NJ-o4d" kind="presentation" id="A1E-9P-XrY"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="NMc-hO-vO0">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="C5T-bH-8DG">
+                                            <rect key="frame" x="316.33333333333331" y="5" width="60.666666666666686" height="34.333333333333336"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="bubble.fill" catalog="system"/>
+                                            <connections>
+                                                <action selector="chatButtonTapped:" destination="bCw-GM-oSg" eventType="touchUpInside" id="oXC-y7-8vR"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nHv-dP-h5N"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1229,6 +1279,53 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GR6-gP-msy">
+                                <rect key="frame" x="-4" y="797" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="SVC-yK-adQ">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Xlg-rQ-I4j">
+                                            <rect key="frame" x="16" y="0.0" width="86" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="person.fill" catalog="system"/>
+                                            <connections>
+                                                <segue destination="YFa-Jx-Xlf" kind="presentation" id="Ojv-EY-7yf"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="j2r-yQ-0Vg">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ZNq-32-mJD">
+                                            <rect key="frame" x="102" y="5" width="101" height="34.333333333333336"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="location.circle.fill" catalog="system"/>
+                                            <connections>
+                                                <segue destination="s3e-eH-f1F" kind="presentation" id="m5L-Gf-iI6"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="c1A-PN-8bL">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="n5X-pT-cFO">
+                                            <rect key="frame" x="203" y="0.0" width="101" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="gearshape.fill" catalog="system"/>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="aVH-g4-HJI">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ceO-Mi-nYr">
+                                            <rect key="frame" x="316.33333333333331" y="5" width="60.666666666666686" height="34.333333333333336"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="bubble.fill" catalog="system"/>
+                                            <connections>
+                                                <action selector="chatButtonTapped:" destination="bCw-GM-oSg" eventType="touchUpInside" id="0aT-kL-tO1"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eJx-n0-i9Z"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1240,7 +1337,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Dz-E2-ZHe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2278.6259541984732" y="693.66197183098598"/>
+            <point key="canvasLocation" x="2612.9770992366412" y="791.54929577464793"/>
         </scene>
         <!--Web Screen-->
         <scene sceneID="gZw-Ex-nap">
@@ -1781,13 +1878,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Aph-Xo-pSV"/>
+        <segue reference="Wl5-nO-J7m"/>
         <segue reference="bc6-9f-LGY"/>
         <segue reference="M7j-Rs-9Pd"/>
         <segue reference="6aj-sQ-bq2"/>
-        <segue reference="Y5K-zY-0il"/>
+        <segue reference="A1E-9P-XrY"/>
+        <segue reference="PrI-1Q-tlz"/>
         <segue reference="4y2-CS-mHL"/>
-        <segue reference="acj-sp-UK8"/>
+        <segue reference="mGv-6h-8X5"/>
+        <segue reference="y2n-Xf-Jor"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="PalPicBg.png" width="464" height="464"/>
