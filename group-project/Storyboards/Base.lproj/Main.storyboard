@@ -1433,7 +1433,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Email Verification" id="ZtN-dH-b59">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.backward.fill" catalog="system" id="yhi-vG-YnU"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.backward.fill" catalog="system" id="yhi-vG-YnU">
+                                            <connections>
+                                                <segue destination="BYZ-38-t0r" kind="presentation" id="8Yl-8c-7FP"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1759,7 +1763,7 @@
                                     <navigationItem title="Email Verification" id="hFM-7q-Ndc">
                                         <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.backward.fill" catalog="system" id="u6U-NE-LQ5">
                                             <connections>
-                                                <segue destination="E2f-ny-ttU" kind="presentation" id="wQ0-Ue-uQO"/>
+                                                <segue destination="E2f-ny-ttU" kind="presentation" id="Itf-7o-K50"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1879,9 +1883,9 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Wl5-nO-J7m"/>
-        <segue reference="bc6-9f-LGY"/>
+        <segue reference="8Yl-8c-7FP"/>
         <segue reference="M7j-Rs-9Pd"/>
-        <segue reference="6aj-sQ-bq2"/>
+        <segue reference="Itf-7o-K50"/>
         <segue reference="A1E-9P-XrY"/>
         <segue reference="PrI-1Q-tlz"/>
         <segue reference="4y2-CS-mHL"/>
