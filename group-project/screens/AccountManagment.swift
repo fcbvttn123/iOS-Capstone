@@ -30,6 +30,11 @@ class AccountManagement: BaseViewController, UIImagePickerControllerDelegate, UI
         fetchSportTypes() // Fetch available sport types from Firestore
     }
     
+    // This function is used to make the keyboard disappear when we tap the "return" key
+    private func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
+    
     // Function to setup profile image view
     private func setupProfileImageView() {
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2

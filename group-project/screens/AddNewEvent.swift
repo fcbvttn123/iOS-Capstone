@@ -36,13 +36,18 @@ class AddNewEvent: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSou
            numberOfPlayersStepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
 
            fetchSportTypes() // Fetch available sport types from Firestore
-       }
+    }
+    
+    // This function is used to make the keyboard disappear when we tap the "return" key
+    private func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
 
-       func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
            if row == sportTypes.count { // Last item, "Add New Sport"
                presentAddNewSportAlert()
-           }
-       }
+        }
+    }
     
     // MARK: - UIPickerView Data Source
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

@@ -37,6 +37,11 @@ class SignUpScreen: UIViewController, UITextFieldDelegate {
         }
         styleButtons()
     }
+    
+    // This function is used to make the keyboard disappear when we tap the "return" key
+    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

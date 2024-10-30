@@ -36,6 +36,11 @@ class CodeVerificationViewController: UIViewController {
         codeTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
+    // This function is used to make the keyboard disappear when we tap the "return" key
+    private func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
+    
     @objc private func textFieldDidChange(_ textField: UITextField) {
         // Enable the submit button if the codeTextField is not empty
         submitButton.isEnabled = !(textField.text?.isEmpty ?? true)
