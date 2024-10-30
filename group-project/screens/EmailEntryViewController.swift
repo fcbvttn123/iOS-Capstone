@@ -37,6 +37,11 @@ class EmailEntryViewController: UIViewController {
         return textField.resignFirstResponder()
     }
     
+    // This function is used to navigate back to this view controller
+    @IBAction func toCodeEntry(sender: UIStoryboardSegue) {
+        // No action needed
+    }
+    
     func sendEmail(email : String){
         // Generate a 6-digit random code
         verificationCode = String(format: "%06d", Int.random(in: 0...999999))
