@@ -24,6 +24,11 @@ class CodeVerificationViewController: UIViewController {
         }
     }
     
+    // This function is used to navigate back to this view controller
+    @IBAction func toEmailEntry(sender: UIStoryboardSegue) {
+        // No action needed
+    }
+    
     private let emailService = EmailService() // Create an instance of EmailService
     private var cancelables = Set<AnyCancellable>()
     
@@ -34,6 +39,11 @@ class CodeVerificationViewController: UIViewController {
         
         // Add observer to monitor changes in the codeTextField
         codeTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    // This function is used to make the keyboard disappear when we tap the "return" key
+    private func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
     }
     
     @objc private func textFieldDidChange(_ textField: UITextField) {

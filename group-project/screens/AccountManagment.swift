@@ -29,6 +29,14 @@ class AccountManagement: BaseViewController, UIImagePickerControllerDelegate, UI
         sportTypePickerView.dataSource = self
         fetchSportTypes() // Fetch available sport types from Firestore
     }
+    // This function is used to navigate back to this view controller
+    @IBAction func toHomeScreen(sender: UIStoryboardSegue) {
+        // No action needed
+    }
+    // This function is used to make the keyboard disappear when we tap the "return" key
+    private func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
     
     // Function to setup profile image view
     private func setupProfileImageView() {
