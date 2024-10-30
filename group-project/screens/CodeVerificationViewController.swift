@@ -24,6 +24,11 @@ class CodeVerificationViewController: UIViewController {
         }
     }
     
+    // This function is used to navigate back to this view controller
+    @IBAction func toEmailEntry(sender: UIStoryboardSegue) {
+        // No action needed
+    }
+    
     private let emailService = EmailService() // Create an instance of EmailService
     private var cancelables = Set<AnyCancellable>()
     

@@ -25,7 +25,7 @@
                                     <navigationItem title="Update Profile" id="rtn-zj-pXI">
                                         <barButtonItem key="leftBarButtonItem" title="Itam" image="arrowshape.backward.fill" catalog="system" id="jqf-TP-Gbs">
                                             <connections>
-                                                <segue destination="bCw-GM-oSg" kind="presentation" id="Y5K-zY-0il"/>
+                                                <segue destination="iok-wp-2E9" kind="unwind" unwindAction="toHomeScreenWithSender:" id="Q3S-yH-hR5"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -119,6 +119,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="knh-sE-bbE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="iok-wp-2E9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1116.793893129771" y="-740.14084507042253"/>
         </scene>
@@ -178,12 +179,12 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Map" id="8d3-U6-WHx">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="hk1-gq-tbv">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Zzj-RW-pSN">
-                                                <rect key="frame" x="16" y="5" width="87" height="34.333333333333336"/>
+                                        <barButtonItem key="leftBarButtonItem" image="arrowshape.backward.fill" catalog="system" style="plain" id="hk1-gq-tbv">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Zzj-RW-pSN">
+                                                <rect key="frame" x="16.000000000000007" y="5" width="103.66666666666669" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="arrowshape.left.fill" catalog="system"/>
                                                 <connections>
                                                     <segue destination="lRx-cM-0ed" kind="unwind" unwindAction="toHomeScreenWithSender:" id="mlQ-sk-zna"/>
                                                 </connections>
@@ -1229,7 +1230,7 @@
                                     <navigationItem title="Settings" id="U63-TD-Ayd">
                                         <barButtonItem key="leftBarButtonItem" title="Back" image="arrowshape.backward.fill" catalog="system" id="w3s-AS-FVV">
                                             <connections>
-                                                <segue destination="bCw-GM-oSg" kind="presentation" id="PrI-1Q-tlz"/>
+                                                <segue destination="AiQ-zg-YRS" kind="unwind" unwindAction="toHomeScreenWithSender:" id="qAM-Al-esa"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1336,6 +1337,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Dz-E2-ZHe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="AiQ-zg-YRS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2612.9770992366412" y="791.54929577464793"/>
         </scene>
@@ -1435,7 +1437,7 @@
                                     <navigationItem title="Email Verification" id="ZtN-dH-b59">
                                         <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.backward.fill" catalog="system" id="yhi-vG-YnU">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="presentation" id="8Yl-8c-7FP"/>
+                                                <segue destination="83M-4d-gig" kind="unwind" unwindAction="unwindToLoginScreen:" id="yCZ-KB-HG0"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1763,7 +1765,7 @@
                                     <navigationItem title="Email Verification" id="hFM-7q-Ndc">
                                         <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.backward.fill" catalog="system" id="u6U-NE-LQ5">
                                             <connections>
-                                                <segue destination="E2f-ny-ttU" kind="presentation" id="Itf-7o-K50"/>
+                                                <segue destination="u62-jJ-BUT" kind="unwind" unwindAction="toCodeEntryWithSender:" id="CwB-Gr-GwA"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1791,6 +1793,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ws7-xH-smB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="u62-jJ-BUT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-665" y="-732"/>
         </scene>
@@ -1883,12 +1886,10 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Wl5-nO-J7m"/>
-        <segue reference="8Yl-8c-7FP"/>
+        <segue reference="bc6-9f-LGY"/>
         <segue reference="M7j-Rs-9Pd"/>
-        <segue reference="Itf-7o-K50"/>
         <segue reference="A1E-9P-XrY"/>
-        <segue reference="PrI-1Q-tlz"/>
-        <segue reference="4y2-CS-mHL"/>
+        <segue reference="aD1-4N-enc"/>
         <segue reference="mGv-6h-8X5"/>
         <segue reference="y2n-Xf-Jor"/>
     </inferredMetricsTieBreakers>
