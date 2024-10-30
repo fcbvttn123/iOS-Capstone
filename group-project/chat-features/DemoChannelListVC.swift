@@ -9,6 +9,7 @@ import UIKit
 class DemoChannelList: ChatChannelListVC, UISearchBarDelegate {
     
     let searchBar = UISearchBar()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
@@ -21,6 +22,13 @@ class DemoChannelList: ChatChannelListVC, UISearchBarDelegate {
         searchBar.placeholder = "Search for a username"
         navigationItem.titleView = searchBar
         searchBar.sizeToFit()
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Remove non-lowercase letters and spaces from the search text
+        let filteredText = searchText.lowercased().replacingOccurrences(of: " ", with: "")
+        if filteredText != searchText {
+            searchBar.text = filteredText
+        }
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let usernameToSearch = searchBar.text, !usernameToSearch.isEmpty else { return }

@@ -27,7 +27,6 @@ class HomeScreen: BaseViewController {
             print("Error: Email is nil or empty.")
         }
     }
-
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         if let username = AppDelegate.shared.email?.components(separatedBy: "@").first {
