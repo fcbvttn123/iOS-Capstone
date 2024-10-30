@@ -32,6 +32,11 @@ class EmailEntryViewController: UIViewController {
         sendEmail(email: email)
     }
     
+    // This function is used to make the keyboard disappear when we tap the "return" key
+    private func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
+    
     func sendEmail(email : String){
         // Generate a 6-digit random code
         verificationCode = String(format: "%06d", Int.random(in: 0...999999))
