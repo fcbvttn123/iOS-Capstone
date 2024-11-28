@@ -12,7 +12,7 @@ class ChatManager {
     static let shared = ChatManager()
     let chatClient: ChatClient
     private init() {
-        let config = ChatClientConfig(apiKeyString: "d8t3tcvbutju")
+        let config = ChatClientConfig(apiKeyString: "API Key")
         chatClient = ChatClient(config: config)
     }
 }
