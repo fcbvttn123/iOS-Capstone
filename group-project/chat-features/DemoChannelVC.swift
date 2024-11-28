@@ -8,4 +8,6 @@
 import StreamChatUI
 import UIKit
 
-class DemoChannelVC: ChatChannelVC {}
+class DemoChannelVC: ChatChannelVC {
+    
+}

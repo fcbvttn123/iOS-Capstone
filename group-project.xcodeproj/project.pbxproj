@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C3EC5D02CF7918300DB0115 /* SearchBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EC5CE2CF7918300DB0115 /* SearchBarManager.swift */; };
+		4C3EC5D12CF7918300DB0115 /* BackButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EC5C92CF7918300DB0115 /* BackButtonManager.swift */; };
+		4C3EC5D22CF7918300DB0115 /* DemoChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EC5CD2CF7918300DB0115 /* DemoChannelVC.swift */; };
+		4C3EC5D32CF7918300DB0115 /* DemoChannelListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EC5CC2CF7918300DB0115 /* DemoChannelListVC.swift */; };
+		4C3EC5D42CF7918300DB0115 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EC5CB2CF7918300DB0115 /* ChatService.swift */; };
+		4C3EC5D52CF7918300DB0115 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EC5CA2CF7918300DB0115 /* ChatManager.swift */; };
 		CE0D42E32BB4EF3D00900E9F /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D42E22BB4EF3D00900E9F /* SignUpScreen.swift */; };
 		CE1198322BA232FF00FD8B96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1198312BA232FF00FD8B96 /* AppDelegate.swift */; };
 		CE1198342BA232FF00FD8B96 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1198332BA232FF00FD8B96 /* SceneDelegate.swift */; };
@@ -21,10 +27,6 @@
 		CE155B1F2BB9E10000E45A2A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE155B1E2BB9E0FF00E45A2A /* MapKit.framework */; };
 		CE30445A2CA067B1002B217B /* StreamChat in Frameworks */ = {isa = PBXBuildFile; productRef = CE3044592CA067B1002B217B /* StreamChat */; };
 		CE30445C2CA0683B002B217B /* StreamChatUI in Frameworks */ = {isa = PBXBuildFile; productRef = CE30445B2CA0683B002B217B /* StreamChatUI */; };
-		CE7CC4862CD0680F0096FC75 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7CC4812CD0680F0096FC75 /* ChatManager.swift */; };
-		CE7CC4872CD0680F0096FC75 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7CC4822CD0680F0096FC75 /* ChatService.swift */; };
-		CE7CC4882CD0680F0096FC75 /* DemoChannelListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7CC4832CD0680F0096FC75 /* DemoChannelListVC.swift */; };
-		CE7CC4892CD0680F0096FC75 /* DemoChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7CC4842CD0680F0096FC75 /* DemoChannelVC.swift */; };
 		CE8134892CCD9EFD00B28E14 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8134882CCD9EFD00B28E14 /* SettingsViewController.swift */; };
 		CE81348B2CCD9F6000B28E14 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81348A2CCD9F6000B28E14 /* BaseViewController.swift */; };
 		CED5F8F22BA5CB8500A3D627 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CED5F8F12BA5CB8500A3D627 /* FirebaseFirestore */; };
@@ -81,6 +83,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C3EC5C92CF7918300DB0115 /* BackButtonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonManager.swift; sourceTree = "<group>"; };
+		4C3EC5CA2CF7918300DB0115 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		4C3EC5CB2CF7918300DB0115 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		4C3EC5CC2CF7918300DB0115 /* DemoChannelListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoChannelListVC.swift; sourceTree = "<group>"; };
+		4C3EC5CD2CF7918300DB0115 /* DemoChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoChannelVC.swift; sourceTree = "<group>"; };
+		4C3EC5CE2CF7918300DB0115 /* SearchBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarManager.swift; sourceTree = "<group>"; };
 		CE0D42E22BB4EF3D00900E9F /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
 		CE11982E2BA232FF00FD8B96 /* group-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "group-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1198312BA232FF00FD8B96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,10 +102,6 @@
 		CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CE155B1E2BB9E0FF00E45A2A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CE2AF31F2CD1A063000C67FD /* group-project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "group-project.entitlements"; sourceTree = "<group>"; };
-		CE7CC4812CD0680F0096FC75 /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
-		CE7CC4822CD0680F0096FC75 /* ChatService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
-		CE7CC4832CD0680F0096FC75 /* DemoChannelListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoChannelListVC.swift; sourceTree = "<group>"; };
-		CE7CC4842CD0680F0096FC75 /* DemoChannelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoChannelVC.swift; sourceTree = "<group>"; };
 		CE8134882CCD9EFD00B28E14 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CE81348A2CCD9F6000B28E14 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D6395DC22CCBDC5100D8C0AC /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
@@ -170,6 +174,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C3EC5CF2CF7918300DB0115 /* chat-features */ = {
+			isa = PBXGroup;
+			children = (
+				4C3EC5C92CF7918300DB0115 /* BackButtonManager.swift */,
+				4C3EC5CA2CF7918300DB0115 /* ChatManager.swift */,
+				4C3EC5CB2CF7918300DB0115 /* ChatService.swift */,
+				4C3EC5CC2CF7918300DB0115 /* DemoChannelListVC.swift */,
+				4C3EC5CD2CF7918300DB0115 /* DemoChannelVC.swift */,
+				4C3EC5CE2CF7918300DB0115 /* SearchBarManager.swift */,
+			);
+			path = "chat-features";
+			sourceTree = "<group>";
+		};
 		CE0D42E12BB4EF0800900E9F /* screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,9 +228,9 @@
 		CE1198302BA232FF00FD8B96 /* group-project */ = {
 			isa = PBXGroup;
 			children = (
+				4C3EC5CF2CF7918300DB0115 /* chat-features */,
 				CE2AF31F2CD1A063000C67FD /* group-project.entitlements */,
 				D6BA2D392CD157BB00AE40DB /* Future Screens */,
-				CE7CC4852CD0680F0096FC75 /* chat-features */,
 				D605E6312CAD010E00ECBB61 /* Resources */,
 				D610B6872BBF28EE007649B3 /* Storyboards */,
 				D610B6862BBF28CB007649B3 /* Delegates */,
@@ -233,17 +250,6 @@
 				CE155B1C2BB9E0F800E45A2A /* CoreLocation.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CE7CC4852CD0680F0096FC75 /* chat-features */ = {
-			isa = PBXGroup;
-			children = (
-				CE7CC4812CD0680F0096FC75 /* ChatManager.swift */,
-				CE7CC4822CD0680F0096FC75 /* ChatService.swift */,
-				CE7CC4832CD0680F0096FC75 /* DemoChannelListVC.swift */,
-				CE7CC4842CD0680F0096FC75 /* DemoChannelVC.swift */,
-			);
-			path = "chat-features";
 			sourceTree = "<group>";
 		};
 		D605E6312CAD010E00ECBB61 /* Resources */ = {
@@ -426,21 +432,23 @@
 				CE81348B2CCD9F6000B28E14 /* BaseViewController.swift in Sources */,
 				D6FF36792BC20CC3008A9809 /* BookingConfirmationScreen.swift in Sources */,
 				D6D6B9A52CCB029300DBD9BA /* EmailEntryViewController.swift in Sources */,
-				CE7CC4892CD0680F0096FC75 /* DemoChannelVC.swift in Sources */,
 				D6FF367B2BC215F2008A9809 /* ViewBookingsScreen.swift in Sources */,
 				D6D6B9A72CCB02A500DBD9BA /* CodeVerificationViewController.swift in Sources */,
-				CE7CC4862CD0680F0096FC75 /* ChatManager.swift in Sources */,
 				D6BA2D362CD1488200AE40DB /* UserTableViewCell.swift in Sources */,
 				CE1198322BA232FF00FD8B96 /* AppDelegate.swift in Sources */,
 				D6395DCB2CCC34A400D8C0AC /* AccountManagment.swift in Sources */,
-				CE7CC4872CD0680F0096FC75 /* ChatService.swift in Sources */,
 				D6D6B9A92CCB27F400DBD9BA /* EmailService.swift in Sources */,
 				CE1198342BA232FF00FD8B96 /* SceneDelegate.swift in Sources */,
 				D6395DC52CCBDD0900D8C0AC /* HomeScreen.swift in Sources */,
 				CE0D42E32BB4EF3D00900E9F /* SignUpScreen.swift in Sources */,
-				CE7CC4882CD0680F0096FC75 /* DemoChannelListVC.swift in Sources */,
 				CE155B1B2BB9E0CD00E45A2A /* MapScreen.swift in Sources */,
 				D6395DC92CCBDDB900D8C0AC /* ViewAllEvents.swift in Sources */,
+				4C3EC5D02CF7918300DB0115 /* SearchBarManager.swift in Sources */,
+				4C3EC5D12CF7918300DB0115 /* BackButtonManager.swift in Sources */,
+				4C3EC5D22CF7918300DB0115 /* DemoChannelVC.swift in Sources */,
+				4C3EC5D32CF7918300DB0115 /* DemoChannelListVC.swift in Sources */,
+				4C3EC5D42CF7918300DB0115 /* ChatService.swift in Sources */,
+				4C3EC5D52CF7918300DB0115 /* ChatManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

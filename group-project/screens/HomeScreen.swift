@@ -16,24 +16,27 @@ class HomeScreen: BaseViewController {
         super.viewDidLoad()
     }
     
-    // Connect user to StreamChat before loading the screen
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        
-        // Safely unwrap the username
+    private func connectUserToStream() {
+        // Get the part before @ symbol of user email as an unique username
         if let username = AppDelegate.shared.email?.components(separatedBy: "@").first {
+            // Start connecting user to Stream
             ChatService.shared.connectUserToStream(username: username)
         } else {
             print("Error: Email is nil or empty.")
         }
     }
+
+    // Connect user to Stream (a third-party library) before loading the screen
+    // Each will be called in different contexts based on how the view controller is created
+    // init() is used for programmatically created instances
+    // init?(coder:) is used for storyboard/nib-loaded instances
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        connectUserToStream()
+    }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        if let username = AppDelegate.shared.email?.components(separatedBy: "@").first {
-            ChatService.shared.connectUserToStream(username: username)
-        } else {
-            print("Error: Email is nil or empty.")
-        }
+        connectUserToStream()
     }
     
     // This function is used to make the keyboard disappear when we tap the "return" key
@@ -60,23 +63,21 @@ class HomeScreen: BaseViewController {
         performSegue(withIdentifier: "toBookings", sender: self)
     }
     
+    // A click event on a button to direct user to Channel List Screen
     @IBAction func chatButtonTapped(_ sender: Any) {
-        // When the button is clicked, push the chat screen
+        // Instantiate a Screen for Channel List
         let chatVC = DemoChannelList()
-
-        // Create the query for the channel list
+        // Get the part before @ symbol of user email as an unique username
         if let userId = AppDelegate.shared.email?.components(separatedBy: "@").first, !userId.isEmpty {
+            // Create the query to fetch channels of this unique username
             let query = ChannelListQuery(filter: .containMembers(userIds: [userId]))
-
             // Set the controller
             chatVC.controller = ChatManager.shared.chatClient.channelListController(query: query)
-
-            // Push the DemoChannelList onto the navigation stack
+            // Push the DemoChannelList onto the navigation stack. Show the ViewController (chatVC) on screen.
             self.navigationController?.pushViewController(chatVC, animated: true)
         } else {
             // Handle the case where userId is nil or empty
             print("User ID is nil or empty.")
-            // Optionally, you can show an alert or message to the user
         }
     }
     
