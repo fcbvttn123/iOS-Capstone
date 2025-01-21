@@ -1,41 +1,48 @@
-How to use the Google Sign-in Feature -> using @IBAction func signInWithGoogle(_ sender: UIButton) method 
-+ Put these 2 lines in viewDidLoad() method
-    + let mainDelegate = UIApplication.shared.delegate as! AppDelegate
-    + mainDelegate.setupGoogleSignIn()
-+ Copy this IBAction Function to the new ViewController
-+ Come to AppDelegate, change the "segueIdentiferForSignIn" variable to the segue identifier name that you want
-+ All user information is saved in AppDelegate
+PlayPal 🎾🏀⚽
 
+Find your game, connect with players, and make every sport session count!
 
+PlayPal is your go-to iOS app for spontaneous sports and play sessions at college. Whether you're craving a quick cardio session, looking for a badminton partner, or assembling a basketball team, PlayPal has you covered.
 
+🚀 Features
+Discover Available Play Slots: Find open times for your favorite sports.
+Choose Your Sport: Pick from a variety of sports tailored for college students.
+Connect with Fellow Enthusiasts: Build connections with like-minded players and teams.
+Team Up Hassle-Free: No need to hunt for friends who share your interest – PlayPal makes it easy to find partners on demand.
+Elevate Your Sports Experience: Play whenever, wherever, with whoever you choose!
 
-How to use the "checkCredentials() function" to check "entered credentials" 
+🔧 Technologies Used
+Programming Language: Swift
+Database: Firebase (for real-time data and authentication)
+Development Tools: Xcode
 
-    + Step 1: Access to AppDelegate
-    let mainDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    + Step 2: Call the function inside a Task{} according to this syntax. Pass 2 string into the functions for username and password. Right now, we have username as "abc1" and password as "123" in database
-    Task {
-        let success = await mainDelegate.checkCredentials(userNameEntered: username.text!, passwordEntered: password.text!)
-    }
-    // if the sign-in process is successful, the function will return true
+Dependencies:
+Firebase Auth
+Firebase Firestore
 
-    --> Example 
-    @IBAction func signIn(_ sender: UIButton) {
-        let mainDelegate = UIApplication.shared.delegate as! AppDelegate
-        Task {
-            let success = await mainDelegate.checkCredentials(userNameEntered: username.text!, passwordEntered: password.text!)
-            if success {
-                performSegue(withIdentifier: mainDelegate.segueIdentiferForSignIn, sender: nil)
-                mainDelegate.isLoggedIn = true
-            }
-        }
-    }
+🛠️ Installation
+Clone the repository:
 
+git clone https://github.com/yourusername/playpal.git  
 
+Open the project in Xcode.
 
+Install dependencies (if applicable).
 
-Access Test
-+ chakshita can push the code successfully
-+ joshuajocson can push the code successfully
+Set up Firebase:
+Create a Firebase project in the Firebase Console.
+Download the GoogleService-Info.plist file and add it to your project.
+Build and run the app on a simulator or physical device.
 
+💡 How to Use
+Sign Up/Login: Create an account or log in using your college email.
+Select a Sport: Choose the sport you want to play.
+Find a Slot: Browse through available play slots on campus.
+Connect with Players: Join an existing group or create your own session.
+Enjoy the Game: Meet up and play with your new PlayPals!
+
+📚 Future Enhancements
+Event Notifications: Get notified when a new game is created in your favorite sport.
+Chat Feature: Communicate with your PlayPals directly within the app.
+Leaderboards: Track your sports participation and earn rewards.
+Expanded Sports List: Add more sports as requested by users.
