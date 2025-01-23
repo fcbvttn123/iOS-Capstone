@@ -4,6 +4,8 @@ Find your game, connect with players, and make every sport session count!
 
 PlayPal is your go-to iOS app for spontaneous sports and play sessions at college. Whether you're craving a quick cardio session, looking for a badminton partner, or assembling a basketball team, PlayPal has you covered.
 
+Note: For security reasons, sign-up is only available to users with active college or university credentials.
+
 🚀 Features
 Discover Available Play Slots: Find open times for your favorite sports.
 Choose Your Sport: Pick from a variety of sports tailored for college students.
